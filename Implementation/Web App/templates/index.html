@@ -11,23 +11,79 @@
     <title>Welcome | Comparative Judgement</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
 <body>
-    <div>
-        <h1>Welcome to How funny are tweets: A comparative judgement Test!</h1>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Comparative Judgement</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li>
+                    <a href="{{ url_for( 'index') }}">Page 1</a></li>
+                <li><a href="{{ url_for( 'compare') }}">Page 2</a></li>
+                <li><a href="{{ url_for( 'explination') }}">Page 3</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container ">
+
+        <div class="jumbotron ">
+            <h1 class="display-4 ">Welcome to How funny are tweets: A comparative judgement Test!</h1>
+
+            <hr class="my-4 ">
+            <p class="lead ">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        </div>
+
+        <div class="card text-center ">
+            <div class="card-header ">
+                Featured
+            </div>
+            <div class="card-body ">
+                <h5 class="card-title ">Special title treatment</h5>
+                <p class="card-text ">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="# " class="btn btn-primary ">Go somewhere</a>
+            </div>
+            <div class="card-footer text-muted ">
+                2 days ago
+            </div>
+        </div>
+        <div class="jumbotron ">
+            <h3 class="display-4 ">Start the Comparative Judgement!</h3>
+            <p class="lead ">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4 ">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg " href="/compare/ " role="button ">Start</a>
+        </div>
+        <div class="jumbotron ">
+            <h3 class="display-4 ">What is comparative Judgement</h3>
+            <p class="lead ">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4 ">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg " href="# " role="button ">Learn more</a>
+        </div>
+        <div class="jumbotron ">
+            <h3 class="display-4 ">Current Results</h3>
+            <p class="lead ">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4 ">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg " href="# " role="button ">View</a>
+        </div>
+
     </div>
 
-    <script src="" async defer></script>
+    <script src=" " async defer></script>
 </body>
 
 </html>

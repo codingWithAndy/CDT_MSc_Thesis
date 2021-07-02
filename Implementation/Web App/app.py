@@ -23,6 +23,33 @@ def index():
 
     return render_template('index.html')
 
+@app.route('/compare/', methods=['GET','POST'])
+def compare():
+    if request.method == 'GET':
+        pass
+    
+    if request.method == 'POST':
+        name = request.form.get('name')
+        post = request.form.get('post')
+        create_post(name, post)
+
+    #posts = get_post()
+
+    return render_template('compare.html')
+
+@app.route('/explination/', methods=['GET','POST'])
+def explination():
+    if request.method == 'GET':
+        pass
+    
+    if request.method == 'POST':
+        name = request.form.get('name')
+        post = request.form.get('post')
+        create_post(name, post)
+
+    #posts = get_post()
+
+    return render_template('explination.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
