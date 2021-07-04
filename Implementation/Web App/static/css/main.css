@@ -12,12 +12,12 @@ h1 {
 .one {
     width: 50%;
     height: 200px;
-    background: red;
     float: left;
+    text-align: center;
 }
 
 .two {
     margin-left: 50%;
     height: 200px;
-    background: black;
+    text-align: center;
 }
