@@ -29,11 +29,11 @@
                 <a class="navbar-brand" href="#">Comparative Judgement</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="{{ url_for( 'index') }}">Home</a></li>
                 <li>
-                    <a href="{{ url_for( 'index') }}">Page 1</a></li>
-                <li><a href="{{ url_for( 'compare') }}">Page 2</a></li>
-                <li><a href="{{ url_for( 'explination') }}">Page 3</a></li>
+                    <a href="{{ url_for( 'compare') }}">Start CJ!</a></li>
+                <li><a href="{{ url_for( 'explination') }}">What is CJ?</a></li>
+                <li><a href="{{ url_for( 'results') }}">Results</a></li>
             </ul>
         </div>
     </nav>
@@ -74,14 +74,14 @@
             <p class="lead ">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4 ">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg " href="# " role="button ">Learn more</a>
+            <a class="btn btn-primary btn-lg " href="{{ url_for( 'explination') }}" role="button ">Learn more</a>
         </div>
         <div class="jumbotron ">
             <h3 class="display-4 ">Current Results</h3>
             <p class="lead ">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
             <hr class="my-4 ">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg " href="# " role="button ">View</a>
+            <a class="btn btn-primary btn-lg " href="#" role="button ">View</a>
         </div>
 
     </div>
