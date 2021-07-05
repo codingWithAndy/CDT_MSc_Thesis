@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for
 from flask_cors import CORS
 from models import get_post, create_post
 
-#from logic import [Required function]
+from logic import get_tweets
 
 # Needs to change copy and paste from social media app so far.
 app = Flask(__name__)
@@ -12,7 +12,8 @@ CORS(app)
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'GET':
-        pass
+        with open("workfile", "w") as f:
+            f.truncate(0)
     
     if request.method == 'POST':
         name = request.form.get('name')
@@ -26,7 +27,7 @@ def index():
 @app.route('/compare/', methods=['GET','POST'])
 def compare():
     if request.method == 'GET':
-        pass
+        tweets = get_tweets()
     
     if request.method == 'POST':
         name = request.form.get('name')
