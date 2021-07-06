@@ -8,27 +8,21 @@
         <p class="lead ">Welcome to How funny are tweets?: A comparative judgement Test!. An MSc project based around Comparative judgement on tweets.</p>
         <img src=" {{ url_for( 'static', filename='images/cat_smile.jpg' ) }} " width="80%" alt="" class="center">
         <section class="container">
-            <form action="" method="POST"></form>
-            <div class="one">
-
-                <p>This will be tweet 1's content</p>
-                <input type="radio" id="tweet1" name="fav_language" value="Tweet 1">
-                <label for="tweet1">CSS1</label><br>
-
-
-            </div>
-            <div class="two">
-
-                <p>This will be tweet 2's content</p>
-                <input type="radio" id="tweet2" name="fav_language" value="CSS">
-                <label for="tweet2">CSS</label><br>
-
-
-            </div>
-            <p class="center">Justification for choice:
-                <input type="text" name="content" id="content" value="">
-            </p>
-            <input type="submit" value="Vote!" class="center">
+            <form action="/compare/" method="POST">
+                <div class="one">
+                    <p>This will be tweet 1's content</p>
+                    <input type="radio" id="tweet1" name="radio 1" value="Tweet 1">
+                    <label for="tweet1">CSS1</label><br>
+                </div>
+                <div class="two">
+                    <p>This will be tweet 2's content</p>
+                    <input type="radio" id="tweet2" name="radio 2" value="Tweet 2">
+                    <label for="tweet2">CSS</label><br>
+                </div>
+                <p class="center">Justification for choice:
+                    <input type="text" name="content" id="content" value="">
+                </p>
+                <input type="submit" value="Vote!" class="center">
             </form>
         </section>
     </div>
