@@ -11,8 +11,9 @@ create table tweets (
 
 create table cj_results (
 	id integer primary key autoincrement,
-	winner_id interger not null,
-	loser_id integer not null,
-	comment text not null
+	tweet_1_id integer not null,
+	tweet_2_id integer not null,
+	winner_id interger,
+	comment text
 );
 

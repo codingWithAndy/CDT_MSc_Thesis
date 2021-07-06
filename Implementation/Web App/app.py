@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, url_for
 from flask_cors import CORS
-from models import get_post, create_post
+from models import get_post, create_post, record_result
 
-from logic import get_tweets
+from logic import get_tweets, update_results
+
 
 # Needs to change copy and paste from social media app so far.
 app = Flask(__name__)
@@ -12,7 +13,7 @@ CORS(app)
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'GET':
-        with open("workfile", "w") as f:
+        with open("round", "w") as f:
             f.truncate(0)
     
     if request.method == 'POST':
@@ -31,10 +32,12 @@ def compare():
         pass
     
     if request.method == 'POST':
+        print("tweets in POST:", tweets)
         radio_1 = request.form.get('radio 1')
         radio_2 = request.form.get('radio 2')
         print("content of radio 1 is:", radio_1)
         print("content of radio 2 is:", radio_2)
+        record_result()
         #post = request.form.get('post')
         #create_post(name, post)
         pass
@@ -50,6 +53,7 @@ def explination():
         pass
     
     if request.method == 'POST':
+        
         name = request.form.get('name')
         post = request.form.get('post')
         create_post(name, post)

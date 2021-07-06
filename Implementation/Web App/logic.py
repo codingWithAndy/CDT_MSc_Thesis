@@ -1,6 +1,11 @@
+import sqlite3 as sql
+from os import path
+
+ROOT = path.dirname(path.relpath((__file__)))
+
 def get_tweets():
     print("Do something")
-    with open('workfile', 'r') as f:
+    with open('round', 'r') as f:
         lines = [line for line in f.readlines()] # f.readlines()
 
     stripped_line = [s.rstrip() for s in lines]
@@ -8,15 +13,26 @@ def get_tweets():
 
     if len(stripped_line) > 0:
         value = int(stripped_line[-1]) + 1
-        with open('workfile', 'a') as f:
+        with open('round', 'a') as f:
             f.write(str(value)+"\n")
             #f.write("\n")
     else:
-        with open('workfile', 'a') as f:
+        with open('round', 'a') as f:
             f.write("1"+"\n")
             #f.write("\n")
 
+    #user = User.query.filter_by(username=username).first_or_404()
+
     # query database for the records matching value
+    #con = sql.connect(path.join(ROOT, 'database.db'))
+    #cur = con.cursor()
+    #cur.execute('select * from comparisons where id = 1') # needs to change
+    #comparisons = cur.fetchall()
+
+    return 1
+
+def update_results(id,win,lose):
+    pass
 
 
 
