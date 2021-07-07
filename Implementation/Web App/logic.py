@@ -5,9 +5,10 @@ ROOT = path.dirname(path.relpath((__file__)))
 
 def get_tweets():
     print("Do something")
-    with open('round', 'r') as f:
-        lines = [line for line in f.readlines()] # f.readlines()
+    #with open('round', 'r') as f:
+    #    lines = [line for line in f.readlines()] # f.readlines()
 
+    lines = read_textfile()
     stripped_line = [s.rstrip() for s in lines]
     print(stripped_line)
 
@@ -15,12 +16,11 @@ def get_tweets():
         value = int(stripped_line[-1]) + 1
         with open('round', 'a') as f:
             f.write(str(value)+"\n")
-            #f.write("\n")
     else:
         with open('round', 'a') as f:
             f.write("1"+"\n")
-            #f.write("\n")
-
+            
+    
     #user = User.query.filter_by(username=username).first_or_404()
 
     # query database for the records matching value
@@ -29,9 +29,22 @@ def get_tweets():
     #cur.execute('select * from comparisons where id = 1') # needs to change
     #comparisons = cur.fetchall()
 
-    return 1
+    return 1, 2
 
-def update_results(id,win,lose):
+
+def read_textfile():
+    with open('round', 'r') as f:
+        lines = [line for line in f.readlines()]
+
+    return lines     
+
+def reload_previous_tweets():
+    lines = read_textfile()
+    stripped_line = [s.rstrip() for s in lines]
+
+    return 2, 3
+
+def update_results(tweet_1, tweet_2, comment):
     pass
 
 

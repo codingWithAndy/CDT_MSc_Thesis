@@ -1,5 +1,5 @@
 drop table if exists tweets;
-drop table if exists judgemement_results;
+drop table if exists cj_results;
 
 create table tweets (
 	id integer primary key autoincrement,
