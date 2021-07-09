@@ -1,45 +1,31 @@
 % !TEX root = ../thesis.tex
-\chapter{Typesetting your thesis}
+\chapter{Methodology}
 	\label{chap:typesetting}
 	
-This document is intended as both a \LaTeX{} thesis template and as a brief tutorial on structuring and typesetting your thesis in the \LaTeX{} programming language.
-It is by no means a comprehensive \LaTeX{} guide, but fortunately there are plenty of those available.
+	\section{Tools}
+	To create the web application and insights from the tweets, we required to use several tools. It is required that we develop a full-stack web application with a user UI, an area to input the user's judgements on the tweet, store the results using a database, and extract information from the tweets using NLP techniques. Several factors within the final application needed to be satisfied for the tools to be appropriate for use.
 	
-The following are some powerful online resources for learning about \LaTeX{}:
-
-	\begin{description}	
-
-		\item[\(\bullet\) Overleaf Documentation for \LaTeX{}]\hfill
-
-Overleaf \cite{overleafdocs} is an online browser-based \LaTeX{} IDE which stores your document in the cloud and provides live recompilation as you type.
-The documentation on Overleaf's website has a good knowledge base of examples for how to typeset things cleanly and simply in \LaTeX{} code. 
-
-		\noindent See: {\small \url{https://www.overleaf.com/learn}}
-
-		\item[\(\bullet\) \TeX{} StackExchange, the StackOverflow site dedicated to \TeX{} questions]\hfill
-
-\TeX{} StackExchange \cite{texstackexchange} is sub-community of the StackOverflow network dedicated to questions about the \TeX{} family of typesetting tools including \LaTeX{}, Bib\TeX{} and others.
-A vast majority of the time it is unlikely that the question or issue you are facing is one that has not been encountered before, and this site is more than likely to be able to point you in the correct direction. 
-		
-		\noindent See: {\small \url{https://tex.stackexchange.com}}
-		
-	\end{description}
-
+	\subsection{Programming Language}
+	While many programming languages can handle creating a full-stack application and conducting ML, for example, Java, Php and JavaScript. We decided to use the Python language. We decided upon Python due to our familiarity with it over the other main languages and its versatility. We made this decision because Python can make full-stack applications with the use of additional libraries, as well as handle most NLP ML tasks using libraries like NLTK, SpaCy and Sci-Kit Learn.
 	
-	\section{Referencing items within this document}
-
-In \cref{sec:resources_bibtex} we saw examples of how to typeset citations for resources we had stored in an external Bib\TeX{} file.
-However, often we would like to accurately refer to the location of a resource or region of text stored somewhere else within this document\footnote{Like at the beginning of the last sentence, when we referred to section \cref{sec:resources_bibtex}.}.
-To do this we need to annotate our \LaTeX{} code with \lstinline|\label{key}| statements which will take on the numeric (or otherwise formatted) identifier for the current chapter, section, figure, table, equation, listing \etc where they are directly defined.
-To insert an inline reference to the label alone you can use the \lstinline|\ref{key}| command which works similarly to the \lstinline|\cite{key}| used for external references.
-If you would like to automatically include and format the name of the reference target, then you can use \lstinline|\cref{key}|.
-In the event we choose to reorder or add additional content to the document (\ie an action that would change chapter/section numbering), the document will still compile to a PDF with the correct references inserted for each \lstinline|\cref{key}| command.
-
-
-	\input{./chapters/thesis_typesetting_equations}
-		
-	\input{./chapters/thesis_typesetting_figures}
+	\subsection{Libraries}
+	\subsubsection{Web Application}
+	For creating the web application, there were two main libraries available. These were Django and Flask.
 	
-	\input{./chapters/thesis_typesetting_listings}
+	Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source \cite{django}.
 	
-	\input{./chapters/thesis_typesetting_tables}
+	\subsubsection{NLP Tasks}
+	
+	\subsection{IDE}
+	
+	\section{Software Development Life Cycle Methodology}
+	
+	
+	\section{Data Set}
+	
+	\subsection{Data Capture Method}
+	
+	\subsection{Pre-Processing}
+	
+	
+	
