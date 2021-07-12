@@ -31,3 +31,14 @@ def get_post():
     comparisons = cur.fetchall()
 
     return comparisons
+
+def tweets_judged(comparison_id):
+    """Collects the required tweet IDs from the table by the ordered comparison ID.
+
+    Args:
+        comparison_id (Int): The required ID for the tweets being compared.
+
+    Returns:
+        results (??): The records content for the supplied comparison ID.
+    """
+    pass

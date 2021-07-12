@@ -11,16 +11,17 @@
             <form action="/compare/" method="POST">
                 <div class="one">
                     <p>This will be tweet 1's content</p>
-                    <input type="radio" id="tweet1" name="radio 1" value="{{tweets}}">
+                    <input type="radio" id="tweet1" name="radio" value="{{tweets}}">
                     <label for="tweet1">CSS1</label><br>
                 </div>
                 <div class="two">
                     <p>This will be tweet 2's content</p>
-                    <input type="radio" id="tweet2" name="radio 2" value="{{judgement}}">
+                    <input type="radio" id="tweet2" name="radio" value="{{judgement}}">
                     <label for="tweet2">CSS</label><br>
                 </div>
                 <p class="center">Justification for choice:
-                    <input type="text" name="content" id="content" value="">
+                    <textarea rows = "5" cols = "40" name = "content">
+                </textarea><br>
                 </p>
                 <input type="submit" value="Vote!" class="center">
             </form>

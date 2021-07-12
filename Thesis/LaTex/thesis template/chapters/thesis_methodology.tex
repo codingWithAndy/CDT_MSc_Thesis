@@ -1,0 +1,41 @@
+% !TEX root = ../thesis.tex
+\chapter{Methodology}
+	\label{chap:typesetting}
+	
+	\section{Tools}
+	To create the web application and insights from the tweets, we required to use several tools. It is a requirement that we develop a full-stack web application with a user UI, an area to input the user's judgements on the tweet, store the results using a database, and extract information from the tweets using NLP techniques. Several factors within the final application needed to be satisfied for the tools to be appropriate for use.
+	
+	
+	\subsection{Programming Language}
+	While many programming languages can handle creating a full-stack application and conducting ML, for example, Java, Php and JavaScript. We decided to use the Python language. We decided upon Python due to our familiarity with it over the other main languages and its versatility. We made this decision because Python can make full-stack applications with the use of additional libraries, as well as handle most NLP ML tasks using libraries like NLTK, SpaCy, Sci-Kit Learn and TensorFlow.
+	
+	\subsection{Libraries}
+	\subsubsection{Web Application}
+	For creating the web application, there were two main libraries available. These were Django and Flask.
+	
+	Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source \cite{django}.
+	
+	While Flask is a small framework by most standards—small enough to be called a “micro- framework,” and small enough that once you become familiar with it, you will likely be able to read and understand all of its source code \cite{grinberg2018flask}. 
+	
+	Flask has three main dependencies. The routing, debugging, and Web Server Gateway Interface (WSGI) subsystems come from Werkzeug; the template support is provided by Jinja2; and the command-line integration comes from Click. These dependencies are all authored by Armin Ronacher, the author of Flask \cite{grinberg2018flask}. 
+	
+	Flask has no native support for accessing databases, validating web forms, authenti‐ cating users, or other high-level tasks. These and many other key services most web applications need are available through extensions that integrate with the core pack‐ ages. As a developer, you have the power to cherry-pick the extensions that work best for your project, or even write your own if you feel inclined to. This is in contrast with a larger framework, where most choices have been made for you and are hard or sometimes impossible to change \cite{grinberg2018flask}.
+	
+	%decision and justification
+	After experimenting with the two frameworks, we decided upon Flask. Flask got decided upon because of the short time frame to put the project together. Additionally, the lightweight nature of the framework also played a fact as we believe that as this will be just an initial prototype, all the other requirements that Django requires would be unessential additionals to the project. Therefore, taking focus away from what we believe is the main focus. 
+	
+	\subsubsection{NLP Tasks}
+	
+	\subsection{IDE}
+	
+	\section{Software Development Life Cycle Methodology}
+	
+	
+	\section{Data Set}
+	
+	\subsection{Data Capture Method}
+	
+	\subsection{Pre-Processing}
+	
+	
+	

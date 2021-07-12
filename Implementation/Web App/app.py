@@ -35,17 +35,17 @@ def compare():
         #pass
     
     if request.method == 'POST':
-        radio_1 = request.form.get('radio 1')
-        radio_2 = request.form.get('radio 2')
+        radio_1 = request.form.get('radio')
+        #radio_2 = request.form.get('radio')
         justification = request.form.get('content')
-        if radio_1 == None and radio_2 == None or justification == "":
+        if radio_1 == None  or justification == "": #and radio_2 == None
             print("No option was selected.")
             tweets, vs = reload_previous_tweets()
         else:
             print("content of radio 1 is:", radio_1)
-            print("content of radio 2 is:", radio_2)
+            #print("content of radio 2 is:", radio_2)
             print("content of justification is:", justification)
-            update_results(radio_1, radio_2, justification)
+            update_results(radio_1,  justification) #radio_2,
             tweets, vs = get_tweets()
 
     #tweets, vs = get_tweets(radio_1, radio_2, justification)

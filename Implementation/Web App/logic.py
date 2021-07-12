@@ -19,8 +19,9 @@ def get_tweets():
     else:
         with open('round', 'a') as f:
             f.write("1"+"\n")
-            
     
+    #judged_tweets = tweets_judged(int(stripped_line[-1]))
+
     #user = User.query.filter_by(username=username).first_or_404()
 
     # query database for the records matching value
@@ -44,7 +45,13 @@ def reload_previous_tweets():
 
     return 2, 3
 
-def update_results(tweet_1, tweet_2, comment):
+def update_results(tweet_1,  comment): #tweet_2,
+    if tweet_1 != None:
+        pass
+        #record_result(tweet_1, tweet_2, comment)
+    else:
+        pass
+        #record_result(tweet_2, tweet_1, comment)
     pass
 
 
