@@ -1,1 +1,15 @@
-﻿user_id,tweet_1,tweet_2,winner,comment
+,user_id,tweet_1,tweet_2,winner_id,loser_id,comment
+0,1,1,2,1,2,complete jibberish!!!
+1,1,1,2,1,2,complete jibberish!!!
+2,1,1,3,1,3,complete jibberish!!!
+3,1,1,12,1,12,complete jibberish!!!
+4,1,1,3,1,3,complete jibberish!!!
+5,1,1,4,1,4,complete jibberish!!!
+6,1,1,5,1,5,complete jibberish!!!
+7,1,1,6,1,6,complete jibberish!!!
+8,1,1,7,1,7,complete jibberish!!!
+9,1,1,8,1,8,complete jibberish!!!
+10,1,1,9,1,9,complete jibberish!!!
+11,1,1,10,1,10,complete jibberish!!!
+12,1,1,11,1,11,complete jibberish!!!
+13,1,1,12,1,12,complete jibberish!!!
