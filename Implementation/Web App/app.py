@@ -31,7 +31,7 @@ def index():
 @app.route('/compare/', methods=['GET','POST'])
 def compare():
     if request.method == 'GET':
-        tweet1, tweet2 = get_tweets()
+        tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
         #pass
     
     if request.method == 'POST':
@@ -40,17 +40,17 @@ def compare():
         justification = request.form.get('content')
         if radio_1 == None  or justification == "": #and radio_2 == None
             print("No option was selected.")
-            tweet1, tweet2 = reload_previous_tweets()
+            tweet1, tweet2, tweet1_id, tweet2_id = reload_previous_tweets()
         else:
             print("content of radio 1 is:", radio_1)
             #print("content of radio 2 is:", radio_2)
             print("content of justification is:", justification)
             update_results(radio_1,  justification) #radio_2,
-            tweet1, tweet2 = get_tweets()
+            tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
 
     #tweets, vs = get_tweets(radio_1, radio_2, justification)
 
-    return render_template('compare.html', tweet1 = tweet1, tweet2 = tweet2) 
+    return render_template('compare.html', tweet1 = tweet1, tweet2 = tweet2, tweet1_id = tweet1_id, tweet2_id = tweet2_id) 
 
 
 ####################################################
