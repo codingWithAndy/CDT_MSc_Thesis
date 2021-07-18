@@ -122,7 +122,7 @@ def update_results(winning_tweet_id,  comment): #tweet_2,
         "comment": justification
     }, ignore_index=True)
 
-    results_df.to_csv("results.csv",index = False)
+    results_df.to_csv("results.csv",index=False)
 
 
     #if tweet_1 != None:
