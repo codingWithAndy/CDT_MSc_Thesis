@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for
 from flask_cors import CORS
 from models import get_post, create_post, record_result
-from logic import get_tweets, update_results, reload_previous_tweets
+from logic import get_tweets, update_results, reload_previous_tweets, create_feedback
 
 app = Flask(__name__)
 CORS(app)
@@ -95,11 +95,12 @@ def feedback():
         pass
     
     if request.method == 'POST':
-        name = request.form.get('name')
-        post = request.form.get('post')
-        create_post(name, post)
-    
-    #posts = get_post()
+        name     = request.form.get('name')
+        email    = request.form.get('email')
+        feedback = request.form.get('comments')
+        rating   = request.form.get('experience')
+        print(name, email, feedback, rating)
+        create_feedback(name, email, feedback, rating)
 
     return render_template('feedback.html')
 

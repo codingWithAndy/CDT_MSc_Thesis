@@ -122,7 +122,7 @@ def update_results(winning_tweet_id,  comment): #tweet_2,
         "comment": justification
     }, ignore_index=True)
 
-    results_df.to_csv("results.csv",index=False)
+    results_df.to_csv("results.csv", index=False)
 
 
     #if tweet_1 != None:
@@ -137,3 +137,12 @@ def update_results(winning_tweet_id,  comment): #tweet_2,
 
 # Adding Tweets to Database from CSV idea
 # https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/
+
+def create_feedback(user_name,email,feedback, user_rating):
+    txt_contents = "User Name: " + user_name + "\n" + \
+                   "Email address: " + email + "\n" + \
+                   "Feedback: " + feedback + "\n" + \
+                   "User Rating: " + user_rating
+
+    with open('feedback.txt', 'w') as f:
+        f.write(txt_contents)
