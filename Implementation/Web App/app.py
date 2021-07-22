@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, session, redirect
 from flask_cors import CORS
-from models import get_post, create_post, record_result
-from logic import get_tweets, update_results, reload_previous_tweets, create_feedback
+from models import * #get_post, create_post, record_result
+from logic import * #get_tweets, update_results, reload_previous_tweets, create_feedback
+
+import pyrebase
 
 app = Flask(__name__)
+
 CORS(app)
+app.secret_key = "lets_judge"
 
 # Home form load
 @app.route('/', methods=['GET','POST'])
@@ -92,7 +96,7 @@ def results():
 @app.route('/feedback/', methods=['GET','POST'])
 def feedback():
     if request.method == 'GET':
-        pass
+        print("feedback user:", session["user"])
     
     if request.method == 'POST':
         name     = request.form.get('name')
@@ -100,9 +104,30 @@ def feedback():
         feedback = request.form.get('comments')
         rating   = request.form.get('experience')
         #print(name, email, feedback, rating)
-        create_feedback(name, email, feedback, rating)
+        create_feedback(name, email, feedback, rating, session)
 
     return render_template('feedback.html')
+
+@app.route('/login/', methods=['GET','POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user_id = login_user(email,password)
+
+        session['user'] = user_id
+
+        print(user_id)
+        print("session user:", session['user'])
+
+        #print(email, password)
+
+        return redirect(url_for('index'))
+
+    
 
 
 if __name__ == '__main__':

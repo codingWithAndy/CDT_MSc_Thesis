@@ -1,10 +1,12 @@
 import sqlite3 as sql
 from os import path, remove
 
+from flask import sessions
+
 import pandas as pd
 import numpy as np
 
-import models
+from models import *
 import pyrebase
 
 ROOT = path.dirname(path.relpath((__file__)))
@@ -141,7 +143,7 @@ def update_results(winning_tweet_id,  comment): #tweet_2,
 # Adding Tweets to Database from CSV idea
 # https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/
 
-def create_feedback(user_name,email,feedback, user_rating):
+def create_feedback(user_name,email,feedback, user_rating, session):
     txt_contents = "User Name: " + user_name + "\n" + \
                    "Email address: " + email + "\n" + \
                    "Feedback: " + feedback + "\n" + \
@@ -151,7 +153,7 @@ def create_feedback(user_name,email,feedback, user_rating):
         f.write(txt_contents)
 
     #Put to Cloud storage
-    store_feedback_cloud('feedback.txt')
+    store_feedback_cloud('feedback.txt', session)
 
     #delete txt file
     if path.exists("feedback.txt"):
@@ -159,10 +161,33 @@ def create_feedback(user_name,email,feedback, user_rating):
     else:
         print("The file does not exist")
 
-def store_feedback_cloud(textfile_name):
-    filename = textfile_name
-    cloud_filename = "feedback/user"+str(1)
-
-    storage = models.init_storage()
+def store_feedback_cloud(textfile_name, session):
+    storage        = init_storage()
+    filename       = textfile_name
+    cloud_filename = "feedback/user_"+str(session["user"])
 
     storage.child(cloud_filename).put(filename)
+
+def login_user(id, password):
+    auth = init_auth()
+
+    try:
+        user = auth.sign_in_with_email_and_password(id,password)
+        token = user['localId'] #['idToken']
+        print("Success")
+
+        return token
+    except:
+        print("invalid user or password. Please try again")
+
+def signup_user(id,password,password_confirmation):
+    auth = init_auth()
+
+    if password == password_confirmation:
+        try:
+            auth.create_user_with_email_and_password(id,password)
+            print("Success")
+        except:
+            print("invalid user or password. Please try again")
+    else:
+        print("passwords do not match.")
