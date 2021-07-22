@@ -10,14 +10,22 @@ h1 {
 }
 
 .one {
-    width: 50%;
+    width: 45%;
     height: 200px;
     float: left;
     text-align: center;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 20px;
+    border-color: black;
 }
 
 .two {
     margin-left: 50%;
     height: 200px;
     text-align: center;
+    padding: 10px;
+    background-color: bisque;
+    border-radius: 20px;
+    border-color: black;
 }

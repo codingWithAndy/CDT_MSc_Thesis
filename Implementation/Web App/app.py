@@ -35,8 +35,11 @@ def index():
 @app.route('/compare/', methods=['GET','POST'])
 def compare():
     if request.method == 'GET':
-        tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
-        #pass
+        if "user" in session:
+            tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
+        else:
+            
+            return redirect(url_for('login'))
     
     if request.method == 'POST':
         radio_1 = request.form.get('radio')
@@ -127,7 +130,13 @@ def login():
 
         return redirect(url_for('index'))
 
-    
+
+@app.route('/logout/')
+def logout():
+    session.pop("user", None)
+
+    return redirect(url_for("index"))
+
 
 
 if __name__ == '__main__':
