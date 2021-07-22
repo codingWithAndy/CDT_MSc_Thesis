@@ -1,8 +1,11 @@
 import sqlite3 as sql
-from os import path
+from os import path, remove
 
 import pandas as pd
 import numpy as np
+
+import models
+import pyrebase
 
 ROOT = path.dirname(path.relpath((__file__)))
 
@@ -146,3 +149,20 @@ def create_feedback(user_name,email,feedback, user_rating):
 
     with open('feedback.txt', 'w') as f:
         f.write(txt_contents)
+
+    #Put to Cloud storage
+    store_feedback_cloud('feedback.txt')
+
+    #delete txt file
+    if path.exists("feedback.txt"):
+        remove("feedback.txt")
+    else:
+        print("The file does not exist")
+
+def store_feedback_cloud(textfile_name):
+    filename = textfile_name
+    cloud_filename = "feedback/user"+str(1)
+
+    storage = models.init_storage()
+
+    storage.child(cloud_filename).put(filename)

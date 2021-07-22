@@ -99,7 +99,7 @@ def feedback():
         email    = request.form.get('email')
         feedback = request.form.get('comments')
         rating   = request.form.get('experience')
-        print(name, email, feedback, rating)
+        #print(name, email, feedback, rating)
         create_feedback(name, email, feedback, rating)
 
     return render_template('feedback.html')
