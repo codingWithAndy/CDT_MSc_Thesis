@@ -180,14 +180,13 @@ def login_user(id, password):
     except:
         print("invalid user or password. Please try again")
 
-def signup_user(id,password,password_confirmation):
+def signup_user(id,password):
     auth = init_auth()
 
-    if password == password_confirmation:
-        try:
-            auth.create_user_with_email_and_password(id,password)
-            print("Success")
-        except:
-            print("invalid user or password. Please try again")
-    else:
-        print("passwords do not match.")
+    try:
+        user = auth.create_user_with_email_and_password(id,password)
+        print("Success")
+        return user['localId']
+    except:
+        print("invalid user or password. Please try again")
+    

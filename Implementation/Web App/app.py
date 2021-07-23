@@ -116,7 +116,10 @@ def feedback():
 @app.route('/login/', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        if "user" in session:
+            return redirect(url_for('logout'))
+        else:
+            return render_template('login.html')
     
     if request.method == 'POST':
         email = request.form.get('email')
@@ -127,8 +130,6 @@ def login():
 
         print(user_id)
         print("session user:", session['user'])
-
-        #print(email, password)
 
         flash("You have been logged in successfully.", "info")
         return redirect(url_for('index'))
@@ -141,6 +142,17 @@ def signup():
     if request.method == 'POST':
         email    = request.form.get('email')
         password = request.form.get('password')
+        password_check = request.form.get('password_check')
+
+        if password == password_check:
+            user_id = signup_user(email,password)
+            session['user'] = user_id
+
+            flash("You have been signed up successfully.", "info")
+            return redirect(url_for('index'))
+        else:
+            flash("Invalid email and/or passwords do not match.", "info")
+            return redirect(url_for('signup'))
         #user_id = login_user(email,password)
 
         #session['user'] = user_id
@@ -150,10 +162,7 @@ def signup():
 
         #print(email, password)
 
-        flash("You have been signed up successfully.", "info")
-        return redirect(url_for('index'))
-
-
+        
 @app.route('/logout/')
 def logout():
     if "user" in session:
@@ -164,7 +173,6 @@ def logout():
     session.pop("user", None)
 
     return redirect(url_for("index"))
-
 
 
 if __name__ == '__main__':
