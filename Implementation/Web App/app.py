@@ -133,6 +133,26 @@ def login():
         flash("You have been logged in successfully.", "info")
         return redirect(url_for('index'))
 
+@app.route('/signup/', methods=['GET','POST'])
+def signup():
+    if request.method == 'GET':
+        return render_template('signup.html')
+    
+    if request.method == 'POST':
+        email    = request.form.get('email')
+        password = request.form.get('password')
+        #user_id = login_user(email,password)
+
+        #session['user'] = user_id
+
+        #print(user_id)
+        #print("session user:", session['user'])
+
+        #print(email, password)
+
+        flash("You have been signed up successfully.", "info")
+        return redirect(url_for('index'))
+
 
 @app.route('/logout/')
 def logout():

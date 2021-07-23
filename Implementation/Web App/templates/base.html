@@ -26,14 +26,18 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Comparative Judgement</a>
+                <a class="navbar-brand active" href="#">Comparative Judgement</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('compare') }}">Start CJ!</a></li>
                 <li><a href="{{ url_for('explination') }}">What is CJ?</a></li>
                 <li><a href="{{ url_for('results') }}">Results</a></li>
                 <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </nav>
