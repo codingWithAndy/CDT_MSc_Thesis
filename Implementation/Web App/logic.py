@@ -168,6 +168,22 @@ def store_feedback_cloud(textfile_name, session):
 
     storage.child(cloud_filename).put(filename)
 
+def store_user_docs(textfile_name, session):
+    storage        = init_storage()
+
+    # TODO: Put user tweet txt and user tweet count txt into storage
+    filename       = textfile_name
+    cloud_filename = "feedback/user_"+str(session["user"])
+
+    storage.child(cloud_filename).put(filename)
+
+def get_user_storage_docs():
+    storage        = init_storage()
+
+    stored_doc = storage.child("doc name.txt").download("","server name.txt") ## is the variable needed?
+
+    return stored_doc
+
 def login_user(id, password):
     auth = init_auth()
 
