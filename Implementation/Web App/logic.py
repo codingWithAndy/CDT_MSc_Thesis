@@ -53,13 +53,13 @@ def get_tweets():
 
     #print(first_tweet, second_tweet)
 
-    first_tweet_text = get__tweet_text(first_tweet, tweets)
-    second_tweet_text = get__tweet_text(second_tweet, tweets)
+    first_tweet_text = get_tweet_text(first_tweet, tweets)
+    second_tweet_text = get_tweet_text(second_tweet, tweets)
 
     return first_tweet_text, second_tweet_text, first_tweet, second_tweet
 
 
-def get__tweet_text(id, all_tweet):
+def get_tweet_text(id, all_tweet):
     tweet_text = all_tweet['tweet_text'].loc[all_tweet['tweet_id']==np.int64(id)]
     tweet_text = tweet_text.iloc[0]
     #print("tweet_text:", tweet_text)
@@ -91,10 +91,10 @@ def reload_previous_tweets():
     combinations = pd.read_csv('tweet_vs.csv')
     first_tweet, second_tweet = get_comparing_tweets_id(combinations, value2)
 
-    first_tweet_text = get__tweet_text(first_tweet, tweets)
-    second_tweet_text = get__tweet_text(second_tweet, tweets)
+    first_tweet_text = get_tweet_text(first_tweet, tweets)
+    second_tweet_text = get_tweet_text(second_tweet, tweets)
 
-    return first_tweet_text, second_tweet_text
+    return first_tweet_text, second_tweet_text, first_tweet, second_tweet
 
 def update_results(winning_tweet_id,  comment): #tweet_2,
     lines = read_textfile()

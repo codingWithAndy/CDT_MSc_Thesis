@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, redirect
+from flask import Flask, render_template, request, url_for, session, redirect, flash
 from flask_cors import CORS
 from models import * #get_post, create_post, record_result
 from logic import * #get_tweets, update_results, reload_previous_tweets, create_feedback
@@ -47,6 +47,8 @@ def compare():
         justification = request.form.get('content')
         if radio_1 == None  or justification == "": #and radio_2 == None
             print("No option was selected.")
+            message = "You have missed some required information. Please try again"
+            flash(message, "info")
             tweet1, tweet2, tweet1_id, tweet2_id = reload_previous_tweets()
         else:
             print("content of radio 1 is:", radio_1)
@@ -128,11 +130,17 @@ def login():
 
         #print(email, password)
 
+        flash("You have been logged in successfully.", "info")
         return redirect(url_for('index'))
 
 
 @app.route('/logout/')
 def logout():
+    if "user" in session:
+        user = session["user"]
+        message = "You have been logged out succesfully"
+        flash(message, "info")
+
     session.pop("user", None)
 
     return redirect(url_for("index"))

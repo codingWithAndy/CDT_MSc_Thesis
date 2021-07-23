@@ -1,5 +1,16 @@
 {% extends 'base.html' %} {% block body %}
 <div class="container ">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages%}
+                <!--<p>{{msg}}</p>-->
+                <div class="badalert">
+                    <span class="badclosebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{msg}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     <div class="jumbotron ">
         <h1 class="display-4 ">Let the judgement commence!</h1>
