@@ -38,22 +38,20 @@ def compare():
         if "user" in session:
             tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
         else:
-            
             return redirect(url_for('login'))
     
     if request.method == 'POST':
-        radio_1 = request.form.get('radio')
-        #radio_2 = request.form.get('radio')
+        radio_1       = request.form.get('radio')
         justification = request.form.get('content')
-        if radio_1 == None  or justification == "": #and radio_2 == None
-            print("No option was selected.")
+        #radio_2 = request.form.get('radio')
+        if radio_1 == None or justification == "": #and radio_2 == None
+            #print("No option was selected.")
             message = "You have missed some required information. Please try again"
             flash(message, "info")
             tweet1, tweet2, tweet1_id, tweet2_id = reload_previous_tweets()
         else:
-            print("content of radio 1 is:", radio_1)
-            #print("content of radio 2 is:", radio_2)
-            print("content of justification is:", justification)
+            #print("content of radio 1 is:", radio_1)
+            #print("content of justification is:", justification)
             update_results(radio_1,  justification) #radio_2,
             tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
 
@@ -71,17 +69,8 @@ def compare():
 # CJ Explination form load.
 @app.route('/explination/') #, methods=['GET','POST']
 def explination():
-    #if request.method == 'GET':
-    #    pass
-    
-    #if request.method == 'POST':
-    #    name = request.form.get('name')
-    #    post = request.form.get('post')
-    #    create_post(name, post)
-
-    #posts = get_post()
-
     return render_template('explination.html')
+
 
 # CJ Results form load.
 @app.route('/results/', methods=['GET','POST'])
@@ -98,6 +87,7 @@ def results():
 
     return render_template('results.html')
 
+
 @app.route('/feedback/', methods=['GET','POST'])
 def feedback():
     if request.method == 'GET':
@@ -113,6 +103,7 @@ def feedback():
 
     return render_template('feedback.html')
 
+
 @app.route('/login/', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -122,17 +113,18 @@ def login():
             return render_template('login.html')
     
     if request.method == 'POST':
-        email = request.form.get('email')
+        email    = request.form.get('email')
         password = request.form.get('password')
-        user_id = login_user(email,password)
-
+        user_id  = login_user(email,password)
         session['user'] = user_id
 
-        print(user_id)
-        print("session user:", session['user'])
+        #print(user_id)
+        #print("session user:", session['user'])
 
         flash("You have been logged in successfully.", "info")
+        
         return redirect(url_for('index'))
+
 
 @app.route('/signup/', methods=['GET','POST'])
 def signup():
@@ -146,7 +138,7 @@ def signup():
 
         if password == password_check:
             success, user_id = signup_user(email,password)
-            session['user'] = user_id
+            session['user']  = user_id
 
             if success == True:
                 flash("You have been signed up successfully.", "info")
@@ -157,20 +149,12 @@ def signup():
         else:
             flash("Invalid email and/or passwords do not match.", "info")
             return redirect(url_for('signup'))
-        #user_id = login_user(email,password)
-
-        #session['user'] = user_id
-
-        #print(user_id)
-        #print("session user:", session['user'])
-
-        #print(email, password)
-
         
+
 @app.route('/logout/')
 def logout():
     if "user" in session:
-        user = session["user"]
+        user    = session["user"]
         message = "You have been logged out succesfully"
         flash(message, "info")
 

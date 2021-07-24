@@ -11,6 +11,7 @@ import pyrebase
 
 ROOT = path.dirname(path.relpath((__file__)))
 
+
 def get_tweets():
     print("Do something")
     #with open('round', 'r') as f:
@@ -66,6 +67,7 @@ def get_tweet_text(id, all_tweet):
     #print("tweet_text[0:]:", tweet_text[0:])
     
     return tweet_text
+
 
 def get_comparing_tweets_id(tweets_df, location):
     tweets_compared = tweets_df.loc[[(location)]]
@@ -161,6 +163,8 @@ def create_feedback(user_name,email,feedback, user_rating, session):
     else:
         print("The file does not exist")
 
+
+############################ Firebase Connections ######################################
 def store_feedback_cloud(textfile_name, session):
     storage        = init_storage()
     filename       = textfile_name
@@ -185,13 +189,22 @@ def get_user_storage_docs():
     return stored_doc
 
 def login_user(id, password):
+    """
+    Connecting the web app to the firebase authenication to return a user ID.
+
+    Args:
+        id ([str]): the users email address to be checked for auth.
+        password ([str]): the users password to conform the auth.
+
+    Returns:
+        token [str]: this contains the returned local id for the auth.
+    """
     auth = init_auth()
 
     try:
-        user = auth.sign_in_with_email_and_password(id,password)
+        user  = auth.sign_in_with_email_and_password(id,password)
         token = user['localId'] #['idToken']
-        print("Success")
-
+        #print("Success")
         return token
     except:
         print("invalid user or password. Please try again")
