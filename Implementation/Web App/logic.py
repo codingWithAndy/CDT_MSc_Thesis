@@ -201,8 +201,8 @@ def signup_user(id,password):
 
     try:
         user = auth.create_user_with_email_and_password(id,password)
-        print("Success")
-        return user['localId']
+        print("Log in Successful")
+        return True, user['localId']
     except:
-        print("invalid user or password. Please try again")
+        return False, None
     
