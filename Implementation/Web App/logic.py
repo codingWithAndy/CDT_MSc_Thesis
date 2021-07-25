@@ -219,3 +219,73 @@ def signup_user(id,password):
     except:
         return False, None
     
+
+########## Firebase Exploration ########
+def update_round_number(user_id):
+    db = init_db()
+    current_round = get_round_num(user_id)
+
+    db.child("cj_position").child(user_id).update({'comparison_no': current_round + 1})
+
+def get_round_num(user_id):
+    # TODO: Add db init
+    db = init_db()
+
+    round_info = db.child("cj_position").child(user_id).get()
+    
+    for cj_position in round_info.each():
+        current_num = cj_position.val()
+    
+    
+    return current_num
+
+def record_justification(round_number,user_id,justification):
+    db = init_db()
+    db.child("justification").child(user_id).child(round_number).update({'justification': justification})
+
+def update_result(round_number,winner_id):
+    # TODO: Add db init
+    db = init_db()
+    combination = get_combinations(round_number)
+    print(combination)
+
+    if str(winner_id) == combination['tweet_1']:
+        loser_id = int(combination['tweet_2'])
+    else:
+        loser_id = int(combination['tweet_1'])
+
+    tweets = db.child("results").child(winner_id).get()
+    tweet_dict = {}
+    for tweet in tweets.each():
+        tweet_dict[tweet.key()] = tweet.val()
+    tweet_dict['win'] += 1
+
+    other_tweet = db.child("results").child(loser_id).get()
+    other_tweet_dict = {}
+    for tweet in other_tweet.each():
+        other_tweet_dict[tweet.key()] = tweet.val()
+    other_tweet_dict['lose'] += 1
+
+    db.child("results").child(winner_id).update({"win": tweet_dict['win']})
+    db.child("results").child(loser_id).update({"lose": other_tweet_dict['lose']})
+
+
+def get_combinations(round_number):
+    # TODO: Add db init
+    db = init_db()
+    combination = db.child("combinations").child(round_number).get()
+    combo_dict = {}
+    for combo in combination.each():
+        combo_dict[combo.key()] = combo.val()
+
+    return combo_dict
+
+def get_tweet_content(id):
+    # TODO: Add db init
+    db = init_db()
+    tweets = db.child("results").child(id).get()
+    dict = {}
+    for tweet in tweets.each():
+        dict[tweet.key()] = tweet.val()
+
+    return dict['content']

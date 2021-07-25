@@ -36,7 +36,12 @@ def index():
 def compare():
     if request.method == 'GET':
         if "user" in session:
-            tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
+            round_number = get_round_num(session['user'])
+            combo_id = get_combinations(round_number)
+            weet1_content = get_tweet_content(combo_id['tweet_1'])
+            tweet2_content = get_tweet_content(combo_id['tweet_2']) 
+            tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
+            #tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
         else:
             return redirect(url_for('login'))
     
