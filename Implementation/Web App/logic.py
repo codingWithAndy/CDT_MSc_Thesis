@@ -145,23 +145,35 @@ def update_results(winning_tweet_id,  comment): #tweet_2,
 # Adding Tweets to Database from CSV idea
 # https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/
 
-def create_feedback(user_name,email,feedback, user_rating, session):
-    txt_contents = "User Name: " + user_name + "\n" + \
-                   "Email address: " + email + "\n" + \
-                   "Feedback: " + feedback + "\n" + \
-                   "User Rating: " + user_rating
+def create_feedback(name,feedback, user_rating, session, contact): #user_name,email,feedback, user_rating, session
+    db = init_db()
 
-    with open('feedback.txt', 'w') as f:
-        f.write(txt_contents)
+    info = {
+        'email': session['email'], 
+        'name': name,
+        'user_rating': user_rating,
+        'feedback': feedback,
+        'contact': contact,
+        'user_id': session['user']
+    }
+
+    db.child("user_feedback").child(session['user']).update(info)
+    #txt_contents = "User Name: " + user_name + "\n" + \
+    #               "Email address: " + email + "\n" + \
+    #               "Feedback: " + feedback + "\n" + \
+    #               "User Rating: " + user_rating
+
+    #with open('feedback.txt', 'w') as f:
+    #    f.write(txt_contents)
 
     #Put to Cloud storage
-    store_feedback_cloud('feedback.txt', session)
+    #store_feedback_cloud('feedback.txt', session)
 
     #delete txt file
-    if path.exists("feedback.txt"):
-        remove("feedback.txt")
-    else:
-        print("The file does not exist")
+    #if path.exists("feedback.txt"):
+    #    remove("feedback.txt")
+    #else:
+    #    print("The file does not exist")
 
 
 ############################ Firebase Connections ######################################
@@ -222,7 +234,6 @@ def signup_user(id,password):
 
 def init_cj_round_number(user_id):
     db = init_db()
-
     db.child("cj_position").child(user_id).update({'comparison_no': 1})
 
 

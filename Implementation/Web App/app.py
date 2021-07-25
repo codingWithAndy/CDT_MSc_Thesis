@@ -13,14 +13,15 @@ app.secret_key = "lets_judge"
 # Home form load
 @app.route('/', methods=['GET','POST'])
 def index():
-    if request.method == 'GET':
-        with open("round", "w") as f:
-            f.truncate(0)
+    #if request.method == 'GET':
+        #with open("round", "w") as f:
+        #    f.truncate(0)
+    #    pass
     
-    if request.method == 'POST':
-        name = request.form.get('name')
-        post = request.form.get('post')
-        create_post(name, post)
+    #if request.method == 'POST':
+    #    name = request.form.get('name')
+    #    post = request.form.get('post')
+    #    create_post(name, post)
 
     #posts = get_post()
 
@@ -112,17 +113,24 @@ def results():
 @app.route('/feedback/', methods=['GET','POST'])
 def feedback():
     if request.method == 'GET':
-        print("feedback user:", session["user"])
+        if "user" in session:
+            return render_template('feedback.html')
+        else:
+            return redirect(url_for('login'))
     
     if request.method == 'POST':
         name     = request.form.get('name')
-        email    = request.form.get('email')
+        contact  = request.form.get('contact')
+        #email    = session['email']#request.form.get('email')
         feedback = request.form.get('comments')
         rating   = request.form.get('experience')
         #print(name, email, feedback, rating)
-        create_feedback(name, email, feedback, rating, session)
+        create_feedback(name, feedback, rating, session, contact)
+        msg = "thank you for the feedback!"
+        flash(msg, 'info')
+        return redirect(url_for('index'))#render_template('index.html')
 
-    return render_template('feedback.html')
+    
 
 
 @app.route('/login/', methods=['GET','POST'])
@@ -136,10 +144,11 @@ def login():
     if request.method == 'POST':
         email    = request.form.get('email')
         password = request.form.get('password')
-        user_id  = login_user(email,password)
-        session['user'] = user_id
+        user  = login_user(email,password)
+        session['user'] = user
+        session['email'] = email
 
-        #print(user_id)
+        print("Session email:", session['email'])
         #print("session user:", session['user'])
 
         flash("You have been logged in successfully.", "info")
@@ -186,3 +195,6 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+#auth.send_password_reset_email("email") 
