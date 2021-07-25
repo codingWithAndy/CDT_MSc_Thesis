@@ -53,12 +53,28 @@ def compare():
             #print("No option was selected.")
             message = "You have missed some required information. Please try again"
             flash(message, "info")
-            tweet1, tweet2, tweet1_id, tweet2_id = reload_previous_tweets()
+            round_number = get_round_num(session['user'])
+            combo_id = get_combinations(round_number)
+            weet1_content = get_tweet_content(combo_id['tweet_1'])
+            tweet2_content = get_tweet_content(combo_id['tweet_2']) 
+            tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
+            #tweet1, tweet2, tweet1_id, tweet2_id = reload_previous_tweets()
         else:
+            round_number = get_round_num(session['user'])
+            #combo_id = get_combinations(round_number)
+            #update results
+            update_result(round_number,radio_1)
+            #update justification
+            record_justification(round_number,session['user'],justification)
+
+            #update cj position
+            update_round_number(session['user'])
+
+            return redirect(url_for('compare'))
             #print("content of radio 1 is:", radio_1)
             #print("content of justification is:", justification)
-            update_results(radio_1,  justification) #radio_2,
-            tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
+            #update_results(radio_1,  justification) #radio_2,
+            #tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
 
     #tweets, vs = get_tweets(radio_1, radio_2, justification)
 
