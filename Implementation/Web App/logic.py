@@ -214,11 +214,17 @@ def signup_user(id,password):
 
     try:
         user = auth.create_user_with_email_and_password(id,password)
+        init_cj_round_number(user['localId'])
         print("Log in Successful")
         return True, user['localId']
     except:
         return False, None
-    
+
+def init_cj_round_number(user_id):
+    db = init_db()
+
+    db.child("cj_position").child(user_id).update({'comparison_no': 1})
+
 
 ########## Firebase Exploration ########
 def update_round_number(user_id):
