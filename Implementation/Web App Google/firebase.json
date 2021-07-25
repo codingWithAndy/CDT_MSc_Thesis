@@ -1,0 +1,20 @@
+{
+    "database": {
+        "rules": "database.rules.json"
+    },
+    "hosting": {
+        "public": "static",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [{
+            "source": "**",
+            "run": {
+                "serviceId": "cj-webapp",
+                "region": "europe-west1"
+            }
+        }]
+    }
+}

@@ -1,0 +1,81 @@
+h1 {
+    color: white;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.one {
+    width: 45%;
+    height: 200px;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 20px;
+    border-color: black;
+}
+
+.two {
+    margin-left: 50%;
+    height: 200px;
+    text-align: center;
+    padding: 10px;
+    background-color: bisque;
+    border-radius: 20px;
+    border-color: black;
+}
+
+.alert {
+    padding: 20px;
+    background-color: lightgreen;
+    /* Red */
+    color: black;
+    margin-bottom: 15px;
+    z-index: 10;
+}
+
+.badalert {
+    padding: 20px;
+    background-color: #f44336;
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+    z-index: 10;
+}
+
+
+/* The close button */
+
+.closebtn {
+    margin-left: 15px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.badclosebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* When moving the mouse over the close button */
+
+.closebtn:hover {
+    color: black;
+}
