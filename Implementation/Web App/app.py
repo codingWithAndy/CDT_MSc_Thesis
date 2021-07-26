@@ -14,18 +14,6 @@ app.secret_key = "lets_judge"
 # Home form load
 @app.route('/', methods=['GET','POST'])
 def index():
-    #if request.method == 'GET':
-        #with open("round", "w") as f:
-        #    f.truncate(0)
-    #    pass
-    
-    #if request.method == 'POST':
-    #    name = request.form.get('name')
-    #    post = request.form.get('post')
-    #    create_post(name, post)
-
-    #posts = get_post()
-
     return render_template('index.html')
 
 ####################################################
@@ -36,7 +24,7 @@ def compare():
     if request.method == 'GET':
         if "user" in session:
             round_number = get_round_num(session['user'])
-            combo_id = get_combinations(round_number)
+            combo_id = get_combinations(round_number,session['user'])
             weet1_content = get_tweet_content(combo_id['tweet_1'])
             tweet2_content = get_tweet_content(combo_id['tweet_2']) 
             tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
@@ -53,7 +41,7 @@ def compare():
             message = "You have missed some required information. Please try again"
             flash(message, "info")
             round_number = get_round_num(session['user'])
-            combo_id = get_combinations(round_number)
+            combo_id = get_combinations(round_number,session['user'])
             weet1_content = get_tweet_content(combo_id['tweet_1'])
             tweet2_content = get_tweet_content(combo_id['tweet_2']) 
             tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
@@ -62,7 +50,7 @@ def compare():
             round_number = get_round_num(session['user'])
             #combo_id = get_combinations(round_number)
             #update results
-            update_result(round_number,radio_1)
+            update_result(round_number,radio_1,session['user'])
             #update justification
             record_justification(round_number,session['user'],justification)
 
