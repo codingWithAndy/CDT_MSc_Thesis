@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %} {% block head%}
+<title>Explination | Comparative Judgement</title>
+{% endblock %}
+{% block body %}
 <!--<<div class="jumbotron ">
    img src=" {{ url_for( 'static', filename='images/img.png' ) }} " width="80%" alt="">-->
 <div class="container ">
@@ -6,14 +9,34 @@
         <h2 class="display-4 ">What is Comparative Judgement?</h2>
 
         <hr class="my-4 ">
-        <p class="lead ">Comparative judgement is.......</p>
-
+        <p class="lead ">Comparative judgement is a mathematical way to determine which 
+        observation item is better than the other item also being observed compared to 
+        each other. This method was first proposed in 1927 by Louis Leon Thurstone, a 
+        psychologist, under the term "the law of comparative judgement" <!--\cite{thurstone1927psychophysical, thurstone1927law}-->. 
+        In modern-day terminology, it gets more aptly described as a model used to obtain 
+        measurements from any pairwise comparison process. Examples of such methods are 
+        comparing the perceived intensity of physical stimuli, such as the weights of objects, 
+        and comparing the extremity of an attitude expressed within statements, such as 
+        statements about capital punishment. The measurements represent how we perceive things 
+        rather than being measurements of actual physical properties. This kind of measurement 
+        is the focus of psychometrics and psychophysics.</p>
+        
     </div>
     <div class="jumbotron ">
         <h2 class="display-4 ">How does it work?</h2>
-
         <hr class="my-4 ">
         <p class="lead ">It is a pair wise comparison tool. It aims to provide the user with two options and they then select what one they like the most. The process then ranks the pieces of work that was being compared.</p>
+        <p>In more technical terms, the law of comparative judgment is a mathematical 
+        representation of a discriminal process. This process involves a comparison between 
+        pairs of a collection of entities concerning multiple magnitudes of attributes. 
+        The model's theoretical basis is closely related to item response theory and the theory 
+        underlying the Rasch model. These methods are used in psychology and education to 
+        analyse data from questionnaires and tests.</p>
+        <p>How comparative judgement works is to present two options to a marker. The marker then 
+        gets asked to pick which one of the two options they think is the better one. The marker 
+        will get presented with all possible combinations available, each time picking which one 
+        they think is the better one out of the two. An outputted score is then presented based 
+        on the method used, providing a preference order of observations.</p>
     </div>
     <div class="jumbotron ">
         <h2 class="display-4 ">Why are we doing this?</h2>
