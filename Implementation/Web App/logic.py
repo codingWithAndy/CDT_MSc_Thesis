@@ -70,7 +70,7 @@ def login_user(id, password):
     try:
         user  = auth.sign_in_with_email_and_password(id,password)
         token = user['localId'] #['idToken']
-        #print("Success")
+        
         return token
     except:
         print("invalid user or password. Please try again")
@@ -106,9 +106,6 @@ def signup_user(id,password):
             dict_data = combination_15_df.loc[i].to_dict()
             tweet_id = i+1
             db.child("combinations").child(user['localId']).child(tweet_id).set(dict_data)
-        #db.child("combinations").child(user['localId']).update({})
-
-
 
         return True, user['localId']
     except:
@@ -137,7 +134,6 @@ def get_round_num(user_id):
     for cj_position in round_info.each():
         current_num = cj_position.val()
     
-    
     return current_num
 
 def record_justification(round_number,user_id,justification):
@@ -148,7 +144,6 @@ def update_result(round_number,winner_id,user_id):
     # TODO: Add db init
     db = init_db()
     combination = get_combinations(round_number,user_id)
-    print(combination)
 
     if str(winner_id) == combination['tweet_1']:
         loser_id = int(combination['tweet_2'])

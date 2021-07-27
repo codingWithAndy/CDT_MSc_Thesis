@@ -3,6 +3,17 @@
 <title>Log In | Comparative Judgement</title>
 {% endblock %} {% block body %}
 <div class="container ">
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages%}
+                <!--<p>{{msg}}</p>-->
+                <div class="badalert">
+                    <span class="badclosebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{msg}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div class="row " style="margin-top: 50px">
         <div class="col-md-6 col-md-offset-3 form-container">
 <form class="bg-white rounded shadow-5-strong p-5" action="/login/" method="POST">

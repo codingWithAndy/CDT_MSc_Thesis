@@ -31,11 +31,11 @@ def compare():
             if "user" in session:
                 round_number   = get_round_num(session['user'])
                 combo_id       = get_combinations(round_number,session['user'])
-                weet1_content  = get_tweet_content(combo_id['tweet_1'])
+                tweet1_content = get_tweet_content(combo_id['tweet_1'])
                 tweet2_content = get_tweet_content(combo_id['tweet_2']) 
-                tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
+                tweet1, tweet2, tweet1_id, tweet2_id = tweet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
             else:
-                return redirect(url_for('signup'))
+                return redirect(url_for('login'))
         except:
             return redirect(url_for('logout'))
     
@@ -47,11 +47,6 @@ def compare():
             message = "You have missed some required information. Please try again"
             flash(message, "info")
             return redirect(url_for('compare'))
-            #round_number   = get_round_num(session['user'])
-            #combo_id       = get_combinations(round_number,session['user'])
-            #weet1_content  = get_tweet_content(combo_id['tweet_1'])
-            #tweet2_content = get_tweet_content(combo_id['tweet_2']) 
-            #tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
         else:
             round_number = get_round_num(session['user'])
             #update results
@@ -107,8 +102,6 @@ def feedback():
         flash(msg, 'info')
         return redirect(url_for('index'))
 
-    
-
 
 @app.route('/login/', methods=['GET','POST'])
 def login():
@@ -117,23 +110,32 @@ def login():
             if "user" in session:
                 return redirect(url_for('logout'))
             else:
-                return redirect('login')
+                return render_template('login.html')
         except:
             msg = "An issue happened. Please try again."
             flash("You have been signed up successfully.", "info")
             return redirect('index')
 
-    
     if request.method == 'POST':
-        email    = request.form.get('email')
-        password = request.form.get('password')
-        user  = login_user(email,password)
-        session['user'] = user
-        session['email'] = email
-
-        flash("You have been logged in successfully.", "info")
-        
-        return redirect(url_for('index'))
+        try:
+            email    = request.form.get('email')
+            password = request.form.get('password')
+            user     = login_user(email,password)
+            
+            if user == None:
+                #session.pop("user", None)
+                #session.pop("email", None)
+                msg = "This email address or password mightbe wrong, please try again. Additionally, You might need to sign up instead."
+                flash(msg, 'info')
+                return redirect(url_for('login'))
+            else:
+                session['user']  = user
+                session['email'] = email
+                flash("You have been logged in successfully.", "info")
+                return redirect(url_for('index'))
+        except:
+            flash("Email address does not exist, please sign up.", "info")
+            return redirect(url_for('signup'))
 
 
 @app.route('/signup/', methods=['GET','POST'])
@@ -149,6 +151,7 @@ def signup():
         if password == password_check:
             success, user_id = signup_user(email,password)
             session['user']  = user_id
+            session['email'] = email
 
             if success == True:
                 flash("You have been signed up successfully.", "info")
@@ -159,7 +162,15 @@ def signup():
         else:
             flash("Invalid email and/or passwords do not match.", "info")
             return redirect(url_for('signup'))
-        
+
+
+@app.route('/reset_password/')
+def reset_password():
+    # TODO: Add this to the app sign in screen.
+    auth = init_auth()
+    email = "form send email"
+    auth.send_password_reset_email("email") 
+
 
 @app.route('/logout/')
 def logout():
