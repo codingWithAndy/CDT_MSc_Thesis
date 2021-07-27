@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request, url_for, session, redirect, flash
 from flask_cors import CORS
-from models import * #get_post, create_post, record_result
-from logic import * #get_tweets, update_results, reload_previous_tweets, create_feedback
+from models import *
+from logic import * 
 
 import pyrebase
 import os
+import sys
+import logging
 
 app = Flask(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 CORS(app)
 app.secret_key = "lets_judge"
@@ -22,56 +27,49 @@ def index():
 @app.route('/compare/', methods=['GET','POST'])
 def compare():
     if request.method == 'GET':
-        if "user" in session:
-            round_number = get_round_num(session['user'])
-            combo_id = get_combinations(round_number,session['user'])
-            weet1_content = get_tweet_content(combo_id['tweet_1'])
-            tweet2_content = get_tweet_content(combo_id['tweet_2']) 
-            tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
-            #tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
-        else:
-            return redirect(url_for('login'))
+        try:
+            if "user" in session:
+                round_number   = get_round_num(session['user'])
+                combo_id       = get_combinations(round_number,session['user'])
+                weet1_content  = get_tweet_content(combo_id['tweet_1'])
+                tweet2_content = get_tweet_content(combo_id['tweet_2']) 
+                tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
+            else:
+                return redirect(url_for('signup'))
+        except:
+            return redirect(url_for('logout'))
     
     if request.method == 'POST':
         radio_1       = request.form.get('radio')
         justification = request.form.get('content')
-        #radio_2 = request.form.get('radio')
-        if radio_1 == None or justification == "": #and radio_2 == None
-            #print("No option was selected.")
+
+        if radio_1 == None or justification == "":
             message = "You have missed some required information. Please try again"
             flash(message, "info")
-            round_number = get_round_num(session['user'])
-            combo_id = get_combinations(round_number,session['user'])
-            weet1_content = get_tweet_content(combo_id['tweet_1'])
-            tweet2_content = get_tweet_content(combo_id['tweet_2']) 
-            tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
-            #tweet1, tweet2, tweet1_id, tweet2_id = reload_previous_tweets()
+            return redirect(url_for('compare'))
+            #round_number   = get_round_num(session['user'])
+            #combo_id       = get_combinations(round_number,session['user'])
+            #weet1_content  = get_tweet_content(combo_id['tweet_1'])
+            #tweet2_content = get_tweet_content(combo_id['tweet_2']) 
+            #tweet1, tweet2, tweet1_id, tweet2_id = weet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
         else:
             round_number = get_round_num(session['user'])
-            #combo_id = get_combinations(round_number)
             #update results
             update_result(round_number,radio_1,session['user'])
             #update justification
             record_justification(round_number,session['user'],justification)
-
             #update cj position
             update_round_number(session['user'])
 
             return redirect(url_for('compare'))
-            #print("content of radio 1 is:", radio_1)
-            #print("content of justification is:", justification)
-            #update_results(radio_1,  justification) #radio_2,
-            #tweet1, tweet2, tweet1_id, tweet2_id = get_tweets()
-
-    #tweets, vs = get_tweets(radio_1, radio_2, justification)
-
+            
     return render_template('compare.html', tweet1 = tweet1, tweet2 = tweet2, tweet1_id = tweet1_id, tweet2_id = tweet2_id) 
 
 
 ####################################################
 
 # CJ Explination form load.
-@app.route('/explination/') #, methods=['GET','POST']
+@app.route('/explination/')
 def explination():
     return render_template('explination.html')
 
@@ -80,9 +78,11 @@ def explination():
 @app.route('/results/', methods=['GET','POST'])
 def results():
     if request.method == 'GET':
+        # Expand in time
         pass
     
     if request.method == 'POST':
+        # Expand in time
         pass
     
     return render_template('results.html')
@@ -99,14 +99,13 @@ def feedback():
     if request.method == 'POST':
         name     = request.form.get('name')
         contact  = request.form.get('contact')
-        #email    = session['email']#request.form.get('email')
         feedback = request.form.get('comments')
         rating   = request.form.get('experience')
-        #print(name, email, feedback, rating)
+        
         create_feedback(name, feedback, rating, session, contact)
         msg = "thank you for the feedback!"
         flash(msg, 'info')
-        return redirect(url_for('index'))#render_template('index.html')
+        return redirect(url_for('index'))
 
     
 
@@ -114,10 +113,16 @@ def feedback():
 @app.route('/login/', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
-        if "user" in session:
-            return redirect(url_for('logout'))
-        else:
-            return render_template('login.html')
+        try:
+            if "user" in session:
+                return redirect(url_for('logout'))
+            else:
+                return redirect('login')
+        except:
+            msg = "An issue happened. Please try again."
+            flash("You have been signed up successfully.", "info")
+            return redirect('index')
+
     
     if request.method == 'POST':
         email    = request.form.get('email')
@@ -125,9 +130,6 @@ def login():
         user  = login_user(email,password)
         session['user'] = user
         session['email'] = email
-
-        print("Session email:", session['email'])
-        #print("session user:", session['user'])
 
         flash("You have been logged in successfully.", "info")
         
