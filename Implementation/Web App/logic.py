@@ -84,6 +84,9 @@ def signup_user(id,password):
         init_cj_round_number(user['localId'])
         print("Log in Successful")
 
+        #send email verification
+        auth.send_email_verification(user['idToken'])  
+
         combs_of_tweets = [i for i in range(1,15)]
         id_15_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
 
@@ -112,7 +115,6 @@ def signup_user(id,password):
         return False, None
     
     
-
 def init_cj_round_number(user_id):
     db = init_db()
     db.child("cj_position").child(user_id).update({'comparison_no': 1})
@@ -126,9 +128,7 @@ def update_round_number(user_id):
     db.child("cj_position").child(user_id).update({'comparison_no': current_round + 1})
 
 def get_round_num(user_id):
-    # TODO: Add db init
     db = init_db()
-
     round_info = db.child("cj_position").child(user_id).get()
     
     for cj_position in round_info.each():
@@ -141,7 +141,6 @@ def record_justification(round_number,user_id,justification):
     db.child("justification").child(user_id).child(round_number).update({'justification': justification})
 
 def update_result(round_number,winner_id,user_id):
-    # TODO: Add db init
     db = init_db()
     combination = get_combinations(round_number,user_id)
 

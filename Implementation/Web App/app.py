@@ -35,7 +35,7 @@ def compare():
                 tweet2_content = get_tweet_content(combo_id['tweet_2']) 
                 tweet1, tweet2, tweet1_id, tweet2_id = tweet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
             else:
-                return redirect(url_for('login'))
+                return redirect(url_for('signup'))
         except:
             return redirect(url_for('logout'))
     
@@ -49,11 +49,8 @@ def compare():
             return redirect(url_for('compare'))
         else:
             round_number = get_round_num(session['user'])
-            #update results
             update_result(round_number,radio_1,session['user'])
-            #update justification
             record_justification(round_number,session['user'],justification)
-            #update cj position
             update_round_number(session['user'])
 
             return redirect(url_for('compare'))
@@ -164,12 +161,19 @@ def signup():
             return redirect(url_for('signup'))
 
 
-@app.route('/reset_password/')
+@app.route('/reset_password/', methods=['GET','POST'])
 def reset_password():
-    # TODO: Add this to the app sign in screen.
-    auth = init_auth()
-    email = "form send email"
-    auth.send_password_reset_email("email") 
+    if request.method == 'GET':
+        return render_template('forgotten_password.html')
+    
+    if request.method == 'POST':
+        auth  = init_auth()
+        email = request.form.get('email')
+
+        print(email)
+        auth.send_password_reset_email(email)
+
+        return redirect(url_for('login'))
 
 
 @app.route('/logout/')
