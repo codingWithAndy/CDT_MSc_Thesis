@@ -29,7 +29,7 @@ def compare():
     if request.method == 'GET':
         try:
             if "user" in session:
-                round_number   = get_round_num(session['user'])
+                round_number       = get_round_num(session['user'])
                 total_combinations = get_total_combinations(session['user'])
                 if round_number != total_combinations:
                     combo_id       = get_combinations(round_number,session['user'])

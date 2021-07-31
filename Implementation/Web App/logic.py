@@ -166,7 +166,6 @@ def update_result(round_number,winner_id,user_id):
 
 
 def get_combinations(round_number,user_id):
-    # TODO: Add db init
     db = init_db()
     combination = db.child("combinations").child(user_id).child(round_number).get()
     combo_dict = {}
@@ -176,7 +175,6 @@ def get_combinations(round_number,user_id):
     return combo_dict
 
 def get_tweet_content(id):
-    # TODO: Add db init
     db = init_db()
     tweets = db.child("results").child(id).get()
     dict = {}
