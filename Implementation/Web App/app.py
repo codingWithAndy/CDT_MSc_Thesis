@@ -30,10 +30,16 @@ def compare():
         try:
             if "user" in session:
                 round_number   = get_round_num(session['user'])
-                combo_id       = get_combinations(round_number,session['user'])
-                tweet1_content = get_tweet_content(combo_id['tweet_1'])
-                tweet2_content = get_tweet_content(combo_id['tweet_2']) 
-                tweet1, tweet2, tweet1_id, tweet2_id = tweet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
+                total_combinations = get_total_combinations(session['user'])
+                if round_number != total_combinations:
+                    combo_id       = get_combinations(round_number,session['user'])
+                    tweet1_content = get_tweet_content(combo_id['tweet_1'])
+                    tweet2_content = get_tweet_content(combo_id['tweet_2']) 
+                    tweet1, tweet2, tweet1_id, tweet2_id = tweet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
+                else:
+                    msg = "You have complaed all the comparisons, please provide feedback on your experience."
+                    flash(msg, 'info')
+                    return redirect(url_for('feedback'))
             else:
                 return redirect(url_for('signup'))
         except:
@@ -120,8 +126,6 @@ def login():
             user     = login_user(email,password)
             
             if user == None:
-                #session.pop("user", None)
-                #session.pop("email", None)
                 msg = "This email address or password mightbe wrong, please try again. Additionally, You might need to sign up instead."
                 flash(msg, 'info')
                 return redirect(url_for('login'))

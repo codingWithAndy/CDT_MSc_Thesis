@@ -184,3 +184,13 @@ def get_tweet_content(id):
         dict[tweet.key()] = tweet.val()
 
     return dict['content']
+
+def get_total_combinations(user_id):
+    db = init_db()
+    rounds_no = db.child('combinations').child(user_id).get()
+
+    count = 0
+    for each_combo in rounds_no.each():
+        count += 1
+
+    return count
