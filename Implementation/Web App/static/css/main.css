@@ -9,13 +9,17 @@ h1 {
     width: 50%;
 }
 
+.centre_text {
+    text-align: center;
+}
+
 .one {
     width: 45%;
     height: 200px;
     float: left;
     text-align: center;
     padding: 10px;
-    background-color: lightblue;
+    background-color: lightgoldenrodyellow;
     border-radius: 20px;
     border-color: black;
 }
@@ -25,7 +29,7 @@ h1 {
     height: 200px;
     text-align: center;
     padding: 10px;
-    background-color: bisque;
+    background-color: lightgoldenrodyellow;
     border-radius: 20px;
     border-color: black;
 }

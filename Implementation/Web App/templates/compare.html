@@ -19,8 +19,10 @@
         <h1 class="display-4 ">Let the judgement commence!</h1>
 
         <hr class="my-4 ">
-        <p class="lead ">Please select witch tweet you think is better based on the rubric below.</p>
-        <img src=" {{ url_for( 'static', filename='images/rubric.png' ) }} " width="80%" style="padding-bottom: 30px" alt="" class="center">
+        <p class="lead centre_text">Please select witch tweet you think is better based on the rubric below.</p>
+        <p class="centre_text" ><label  for="file">Comparison progress:</label>
+        <progress  id="file" value="50" max="100"> 90% </progress></p>
+        <!--<img src=" {{ url_for( 'static', filename='images/rubric.png' ) }} " width="80%" style="padding-bottom: 30px" alt="" class="center">-->
         <section class="container">
             <form action="/compare/" method="POST">
                 <div class="one">
