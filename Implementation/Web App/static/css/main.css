@@ -9,6 +9,12 @@ h1 {
     width: 50%;
 }
 
+.center2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 .centre_text {
     text-align: center;
 }

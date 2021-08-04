@@ -30,6 +30,8 @@ def compare():
         try:
             if "user" in session:
                 round_number       = get_round_num(session['user'])
+                percent = int(round((round_number / 92) * 100, 0))
+                print(percent)
                 total_combinations = get_total_combinations(session['user'])
                 if round_number != total_combinations:
                     combo_id       = get_combinations(round_number,session['user'])
@@ -49,19 +51,22 @@ def compare():
         radio_1       = request.form.get('radio')
         justification = request.form.get('content')
 
-        if radio_1 == None or justification == "":
+        if radio_1 == None:
             message = "You have missed some required information. Please try again"
             flash(message, "info")
             return redirect(url_for('compare'))
         else:
             round_number = get_round_num(session['user'])
+            percent = round_number / 92
             update_result(round_number,radio_1,session['user'])
             record_justification(round_number,session['user'],justification)
             update_round_number(session['user'])
 
             return redirect(url_for('compare'))
             
-    return render_template('compare.html', tweet1 = tweet1, tweet2 = tweet2, tweet1_id = tweet1_id, tweet2_id = tweet2_id) 
+    return render_template('compare.html', tweet1 = tweet1, tweet2 = tweet2, 
+                            tweet1_id = tweet1_id, tweet2_id = tweet2_id, 
+                            percent = int(percent)) 
 
 
 ####################################################

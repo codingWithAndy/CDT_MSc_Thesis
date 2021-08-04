@@ -19,9 +19,8 @@
         <h1 class="display-4 ">Let the judgement commence!</h1>
 
         <hr class="my-4 ">
-        <p class="lead centre_text">Please select witch tweet you think is better based on the rubric below.</p>
-        <p class="centre_text" ><label  for="file">Comparison progress:</label>
-        <progress  id="file" value="50" max="100"> 90% </progress></p>
+        <p class="lead centre_text">Please select which tweet you think is better.</p>
+        
         <!--<img src=" {{ url_for( 'static', filename='images/rubric.png' ) }} " width="80%" style="padding-bottom: 30px" alt="" class="center">-->
         <section class="container">
             <form action="/compare/" method="POST">
@@ -35,10 +34,13 @@
                     <input type="radio" id="tweet2" name="radio" value="{{tweet2_id}}">
                     <!--<label for="tweet2">CSS</label><br>-->
                 </div>
-                <p class="center" style="padding-top:15px">Justification for choice:
-                    <textarea rows = "5" cols = "40" name = "content" placeholder="Enter justification here!"></textarea><br>
+                <label class="center" style="padding-top:20px" for="file">Comparison progress:</label>
+                <progress class="center"  id="file" value="{{ percent }}" max="100"> 90% </progress>
+                <p class="center" style="padding-top:15px">Why did you select that tweet?:
+                    <textarea rows = "5" cols = "40" name = "content" placeholder="Enter justification here! (Optional)"></textarea><br>
                 </p>
                 <input type="submit" value="Vote!" class="center">
+                <p class="center" style="padding-top:15px">{{ percent }} done, only {{ 92 - percent}} to go!!! You can do this!</p>
             </form>
         </section>
     </div>
