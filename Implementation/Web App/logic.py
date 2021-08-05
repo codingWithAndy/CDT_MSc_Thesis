@@ -75,6 +75,7 @@ def login_user(id, password):
     except:
         print("invalid user or password. Please try again")
 
+
 def signup_user(id,password):
     auth = init_auth()
     db = init_db()
@@ -87,7 +88,7 @@ def signup_user(id,password):
         #send email verification
         auth.send_email_verification(user['idToken'])  
 
-        combs_of_tweets = [i for i in range(1,15)]
+        combs_of_tweets   = [i for i in range(1,15)]
         id_15_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
 
         combination_15_df = pd.DataFrame()

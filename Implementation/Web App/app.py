@@ -46,6 +46,7 @@ def compare():
                 return redirect(url_for('signup'))
         except:
             return redirect(url_for('logout'))
+            
     
     if request.method == 'POST':
         radio_1       = request.form.get('radio')
