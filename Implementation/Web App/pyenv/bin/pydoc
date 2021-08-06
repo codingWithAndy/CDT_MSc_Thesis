@@ -1,0 +1,5 @@
+#!/Users/Andy/Developer/Swansea Uni/CDT/Thesis/CDT_MSc_Thesis/Implementation/Web App/pyenv/bin/python3
+if __name__ == '__main__':
+    import sys, pydoc
+    sys.exit(pydoc.cli())
+

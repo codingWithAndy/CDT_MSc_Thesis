@@ -3,16 +3,17 @@ from logging import root
 from os import path, remove
 from itertools import combinations as combs
 from sklearn.utils import shuffle
-import spacy
-from spacy import displacy
+#import spacy
+#from spacy import displacy
 
 from flask import sessions
 
 import pandas as pd
 import numpy as np
+import operator
 
 from models import *
-import pyrebase
+#import pyrebase
 
 ROOT = path.dirname(path.relpath((__file__)))
 
@@ -199,20 +200,67 @@ def get_total_combinations(user_id):
 
 
 
-def get_ner():
-    tweet = get_tweet_content(1)
-    text = tweet #"When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously."
 
-    nlp = spacy.load("en_core_web_sm")
-    doc = nlp(text)
+def calculate_score(id):
+    db = init_db()
+    tweets_scores = db.child("results").child(id).get()
+    dict = {}
+    for tweet in tweets_scores.each():
+        dict[tweet.key()] = tweet.val()
 
+    result = dict['win'] - dict['lose']
 
+    return result
+
+def display_ranking():
+    db = init_db()
+    order_dict = {}
+    for i in range(1,11):
+        tweet_details = db.child("results").child(i).get()
+        dict = {}
+        for tweet in tweet_details.each():
+            dict[tweet.key()] = tweet.val()
+
+        order_dict[i] = dict
     
-    html = displacy.render(doc, style="ent")
-    dependency = displacy.render(doc, style="dep")
-    result = html
+    new_order = {}
+    for i in range(1,11):
+        new_order[i] = order_dict[i]['score']
+    new_order = sorted(new_order.items(), key=lambda kv: kv[1], reverse=True)
+    final_order = {}
+    for i in range(len(new_order)):
+        final_order[new_order[i][0]] = new_order[i][1]
 
-    return result, dependency
-    #svg.save(os.path.join(app.root_path, 'static', 'customlogos', 'logo.png'))#(ROOT + "/static/images/sentences.svg")
-    #output_path = Path(ROOT+"/static/images/sentence.svg")
-    #output_path.open("w", encoding="utf-8").write(svg)
+    final_order_content = {}
+    for key in final_order:
+        print(key)
+        final_order_content[key] = get_tweet_content(key)
+    #print(dict)
+    #print(order_dict)
+
+    return final_order, final_order_content#order_dict
+
+
+
+
+
+def update_cj_score():
+    db = init_db()
+    # TODO: Don't hard code this check.
+    for i in range(1,11):
+        score = calculate_score(i)
+        db.child("results").child(i).update({'score': score})
+
+#def get_ner():
+#    tweet = get_tweet_content(1)
+#    text = tweet #"When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously."
+
+#    nlp = spacy.load("en_core_web_sm")
+#    doc = nlp(text)
+
+#    html = displacy.render(doc, style="ent")
+#    dependency = displacy.render(doc, style="dep")
+#   result = html
+#
+#    return result, dependency
+    

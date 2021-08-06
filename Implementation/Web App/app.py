@@ -34,8 +34,7 @@ def compare():
         try:
             if "user" in session:
                 round_number       = get_round_num(session['user'])
-                percent = int(round((round_number / 36) * 100, 0))
-                print(percent)
+                percent            = int(round((round_number / 36) * 100, 0))
                 total_combinations = get_total_combinations(session['user'])
                 if round_number != total_combinations:
                     combo_id       = get_combinations(round_number,session['user'])
@@ -66,6 +65,7 @@ def compare():
             update_result(round_number,radio_1,session['user'])
             record_justification(round_number,session['user'],justification)
             update_round_number(session['user'])
+            update_cj_score()
 
             return redirect(url_for('compare'))
             
@@ -87,16 +87,15 @@ def explination():
 @app.route('/results/', methods=['GET','POST'])
 def results():
     if request.method == 'GET':
-        # Expand in time
-        result, dependency = get_ner()
+        rank, content = display_ranking()
+        print(rank, content)
         
-        
-    
     if request.method == 'POST':
         # Expand in time
         pass
     
-    return render_template('results.html', result = result, dependency = dependency) #, entity_recogniser = ent_rec
+    return render_template('results.html', rank=rank, content=content) #, entity_recogniser = ent_rec , result=result, dependency=dependency
+                           
 
 
 @app.route('/feedback/', methods=['GET','POST'])

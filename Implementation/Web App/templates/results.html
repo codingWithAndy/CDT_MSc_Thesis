@@ -6,18 +6,24 @@
    img src=" {{ url_for( 'static', filename='images/img.png' ) }} " width="80%" alt="">-->
 <div class="container ">
     <div class="jumbotron ">
-        <h2 class="display-4 ">Results will go here!</h2>
+        <h2 class="display-4 ">Comparative Judgement Results</h2>
 
         <hr class="my-4 ">
         <p class="lead ">Welcome to How funny are tweets?: A comparative judgement Test!. An MSc project based around Comparative judgement on tweets.</p>
         <img src=" {{ url_for( 'static', filename='images/cat_smile.jpg' ) }} " width="80%" alt="" class="center">
     </div>
     <div class="jumbotron ">
-        <h2 class="display-4 ">Results will go here!</h2>
+        <h2 class="display-4 ">Results are in........!</h2>
+        <ol>
+        {% for order in rank %}
+            
+            <li> Tweet: {{order}} </br> Score: {{rank[order]}} </br> Content:<br> {{content[order]}} </li>
+            
+        {% endfor %}
+        </ol>
 
         <hr class="my-4 ">
-        <p class="lead ">{{ result|markdown }}</p>
-        <!--{{ dependency|markdown }}-->
+        
         
     </div>
 
