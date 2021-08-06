@@ -8,7 +8,11 @@ import os
 import sys
 import logging
 
+# Experimenting
+from flaskext.markdown import Markdown
+
 app = Flask(__name__)
+Markdown(app) ## markdown exp
 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
@@ -30,7 +34,7 @@ def compare():
         try:
             if "user" in session:
                 round_number       = get_round_num(session['user'])
-                percent = int(round((round_number / 92) * 100, 0))
+                percent = int(round((round_number / 36) * 100, 0))
                 print(percent)
                 total_combinations = get_total_combinations(session['user'])
                 if round_number != total_combinations:
@@ -58,7 +62,7 @@ def compare():
             return redirect(url_for('compare'))
         else:
             round_number = get_round_num(session['user'])
-            percent = round_number / 92
+            percent = round_number / 36
             update_result(round_number,radio_1,session['user'])
             record_justification(round_number,session['user'],justification)
             update_round_number(session['user'])
@@ -67,7 +71,8 @@ def compare():
             
     return render_template('compare.html', tweet1 = tweet1, tweet2 = tweet2, 
                             tweet1_id = tweet1_id, tweet2_id = tweet2_id, 
-                            percent = int(percent)) 
+                            percent = int(percent),
+                            tweet_count = round_number) 
 
 
 ####################################################
@@ -83,13 +88,15 @@ def explination():
 def results():
     if request.method == 'GET':
         # Expand in time
-        pass
+        result = get_ner()
+        
+        
     
     if request.method == 'POST':
         # Expand in time
         pass
     
-    return render_template('results.html')
+    return render_template('results.html', result = result) #, entity_recogniser = ent_rec
 
 
 @app.route('/feedback/', methods=['GET','POST'])

@@ -1,26 +1,20 @@
-{% extends 'base.html' %}
-{% block head%}
+{% extends 'base.html' %} {% block head%}
 <title>Compare | Comparative Judgement</title>
 {% endblock %} {% block body %}
 <div class="container ">
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for msg in messages%}
-                <!--<p>{{msg}}</p>-->
-                <div class="badalert">
-                    <span class="badclosebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    {{msg}}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages%}
+    <!--<p>{{msg}}</p>-->
+    <div class="badalert">
+        <span class="badclosebtn" onclick="this.parentElement.style.display='none';">&times;</span> {{msg}}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
 
     <div class="jumbotron ">
         <h1 class="display-4 ">Let the judgement commence!</h1>
 
         <hr class="my-4 ">
         <p class="lead centre_text">Please select which tweet you think is better.</p>
-        
+
         <!--<img src=" {{ url_for( 'static', filename='images/rubric.png' ) }} " width="80%" style="padding-bottom: 30px" alt="" class="center">-->
         <section class="container">
             <form action="/compare/" method="POST">
@@ -35,12 +29,12 @@
                     <!--<label for="tweet2">CSS</label><br>-->
                 </div>
                 <label class="center" style="padding-top:20px" for="file">Comparison progress:</label>
-                <progress class="center"  id="file" value="{{ percent }}" max="100"> 90% </progress>
+                <progress class="center" id="file" value="{{ percent }}" max="100"> 90% </progress>
                 <p class="center" style="padding-top:15px">Why did you select that tweet?:
-                    <textarea rows = "5" cols = "40" name = "content" placeholder="Enter justification here! (Optional)"></textarea><br>
+                    <textarea rows="5" cols="40" name="content" placeholder="Enter justification here! (Optional)"></textarea><br>
                 </p>
                 <input type="submit" value="Vote!" class="center">
-                <p class="center" style="padding-top:15px">{{ percent }} done, only {{ 92 - percent}} to go!!! You can do this!</p>
+                <p class="center" style="padding-top:15px">{{ tweet_count - 1}} done, only {{ 36 - (tweet_count - 1)}} to go!!! You can do this!</p>
             </form>
         </section>
     </div>

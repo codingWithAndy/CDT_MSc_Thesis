@@ -1,7 +1,10 @@
 #import sqlite3 as sql
+from logging import root
 from os import path, remove
 from itertools import combinations as combs
 from sklearn.utils import shuffle
+import spacy
+from spacy import displacy
 
 from flask import sessions
 
@@ -88,26 +91,26 @@ def signup_user(id,password):
         #send email verification
         auth.send_email_verification(user['idToken'])  
 
-        combs_of_tweets   = [i for i in range(1,15)]
-        id_15_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
+        combs_of_tweets   = [i for i in range(1,10)]
+        id_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
 
-        combination_15_df = pd.DataFrame()
+        combination_df = pd.DataFrame()
 
         r = 1
-        for each_combination in id_15_combination:
+        for each_combination in id_combination:
             split = each_combination.split(' , ')
-            combination_15_df = combination_15_df.append({
+            combination_df = combination_df.append({
                 "combination_id": str(r),
                 "tweet_1": split[0],
                 "tweet_2": split[1]
             }, ignore_index=True)
             r += 1
 
-        combination_15_df = shuffle(combination_15_df)
-        combination_15_df = combination_15_df.reset_index(drop=True)
+        combination_df = shuffle(combination_df)
+        combination_df = combination_df.reset_index(drop=True)
 
-        for i in combination_15_df.index:
-            dict_data = combination_15_df.loc[i].to_dict()
+        for i in combination_df.index:
+            dict_data = combination_df.loc[i].to_dict()
             tweet_id = i+1
             db.child("combinations").child(user['localId']).child(tweet_id).set(dict_data)
 
@@ -193,3 +196,20 @@ def get_total_combinations(user_id):
         count += 1
 
     return count
+
+
+
+def get_ner():
+    tweet = get_tweet_content(1)
+    text = tweet #"When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously."
+
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    
+    html = displacy.render(doc, style="ent")
+    result = html
+
+    return result
+    #svg.save(os.path.join(app.root_path, 'static', 'customlogos', 'logo.png'))#(ROOT + "/static/images/sentences.svg")
+    #output_path = Path(ROOT+"/static/images/sentence.svg")
+    #output_path.open("w", encoding="utf-8").write(svg)
