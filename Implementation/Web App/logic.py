@@ -205,11 +205,14 @@ def get_ner():
 
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(text)
+
+
     
     html = displacy.render(doc, style="ent")
+    dependency = displacy.render(doc, style="dep")
     result = html
 
-    return result
+    return result, dependency
     #svg.save(os.path.join(app.root_path, 'static', 'customlogos', 'logo.png'))#(ROOT + "/static/images/sentences.svg")
     #output_path = Path(ROOT+"/static/images/sentence.svg")
     #output_path.open("w", encoding="utf-8").write(svg)

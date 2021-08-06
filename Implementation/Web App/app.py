@@ -88,7 +88,7 @@ def explination():
 def results():
     if request.method == 'GET':
         # Expand in time
-        result = get_ner()
+        result, dependency = get_ner()
         
         
     
@@ -96,7 +96,7 @@ def results():
         # Expand in time
         pass
     
-    return render_template('results.html', result = result) #, entity_recogniser = ent_rec
+    return render_template('results.html', result = result, dependency = dependency) #, entity_recogniser = ent_rec
 
 
 @app.route('/feedback/', methods=['GET','POST'])
