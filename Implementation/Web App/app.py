@@ -9,10 +9,10 @@ import sys
 import logging
 
 # Experimenting
-from flaskext.markdown import Markdown
+#from flaskext.markdown import Markdown
 
 app = Flask(__name__)
-Markdown(app) ## markdown exp
+#Markdown(app) ## markdown exp
 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
@@ -88,13 +88,12 @@ def explination():
 def results():
     if request.method == 'GET':
         rank, content = display_ranking()
-        print(rank, content)
         
     if request.method == 'POST':
         # Expand in time
         pass
     
-    return render_template('results.html', rank=rank, content=content) #, entity_recogniser = ent_rec , result=result, dependency=dependency
+    return render_template('results.html', rank=rank, content=content)
                            
 
 

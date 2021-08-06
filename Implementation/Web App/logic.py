@@ -13,7 +13,7 @@ import numpy as np
 import operator
 
 from models import *
-#import pyrebase
+import pyrebase
 
 ROOT = path.dirname(path.relpath((__file__)))
 
@@ -214,6 +214,7 @@ def calculate_score(id):
 
 def display_ranking():
     db = init_db()
+    
     order_dict = {}
     for i in range(1,11):
         tweet_details = db.child("results").child(i).get()
@@ -226,19 +227,18 @@ def display_ranking():
     new_order = {}
     for i in range(1,11):
         new_order[i] = order_dict[i]['score']
+    
     new_order = sorted(new_order.items(), key=lambda kv: kv[1], reverse=True)
+    
     final_order = {}
     for i in range(len(new_order)):
         final_order[new_order[i][0]] = new_order[i][1]
 
     final_order_content = {}
     for key in final_order:
-        print(key)
         final_order_content[key] = get_tweet_content(key)
-    #print(dict)
-    #print(order_dict)
-
-    return final_order, final_order_content#order_dict
+    
+    return final_order, final_order_content
 
 
 
