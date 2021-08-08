@@ -8,11 +8,8 @@ import os
 import sys
 import logging
 
-# Experimenting
-#from flaskext.markdown import Markdown
 
 app = Flask(__name__)
-#Markdown(app) ## markdown exp
 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
