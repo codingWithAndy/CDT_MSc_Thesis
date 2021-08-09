@@ -27,16 +27,18 @@ def index():
 # CJ compare form load
 @app.route('/compare/', methods=['GET','POST'])
 def compare():
+    print("session id:", session['user'])
     if request.method == 'GET':
         try:
             if "user" in session:
                 round_number       = get_round_num(session['user'])
-                percent            = int(round((round_number / 36) * 100, 0))
+                percent            = int(round(((round_number - 1) / 5) * 100, 0))
                 total_combinations = get_total_combinations(session['user'])
                 if round_number != total_combinations:
                     combo_id       = get_combinations(round_number,session['user'])
                     tweet1_content = get_tweet_content(combo_id['tweet_1'])
-                    tweet2_content = get_tweet_content(combo_id['tweet_2']) 
+                    tweet2_content = get_tweet_content(combo_id['tweet_2'])
+                    
                     tweet1, tweet2, tweet1_id, tweet2_id = tweet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
                 else:
                     msg = "You have complaed all the comparisons, please provide feedback on your experience."
@@ -58,7 +60,7 @@ def compare():
             return redirect(url_for('compare'))
         else:
             round_number = get_round_num(session['user'])
-            percent = round_number / 36
+            percent = round_number / 5
             update_result(round_number,radio_1,session['user'])
             record_justification(round_number,session['user'],justification)
             update_round_number(session['user'])

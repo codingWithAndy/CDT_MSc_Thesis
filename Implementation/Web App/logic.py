@@ -11,6 +11,7 @@ from flask import sessions
 import pandas as pd
 import numpy as np
 import operator
+import random
 
 from models import *
 import pyrebase
@@ -87,28 +88,57 @@ def signup_user(id,password):
     try:
         user = auth.create_user_with_email_and_password(id,password)
         init_cj_round_number(user['localId'])
-        print("Log in Successful")
+        #print("Log in Successful")
 
         #send email verification
         auth.send_email_verification(user['idToken'])  
 
-        combs_of_tweets   = [i for i in range(1,10)]
-        id_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
+        #combs_of_tweets   = [i for i in range(1,11)]
+        #id_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
 
-        combination_df = pd.DataFrame()
+        #combination_df = pd.DataFrame()
+
+        #r = 1
+        #for each_combination in id_combination:
+        #    split = each_combination.split(' , ')
+        #    combination_df = combination_df.append({
+        #        "combination_id": str(r),
+        #        "tweet_1": split[0],
+        #        "tweet_2": split[1]
+        #    }, ignore_index=True)
+        #    r += 1
+
+        #combination_df = shuffle(combination_df)
+
+        tweet_2_id = [i for i in range(1,11)]
+        #id_15_combination = [" , ".join(map(str, comb)) for comb in combs(tweet_2_id, 2)]
+        id_combs = list(combs(tweet_2_id, 2))
+        random.shuffle(id_combs)
+
+        used_nums = []
+        new_pairs = []
+
+        for each_pair in id_combs:
+            if each_pair[0] not in used_nums:
+                if each_pair[1] not in used_nums:
+                    used_nums.append(each_pair[0])
+                    used_nums.append(each_pair[1])
+                    new_pairs.append(each_pair)
+
+        combs_df = pd.DataFrame()
 
         r = 1
-        for each_combination in id_combination:
-            split = each_combination.split(' , ')
-            combination_df = combination_df.append({
+        for each_combination in new_pairs:
+            #split = each_combination.split(' , ')
+            combs_df = combs_df.append({
                 "combination_id": str(r),
-                "tweet_1": split[0],
-                "tweet_2": split[1]
+                "tweet_1": str(each_combination[0]),
+                "tweet_2": str(each_combination[1])
             }, ignore_index=True)
+
             r += 1
 
-        combination_df = shuffle(combination_df)
-        combination_df = combination_df.reset_index(drop=True)
+        combination_df = combs_df.reset_index(drop=True)
 
         for i in combination_df.index:
             dict_data = combination_df.loc[i].to_dict()
@@ -149,12 +179,12 @@ def update_result(round_number,winner_id,user_id):
     db = init_db()
     combination = get_combinations(round_number,user_id)
 
-    if str(winner_id) == combination['tweet_1']:
+    if winner_id == combination['tweet_1']:
         loser_id = int(combination['tweet_2'])
     else:
         loser_id = int(combination['tweet_1'])
 
-    tweets = db.child("results").child(winner_id).get()
+    tweets = db.child("results").child(int(winner_id)).get()
     tweet_dict = {}
     for tweet in tweets.each():
         tweet_dict[tweet.key()] = tweet.val()
