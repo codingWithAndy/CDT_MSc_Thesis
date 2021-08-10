@@ -86,12 +86,16 @@ def explination():
 def results():
     if request.method == 'GET':
         rank, content = display_ranking()
+
+        elo_rank, elo_content = display_elo_ranking()
+
+
         
     if request.method == 'POST':
         # Expand in time
         pass
     
-    return render_template('results.html', rank=rank, content=content)
+    return render_template('results.html', rank=rank, content=content, elo_rank=elo_rank, elo_content=elo_content)
                            
 
 
