@@ -195,10 +195,31 @@ def update_result(round_number,winner_id,user_id):
     for tweet in other_tweet.each():
         other_tweet_dict[tweet.key()] = tweet.val()
     other_tweet_dict['lose'] += 1
+    
+    winner_new_score = elo_rating(tweet_dict['elo_score'],other_tweet_dict['elo_score'],1)
+    loser_new_score = elo_rating(other_tweet_dict['elo_score'],tweet_dict['elo_score'],0)
+    
+    db.child("results").child(winner_id).update({"win": tweet_dict['win'], "elo_score": winner_new_score})
+    db.child("results").child(loser_id).update({"lose": other_tweet_dict['lose'], "elo_score": loser_new_score})
 
-    db.child("results").child(winner_id).update({"win": tweet_dict['win']})
-    db.child("results").child(loser_id).update({"lose": other_tweet_dict['lose']})
+def predict_elo_result(A, B):
+    p_a_wins = 1 / (1 + (10**((B-A)/400)))
+    #print(p_a_wins)
 
+    return p_a_wins
+
+def elo_rating(A,B, score):
+    # Find Probability 1st
+    # P(A wins) = (10^(Rating_A-Rating_B)/400) * P(B wins)
+    # tidy version
+    # P(A wins) = 1 / 1 + (10^(Rating_B-Rating_A)/400)
+    # new rating = rating +32(score-expected score)
+    expected_score = predict_elo_result(A, B)
+    rating = A
+
+    new_score = rating + (32 * (score - expected_score))
+
+    return new_score
 
 def get_combinations(round_number,user_id):
     db = init_db()
@@ -227,8 +248,6 @@ def get_total_combinations(user_id):
         count += 1
 
     return count
-
-
 
 
 def calculate_score(id):

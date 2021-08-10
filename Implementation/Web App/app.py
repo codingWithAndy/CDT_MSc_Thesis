@@ -27,7 +27,6 @@ def index():
 # CJ compare form load
 @app.route('/compare/', methods=['GET','POST'])
 def compare():
-    print("session id:", session['user'])
     if request.method == 'GET':
         try:
             if "user" in session:
