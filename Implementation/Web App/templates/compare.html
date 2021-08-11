@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block head%}
 <title>Compare | Comparative Judgement</title>
+
 {% endblock %} {% block body %}
 <div class="container ">
     {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages%}
@@ -17,7 +18,7 @@
 
         <!--<img src=" {{ url_for( 'static', filename='images/rubric.png' ) }} " width="80%" style="padding-bottom: 30px" alt="" class="center">-->
         <section class="container">
-            <form action="/compare/" method="POST">
+            <form action="/compare/" id='yourFormId' method="POST">
                 <div class="one">
                     <p class="tweet_text">{{ tweet1 }}</p>
                     <input type="radio" id="tweet1" name="radio" value="{{tweet1_id}}">
@@ -33,10 +34,24 @@
                 <p class="center" style="padding-top:15px">Why did you select that tweet?:
                     <textarea rows="5" cols="40" name="content" placeholder="Enter justification here! (Optional)"></textarea><br>
                 </p>
-                <input type="submit" value="Vote!" class="center">
+                <input type="submit" value="Vote!" id='submitBtn' class="center">
                 <p class="center" style="padding-top:15px">{{ tweet_count - 1}} done, only {{ 5 - (tweet_count - 1)}} to go!!! You can do this!</p>
             </form>
         </section>
     </div>
 </div>
+<!--script to disable the submit button -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">  
+</script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+    $("#yourFormId").submit(function () {
+        $("#submitBtn").attr("disabled", true);
+        return true;
+    });
+});
+
+</script>
+<!--script ends here-->
 {% endblock %}
