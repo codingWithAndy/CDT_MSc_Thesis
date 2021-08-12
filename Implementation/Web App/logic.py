@@ -93,26 +93,8 @@ def signup_user(id,password):
         #send email verification
         auth.send_email_verification(user['idToken'])  
 
-        #combs_of_tweets   = [i for i in range(1,11)]
-        #id_combination = [" , ".join(map(str, comb)) for comb in combs(combs_of_tweets, 2)]
-
-        #combination_df = pd.DataFrame()
-
-        #r = 1
-        #for each_combination in id_combination:
-        #    split = each_combination.split(' , ')
-        #    combination_df = combination_df.append({
-        #        "combination_id": str(r),
-        #        "tweet_1": split[0],
-        #        "tweet_2": split[1]
-        #    }, ignore_index=True)
-        #    r += 1
-
-        #combination_df = shuffle(combination_df)
-
-        tweet_2_id = [i for i in range(1,11)]
-        #id_15_combination = [" , ".join(map(str, comb)) for comb in combs(tweet_2_id, 2)]
-        id_combs = list(combs(tweet_2_id, 2))
+        tweet_id = [i for i in range(1,11)]
+        id_combs = list(combs(tweet_id, 2))
         random.shuffle(id_combs)
 
         used_nums = []
@@ -318,13 +300,6 @@ def display_elo_ranking():
         text = get_tweet_content(key)
         text = Markup(text.replace('_b', '<br>'))
         final_order_content[key] = text
-
-    #for key in final_order_content:
-    #    text = final_order_content.get(key)
-    #    print('text:', text)
-    #    text = Markup(text.replace('_b', '<br><br>'))
-    #    print('text2:', text)
-    #    final_order_content[key] = text
 
     return final_order, final_order_content
 
