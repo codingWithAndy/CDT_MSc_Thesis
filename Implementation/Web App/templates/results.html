@@ -15,9 +15,9 @@
     <div class="jumbotron ">
         <h2 class="display-4 ">The Elo Results are in........!</h2>
         <ol>
-        {% for order in elo_rank %}
+        {% for elo_order in elo_rank %}
             
-            <li style='padding-bottom:20px'> Tweet: {{order}} </br> Score: {{elo_rank[order]}} </br> Content:<br> {{content[order]}} </li>
+            <li style='padding-bottom:20px'> Tweet: {{elo_order}} </br> Score: {{elo_rank[elo_order]}} </br> Content:<br> {{elo_content[elo_order]}} </li>
             
         {% endfor %}
         </ol>

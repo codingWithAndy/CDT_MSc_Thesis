@@ -6,7 +6,7 @@ from sklearn.utils import shuffle
 #import spacy
 #from spacy import displacy
 
-from flask import sessions
+from flask import sessions, Markup
 
 import pandas as pd
 import numpy as np
@@ -285,7 +285,9 @@ def display_ranking():
 
     final_order_content = {}
     for key in final_order:
-        final_order_content[key] = get_tweet_content(key)
+        text = get_tweet_content(key)
+        text = Markup(text.replace('_b', '<br>'))
+        final_order_content[key] = text
     
     return final_order, final_order_content
 
@@ -313,8 +315,17 @@ def display_elo_ranking():
 
     final_order_content = {}
     for key in final_order:
-        final_order_content[key] = get_tweet_content(key)
-    
+        text = get_tweet_content(key)
+        text = Markup(text.replace('_b', '<br>'))
+        final_order_content[key] = text
+
+    #for key in final_order_content:
+    #    text = final_order_content.get(key)
+    #    print('text:', text)
+    #    text = Markup(text.replace('_b', '<br><br>'))
+    #    print('text2:', text)
+    #    final_order_content[key] = text
+
     return final_order, final_order_content
 
 

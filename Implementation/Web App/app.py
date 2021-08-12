@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, redirect, flash
+from flask import Flask, render_template, request, url_for, session, redirect, flash, Markup
 from flask_cors import CORS
 from models import *
 from logic import * 
@@ -37,6 +37,9 @@ def compare():
                     combo_id       = get_combinations(round_number,session['user'])
                     tweet1_content = get_tweet_content(combo_id['tweet_1'])
                     tweet2_content = get_tweet_content(combo_id['tweet_2'])
+
+                    tweet1_content = Markup(tweet1_content.replace('_b', '<br><br>'))
+                    tweet2_content = Markup(tweet2_content.replace('_b', '<br><br>'))
                     
                     tweet1, tweet2, tweet1_id, tweet2_id = tweet1_content, tweet2_content, combo_id['tweet_1'], combo_id['tweet_2']
                 else:
