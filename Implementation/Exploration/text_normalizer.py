@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 tokenizer = ToktokTokenizer()
 stopword_list = nltk.corpus.stopwords.words('english')
-nlp = spacy.load('en', parse=True, tag=True, entity=True)
+nlp = spacy.load('en_core_web_sm')
 # nlp_vec = spacy.load('en_vectors_web_lg', parse=True, tag=True, entity=True)
 
 
