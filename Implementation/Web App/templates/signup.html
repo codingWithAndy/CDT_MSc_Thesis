@@ -33,11 +33,22 @@
                   <label class="form-label" for="password_check">Password</label>
                 </div>
 
+                <div class="form-outline mb-4" style="padding-bottom:15px">
+                    <input type="checkbox" id="confirm" name="confirm" unchecked>
+                    <label for="confirm">Click here if you are ok with how we use your data.</label><br>
+                    <a data-toggle="popover" title="How we use your data." data-content="We will only use your data for analytical reasons. All your data is anonymised and kept securely. For more inforamtion, please check the what is CJ page.">Click here to see how we use your data.</a><br>
+                </div>
+
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                <button type="submit" class="btn btn-primary btn-block" >Sign Up</button>
             </form>
             <p style="align:centre;"> Already have an account: <a href="{{ url_for('login') }}"> Click Here!</a></p>
 
  </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>
 {% endblock %}

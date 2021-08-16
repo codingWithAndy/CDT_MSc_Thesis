@@ -164,20 +164,27 @@ def signup():
         email    = request.form.get('email')
         password = request.form.get('password')
         password_check = request.form.get('password_check')
+        data_confirm   = request.form.get('confirm')
 
-        if password == password_check:
-            success, user_id = signup_user(email,password)
-            session['user']  = user_id
-            session['email'] = email
+        print(data_confirm)
 
-            if success == True:
-                flash("You have been signed up successfully.", "info")
-                return redirect(url_for('index'))
+        if data_confirm == 'on':
+            if password == password_check:
+                success, user_id = signup_user(email,password)
+                session['user']  = user_id
+                session['email'] = email
+
+                if success == True:
+                    flash("You have been signed up successfully.", "info")
+                    return redirect(url_for('index'))
+                else:
+                    flash("Email address already exists, please try logging in instead.", "info")
+                    return redirect(url_for('signup'))
             else:
-                flash("Email address already exists, please try logging in instead.", "info")
+                flash("Invalid email and/or passwords do not match.", "info")
                 return redirect(url_for('signup'))
         else:
-            flash("Invalid email and/or passwords do not match.", "info")
+            flash("Please confirm you are happy with how we use your data.", "info")
             return redirect(url_for('signup'))
 
 

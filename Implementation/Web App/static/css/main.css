@@ -21,7 +21,7 @@ h1 {
 
 .one {
     width: 45%;
-    height: 200px;
+    min-height: 200px;
     float: left;
     text-align: center;
     padding: 10px;
@@ -32,12 +32,13 @@ h1 {
 
 .two {
     margin-left: 50%;
-    height: 200px;
+    min-height: 200px;
     text-align: center;
     padding: 10px;
     background-color: lightgoldenrodyellow;
     border-radius: 20px;
     border-color: black;
+    margin-top: auto;
 }
 
 .alert {
@@ -81,6 +82,11 @@ h1 {
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
+}
+
+#tweet1,
+#tweet2 {
+    bottom: 10px;
 }
 
 

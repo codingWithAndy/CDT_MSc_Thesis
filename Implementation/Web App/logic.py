@@ -8,6 +8,9 @@ from sklearn.utils import shuffle
 
 from flask import sessions, Markup
 
+import pytz
+from datetime import datetime, date
+
 import pandas as pd
 import numpy as np
 import operator
@@ -157,9 +160,21 @@ def record_justification(round_number,user_id,justification):
     db = init_db()
     db.child("justification").child(user_id).child(round_number).update({'justification': justification})
 
+def get_time_stamp():
+    today = date.today()
+    d1 = today.strftime("%d/%m/%Y")
+
+    london_tz = pytz.timezone('Europe/London')
+    now = datetime.now(london_tz)
+    time = now.strftime("%H:%M:%S")
+    time_stamp = f"{time} {d1}"
+    return time_stamp
+
 def update_result(round_number,winner_id,user_id):
     db = init_db()
     combination = get_combinations(round_number,user_id)
+
+    time_stamp = get_time_stamp()
 
     if winner_id == combination['tweet_1']:
         loser_id = int(combination['tweet_2'])
@@ -183,6 +198,7 @@ def update_result(round_number,winner_id,user_id):
     
     db.child("results").child(winner_id).update({"win": tweet_dict['win'], "elo_score": winner_new_score})
     db.child("results").child(loser_id).update({"lose": other_tweet_dict['lose'], "elo_score": loser_new_score})
+    db.child("combinations").child(user_id).child(round_number).update({"winner": winner_id, "loser": loser_id, 'time_stamp': str(time_stamp)})
 
 def predict_elo_result(A, B):
     p_a_wins = 1 / (1 + (10**((B-A)/400)))
@@ -190,7 +206,7 @@ def predict_elo_result(A, B):
 
     return p_a_wins
 
-def elo_rating(A,B, score):
+def elo_rating(A, B, score):
     # Find Probability 1st
     # P(A wins) = (10^(Rating_A-Rating_B)/400) * P(B wins)
     # tidy version
