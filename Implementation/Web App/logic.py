@@ -158,7 +158,7 @@ def get_round_num(user_id):
 
 def record_justification(round_number,user_id,justification):
     db = init_db()
-    db.child("justification").child(user_id).child(round_number).update({'justification': justification})
+    db.child("combinations").child(user_id).child(round_number).update({'justification': justification})
 
 def get_time_stamp():
     today = date.today()
@@ -168,6 +168,7 @@ def get_time_stamp():
     now = datetime.now(london_tz)
     time = now.strftime("%H:%M:%S")
     time_stamp = f"{time} {d1}"
+    
     return time_stamp
 
 def update_result(round_number,winner_id,user_id):

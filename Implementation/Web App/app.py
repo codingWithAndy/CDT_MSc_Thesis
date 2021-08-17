@@ -98,7 +98,8 @@ def results():
         # Expand in time
         pass
     
-    return render_template('results.html', rank=rank, content=content, elo_rank=elo_rank, elo_content=elo_content)
+    return render_template('results.html', rank=rank, content=content, 
+                            elo_rank=elo_rank, elo_content=elo_content)
                            
 
 
