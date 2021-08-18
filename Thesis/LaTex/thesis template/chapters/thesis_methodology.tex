@@ -1,13 +1,21 @@
 % !TEX root = ../thesis.tex
 \chapter{Methodology}
 	\label{chap:typesetting}
+	In order to apply any ML and NLP to the tweet dataset, to see if we could do any information extraction and statistical analysis, we first needed to be able to generate a ranking of the ten tweets we had obtained. We sourced the tweets themed around Brexit on Twitter, and then a pipeline (see fig: \ref{fig:pipeline}) for sourcing peoples preferences of the tweets was created. The pipeline created was handled by the web app. The web app allowed the user to create an account and then compare the tweets. The resulting decision updated the ELO rating for each tweet and the more simplified traditional comparison judgment method. Each user gets only presented five different combinations, ensuring that a single tweet was only seen by the user once.
+	
+	\begin{figure}[t]
+		\includegraphics[width=\textwidth]{pipline.png}
+		\caption{A visual representation of the processes pipline.}
+		\label{fig:pipeline}
+		
+	\end{figure}
 	
 	\section{Tools}
 	To create the web application and insights from the tweets, we required to use several tools. It is a requirement that we develop a full-stack web application with a user UI, an area to input the user's judgements on the tweet, store the results using a database, and extract information from the tweets using NLP techniques. Several factors within the final application needed to be satisfied for the tools to be appropriate for use.
 	
 	
 	\subsection{Programming Language}
-	While many programming languages can handle creating a full-stack application and conducting ML, for example, Java, Php and JavaScript. We decided to use the Python language. We decided upon Python due to our familiarity with it over the other main languages and its versatility. We made this decision because Python can make full-stack applications with the use of additional libraries, as well as handle most NLP ML tasks using libraries like NLTK, SpaCy, Sci-Kit Learn and TensorFlow.
+	While many programming languages can handle creating a full-stack application and conducting ML, for example, Java, Php and JavaScript. We decided to use the Python language. We decided upon Python due to our familiarity with it over the other main languages and its versatility. We made this decision because Python can make full-stack applications with the use of additional libraries and handle most NLP ML tasks using libraries like NLTK, SpaCy, Sci-Kit Learn, and TensorFlow.
 	
 	\subsection{Libraries}
 	\subsubsection{Web Application}
@@ -36,6 +44,25 @@
 	\subsection{Data Capture Method}
 	
 	\subsection{Pre-Processing}
+	
+	
+		\section{Implementation}
+	[gather tweets]
+	
+	[Web App]
+	The web application got implemented using the Python web library Flask. The web application used several industry-standard tools, for example, HTML, CSS, JavaScript, Bootstrap and dynamic content. The HTML, CSS, Bootstrap and JavaScipt was used to handle the application's front end. 
+	
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width=8cm]{web_app_nav.png}
+		\caption{A visual representation of the web apps navigation.}
+		\label{fig:web_app_nav}
+		
+	\end{figure}
+	
+	Additional tools like Google's Firebase was used to handle user authentication and store the web app's content in their real-time databases. The real-time databases are a NoSQL document notation database that updates in real-time. 
+	
+	Heroku handled the hosting of the web app. Heroku is a free-to-use web hosting provider. However, with it being a free-to-use service, it did bring about some undesirable aspects, mainly the website's slow loading time.
 	
 	
 	
