@@ -34,10 +34,36 @@
 	
 	\subsubsection{NLP Tasks}
 	
+	
+	
 	\subsection{IDE}
+	While many great IDEs are available like Pycharm, Jupyter Lab, Atom and Sublime, we decided to use VS Code. The decision behind this was that it allowed us to explore code within interactive python notebooks (ipynb) and standard python scripts. Additionally, it allowed us to create HTML, CSS, and Javascript files within the same IDE.
 	
 	\section{Software Development Life Cycle Methodology}
 	
+	
+	
+	\section{Ranking System}
+	
+	As discussed in the literature review, along with a more traditional pairwise comparative judgment algorithm, we could choose either an ELO or Glicko system. While each has advantages and disadvantages, we decided to use the ELO system. We decided to use this system as we felt it would be more robust for how we intend to be calculating the tweet scores, as we will be taking random pairings of tweets that will only be seen once by the user. The user only seeing the tweet appear once removes any opportunity for a user to underrate a tweet because it has been seen multiple times and not lose its impact on the user. 
+	
+	Due to this reason, the ELO system, with its probability aspect to the scoring, helped determine outcomes on potential unseen tweet combos. While not considering if a tweet gets seen more than any others, this would have a massive impact on the comparative judgement pairwise comparison method.
+	
+	
+	\begin{figure}[t]
+		\centering
+		 Prob A Wins$ = 1/1+10^{(B-A/400)}$
+		\caption{To calculate the expected score for a tweet.}
+		\label{fig:elo_maths_1}
+	\end{figure}
+
+\begin{figure}[t]
+	\centering
+
+	new score $= rating + 32 * $  score $ - $ expected score
+	\caption{A visual representation of the web apps navigation.}
+	\label{fig:elo_maths_2}
+\end{figure}
 	
 	\section{Data Set}
 	
