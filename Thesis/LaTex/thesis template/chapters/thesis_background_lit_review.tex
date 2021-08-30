@@ -96,8 +96,41 @@
 
 	\subsection{How effective is Comparative Judgement at Providing Feedback?} % Should these be subsections?
 		
+	
+	\section{Other Rating Systems}
+	While comparative judgment has proven to be a suitable method of ranking pairwise matches of students work over the years, it has its limitations. For example, comparative judgment requires every combination to be compared against, which means for a class of thirty students, accounting for four hundred and thirty-five different combinations. Take into account a subject like English, which every student will have to take. A typical school year could have one hundred and twenty students, which would mean seven thousand one hundred and forty different combinations. That is a lot of time and comparisons that would be required. Therefore, to truly take the cognitive load off a marker or teacher, it would be better to try and have different people sub-sample the work. Then, from the scoring of the sub-samples, use this to generate an overall ranking. In essence, it is creating a competitive scoring system against each other. Two suitable systems to achieve this would be an Elo or Glicko rating system.
+	
+	\subsection{Elo Ranking System}
+	The ELO ranking got first introduced into competitive chess in the 1980s \cite{weng2011bayesian}. However, it got created in the 1960s by Arpad Elo as a replacement for the Harkness System. The Harkness System got used by the United States Chess Federation (USCF) at that time \cite{elo1978rating}. Additionally, the Elo system has gets used as a ranking system for football, American football, basketball as well as eSports like Counter-Strike: Global Offensive and League of Legends \cite{silver2015we, pradhan2020power}.
+	
+	The Elo system looks at the difference in two players ratings, then serves as a predictor for the match's outcome. The players Elo rating is depicted as a number and will change over time depending on the games' outcomes, with the winners taking points from the losers. However, how many points get awarded is decided upon the difference in ranking between the players. If the higher ranked player wins, only a few rating points get taken from the lower rank player. However, if an 'upset win' occurs, when the considerably lower rank player beats the higher rank player, then a much greater number of points will be gained to the winner and deducted from the loser. Ultimately, even when 'upset wins' happen, the ranking of the players will reflect the valid scores over time. [find reference]
+	
+	However, there are ways that players who know how the system works can cheat it. These methods include protecting one's rating, selective pairing and ratings inflation and deflation.
+	
+	Players protecting one's rating discourages game activity for players wanting to preserve their score. In essence, this situation gets created when players are not playing any more games once they are at a high score [23].  A method against this behaviour is to award an activity bonus that gets combined with the ranking score [24].
+	
+	Selective pairing is when players choose their opponents, which results in players choosing opponents that the player has the minimal risk of losing. Additions like a k-factor got added, but these do not solve the problem completely. [find reference]. Additional implementations have been added, like auto-pairing, which are based on random pairings but have a winner stays on context. [find reference].
+	
+	
+	\subsection{Glicko Ranking System}
+	
+	
+	
+	\section{Natural Language Processing (NLP)}
+	Natural Language Processing (NLP) is a subfield of AI that aims to understand natural language through trying to process and analyse it \cite{vasiliev2020natural, vajjala2020practical}. Ultimately NLP is teaching computers how to understand humans in natural language. However, this is not straightforward, as language is a complex, ever-changing form even for humans. There are three main categories that NLP problems fall into, heuristics, machine learning, and deep learning \cite{vajjala2020practical}. The nature of ML algorithms gets designed to work with unknown datasets, allowing data scientists to learn how to use language \cite{vasiliev2020natural}. While this will bring us a vast amount of insights, as mentioned before, the ever caning landscape of language does not mean that it is perfect and, once made, doesn't need revision. Therefore generating and understanding natural language are the most promising but most challenging tasks in NLP \cite{vasiliev2020natural, vajjala2020practical}.
+	
+	To understand the complexities of machines attempting to understand language, we must first know what we mean when we state 'what is language'. Language is a structured communication system, which involves many combinations of its fundamental components of varying complexities. For example, some of these components are characters, words and sentences to name a few \cite{vajjala2020practical}.
+	
+	Human language gets constructed of four major building blocks, and are phonemes, morphemes, lexemes and syntax, and context \cite{vajjala2020practical}. To make an effective NLP app, we need to ensure our application has these different building blocks used within its foundations (see fig: \ref{fig:practical_building_block}). However, knowing these building blocks does not entail we can do what we like within NLP. NLP has a lot of challenges that involve ambiguity, common knowledge, creativity and diversity across languages \cite{vajjala2020practical}. 
+	
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width=8cm]{practical_building_block.png}
+		\caption{The building blocks and their tools for understanding language \cite{vajjala2020practical}.}
+		\label{fig:practical_building_block}
 		
-
+	\end{figure} 
+	
 	\section{Related Work}
 		\label{sec:google_fu}
 
