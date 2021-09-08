@@ -12,10 +12,48 @@
 	\end{figure}
 
 	\section{Overview of Application}
+	
+	\subsection{Web Application}
 	The application has two main sections. The first section is a web application. This web application aims to rank the ten Twitter tweets by presenting users with two tweets and asking them which one is better. In essence, the web application is a tool to crowdsource data on peoples views based on the tweets that they get presented. The web app then creates two ranking systems. One ranking system uses an ELO system, and one the users a more pairwise comparative judgement style. The pairwise comparative judgement score gets calculated by the total wins getting subtracted by the total losses. 
 	
 	The second section is an exploratory Python notebook looking into NLP tasks on the tweets. We carry out sentiment analysis and information extraction on the tweets to see if any patterns within the tweets match their ranking's place. For example, positive sentiment tweets getting a higher ranking with a particular theme, other than Brexit possibly showing. The ultimate aim is to create a tweet marking rubric based on the results and the information. Additionally, we will then aim to see if we can use the gained knowledge from the information extraction to see if we can train ML models to predict the tweets position within the marking grid accurately.
 	
+	\subsection{NLP Information Extraction}
+	
+	\subsubsection{Part of Speach Tagging}
+	
+	
+	\subsubsection{Named Entity Recognition}
+	
+	
+	\subsubsection{Feature Extraction}
+	Feature extraction aims to transform tokens into features. An excellent technique to achieve this is a bag of words (BOW). This technique will count the occurrences of a particle token within our text. Therefore, for each token, we will have a feature column. This feature column gets referred to as text vectorisation. However, using a standard BOW will lose the word order, and the counters can not be normalised. 
+	
+	In order to preserve some order, we can count the tokens as pairs or triplets, for example. This technique gets also referred to as n-grams. The n refers to the number of tokens to get referenced. Some examples are 1-grams for tokens and 2-grams for token pairs. However, this has its problems as it can create too many features. A solution to this problem is to remove some n-grams from the feature set. This solution can get achieved by using the metric based on the frequency of their occurrence.
+	
+	The n-grams that we would want to remove based on their frequency are high and low-frequency n-grams. High-frequency grams get usually referred to as stop words, and low-frequency grams are rare words or typos. We especially want to remove the low-frequency n-grams as they can create overfitting. Ultimately, we ideally want the medium frequency words.
+	
+	Feature extraction aims to transform tokens into features. An excellent technique to achieve this is a bag of words (BOW). This technique will count the occurrences of a particle token within our text. Therefore, for each token, we will have a feature column. This feature column gets referred to as text vectorisation. However, using a standard BOW will lose the word order, and the counters can not be normalised. 
+	
+	In order to preserve some order, we can count the tokens as pairs or triplets, for example. This technique gets also referred to as n-grams. The n refers to the number of tokens to get referenced. Some examples are 1-grams for tokens and 2-grams for token pairs. However, this has its problems as it can create too many features. A solution to this problem is to remove some n-grams from the feature set. This solution can get achieved by using the metric based on the frequency of their occurrence.
+	
+	The n-grams that we would want to remove based on their frequency are high and low-frequency n-grams. High-frequency grams get usually referred to as stop words, and low-frequency grams are rare words or typos. We especially want to remove the low-frequency n-grams as they can create overfitting. Ultimately, we ideally want the medium frequency words.
+	
+	A technique we can use to find the medium frequency n-grams is term frequency-Inverse document frequency (TF-IDF). TF-IDF has two main stages, the term frequency (TF) and the inverse document frequency (IDF). The TF ($tf(t,d)$) looks for the frequency of the n-gram (term) $t$ in the document $d$. While IDF takes the total number of documents in the corpus ($N = |D|$) and the number of documents where the term t appears ($|\{d \varepsilon D:t \varepsilon d\}|$). So the IDF gets represented as $idf(t,D) = \log\frac{N}{|\{d \varepsilon D:t \varepsilon d\}|}$. TF-IDF ($tdidf(t,d,D) = tf(t,d) \cdot idf(t,D)$) achieves a high weight by a high-term frequency, within a given document, and a low  document frequency of the term in the whole collection of documents.
+	
+	Through using TF-IDF, we can replace counters within our BOW with the TF-IDF value. We can then normalise the result row-wise by dividing by $L_2-norm$. Through this method, important features will have a relatively high value. Through this method, we are then able to display the key features within our documents.
+	
+	
+	
+	\subsubsection{Sentiment Analysis}
+	
+	\subsubsection{Similarity Scoring}
+	
+	\subsubsection{Utterence Pattern Matching}
+	
+	\subsubsection{Finding Word Sequence Patterns}
+	
+	\subsubsection{Key Phrases}
 	
 	\section{Tools}
 	To create the web application and insights from the tweets, we required to use several tools. It is a requirement that we develop a full-stack web application with a user UI, an area to input the user's judgements on the tweet, store the results using a database, and extract information from the tweets using NLP techniques. Several factors within the final application needed to be satisfied for the tools to be appropriate for use.
@@ -33,6 +71,8 @@
 	While many programming languages can handle creating a full-stack application and conducting ML, for example, Java \cite{arnold2005java}, Php \cite{bakken2000php} and JavaScript \cite{flanagan2006javascript}. We decided to use the Python language \cite{Python}. We decided upon Python due to our familiarity with it over the other main languages and its versatility. We made this decision because Python can make full-stack applications with the use of additional libraries and handle most NLP ML tasks using libraries like NLTK \cite{loper2002nltk}, SpaCy \cite{spacy2}, Sci-Kit Learn \cite{scikit-learn}, and TensorFlow \cite{tensorflow2015-whitepaper}.
 	
 	\subsection{Libraries}
+	While we use the Python programming language to create the web application and the NLP information extraction, we require significantly different libraries to complete each task. We will look into the potential web libraries available to us and the NLP focused libraries. We will then present the libraries that we decided upon for each of the parts.
+	
 	\subsubsection{Web Application}
 	For creating the web application, there were two main libraries available. These were Django and Flask.
 	
