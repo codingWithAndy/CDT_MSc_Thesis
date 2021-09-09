@@ -1,0 +1,46 @@
+,similarity,tweet1,tweet1 NE Span,tweet2,tweet2 NE Span
+0,0.26026844421154943,1,Scotsman Irishman Englishman,2,British
+1,0.7881778650064305,1,Scotsman Irishman Englishman,3,Britain EU
+2,0.7202229428996859,1,Scotsman Irishman Englishman,4,UK EU
+3,0.5102506808064546,1,Scotsman Irishman Englishman,5,Brexit
+4,0.07589416116696474,1,Scotsman Irishman Englishman,6,50 cent 10.00 pounds
+5,0.338122925389939,1,Scotsman Irishman Englishman,7,the simpler days Brexit
+6,0.19891920649258268,1,Scotsman Irishman Englishman,8,FOREVER
+7,0.5106603578435868,1,Scotsman Irishman Englishman,9,Britain
+8,0.2043329252460435,1,Scotsman Irishman Englishman,10,Brexiteers
+9,0.28315460353475774,2,British,3,Britain EU
+10,0.3071070735658078,2,British,4,UK EU
+11,0.3473958432724088,2,British,5,Brexit
+12,-0.025753100407604142,2,British,6,50 cent 10.00 pounds
+13,0.19960802540674505,2,British,7,the simpler days Brexit
+14,0.3399228799132497,2,British,8,FOREVER
+15,0.30857483837094035,2,British,9,Britain
+16,0.5492635687603991,2,British,10,Brexiteers
+17,0.857896071219537,3,Britain EU,4,UK EU
+18,0.6889496476947127,3,Britain EU,5,Brexit
+19,0.12394698389474369,3,Britain EU,6,50 cent 10.00 pounds
+20,0.42046786610443715,3,Britain EU,7,the simpler days Brexit
+21,0.2476239530369788,3,Britain EU,8,FOREVER
+22,0.6465197930197415,3,Britain EU,9,Britain
+23,0.39517727464121233,3,Britain EU,10,Brexiteers
+24,0.5988663098259748,4,UK EU,5,Brexit
+25,0.03655662702219724,4,UK EU,6,50 cent 10.00 pounds
+26,0.317500864239984,4,UK EU,7,the simpler days Brexit
+27,0.22677069765972172,4,UK EU,8,FOREVER
+28,0.4537808635358869,4,UK EU,9,Britain
+29,0.3057383191109475,4,UK EU,10,Brexiteers
+30,0.18638213017662394,5,Brexit,6,50 cent 10.00 pounds
+31,0.35866415680171365,5,Brexit,7,the simpler days Brexit
+32,0.34304673990622914,5,Brexit,8,FOREVER
+33,0.7719237378748812,5,Brexit,9,Britain
+34,0.4778951822014182,5,Brexit,10,Brexiteers
+35,0.338778888792682,6,50 cent 10.00 pounds,7,the simpler days Brexit
+36,0.09728674594824403,6,50 cent 10.00 pounds,8,FOREVER
+37,0.2044667106044152,6,50 cent 10.00 pounds,9,Britain
+38,0.0656502822596833,6,50 cent 10.00 pounds,10,Brexiteers
+39,0.18553269208718046,7,the simpler days Brexit,8,FOREVER
+40,0.290035123801708,7,the simpler days Brexit,9,Britain
+41,0.12421586384237387,7,the simpler days Brexit,10,Brexiteers
+42,0.3581325508715383,8,FOREVER,9,Britain
+43,0.30673207410153364,8,FOREVER,10,Brexiteers
+44,0.4548616035281127,9,Britain,10,Brexiteers
