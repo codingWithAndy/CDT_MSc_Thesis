@@ -12,6 +12,7 @@
 	\end{figure}
 
 	\section{Overview of Application}
+	%give overview here 
 	
 	\subsection{Web Application}
 	The application has two main sections. The first section is a web application. This web application aims to rank the ten Twitter tweets by presenting users with two tweets and asking them which one is better. In essence, the web application is a tool to crowdsource data on peoples views based on the tweets that they get presented. The web app then creates two ranking systems. One ranking system uses an ELO system, and one the users a more pairwise comparative judgement style. The pairwise comparative judgement score gets calculated by the total wins getting subtracted by the total losses. 
@@ -44,7 +45,7 @@
 	
 	The n-grams that we would want to remove based on their frequency are high and low-frequency n-grams. High-frequency grams get usually referred to as stop words, and low-frequency grams are rare words or typos \cite{hapke2019natural}. We especially want to remove the low-frequency n-grams as they can create overfitting. Ultimately, we ideally want the medium frequency words.
 	
-	A technique we can use to find the medium frequency n-grams is term frequency-Inverse document frequency (TF-IDF). TF-IDF has two main stages, the term frequency (TF) and the inverse document frequency (IDF). The TF ($tf(t,d)$) looks for the frequency of the n-gram (term) $t$ in the document $d$ \cite{sarkar2016text}. While IDF takes the total number of documents in the corpus ($N = |D|$) and the number of documents where the term t appears ($|\{d \varepsilon D:t \varepsilon d\}|$) \cite{sarkar2016text}. So the IDF gets represented as $idf(t,D) = \log\frac{N}{|\{d \varepsilon D:t \varepsilon d\}|}$ \cite{sarkar2016text}. TF-IDF ($tdidf(t,d,D) = tf(t,d) \cdot idf(t,D)$) achieves a high weight by a high-term frequency, within a given document, and a low  document frequency of the term in the whole collection of documents \cite{sarkar2016text}.
+	A technique we can use to find the medium frequency n-grams is term frequency-Inverse document frequency (TF-IDF). TF-IDF has two main stages, the term frequency (TF) and the inverse document frequency (IDF). The TF ($tf(t,d)$) looks for the frequency of the n-gram (term) $t$ in the document $d$ \cite{sarkar2016text}. While IDF takes the total number of documents in the corpus ($N = |D|$) and the number of documents where the term t appears ($|\{d \in D:t \in d\}|$) \cite{sarkar2016text}. So the IDF gets represented as $idf(t,D) = \log\frac{N}{|\{d \in D:t \in d\}|}$ \cite{sarkar2016text}. TF-IDF ($tdidf(t,d,D) = tf(t,d) \cdot idf(t,D)$) achieves a high weight by a high-term frequency, within a given document, and a low  document frequency of the term in the whole collection of documents \cite{sarkar2016text}.
 	
 	Through using TF-IDF, we can replace counters within our BOW with the TF-IDF value. We can then normalise the result row-wise by dividing by $L_2-norm$. Through this method, important features will have a relatively high value. Through this method, we are then able to display the key features within our documents.
 	
