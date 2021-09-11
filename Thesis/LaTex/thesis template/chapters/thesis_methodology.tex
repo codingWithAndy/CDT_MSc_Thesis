@@ -23,9 +23,9 @@
 	
 	Due to its complex nature, information extraction relies on several separate takes, which, when used together, generates information. These steps include keyphrase extraction, named entity recognition, named entity disambiguation, and linking and relationship extraction \cite{vajjala2020practical}.
 	
-	Next, we will look into the different building blocks that can extract information from our text to try to provide some form of feedback to the user. We will look into part of speech tagging, named entity recognition, feature extraction, sentiment analysis, text similarity, utterance pattern matching, text similarity scoring and word sequence pattern recognition.
+	Next, we will look into the different building blocks that can extract information from our text to provide feedback to the user. We will look into part of speech tagging, named entity recognition, feature extraction, sentiment analysis, text similarity, utterance pattern matching, text similarity scoring and word sequence pattern recognition.
 	
-	\subsubsection{Part of Speach Tagging}
+	\subsubsection{Part of Speech Tagging}
 	Part of Speach (POS) tagging has the hidden Markov model (HMM) underpinning it \cite{vajjala2020practical}. The HMM is a statistical model that assumes an underlying, unobservable process with hidden states \cite{baum1966statistical}. POS tagging ultimate aim is to identify the nouns, verbs, and other key parts of speech \cite{vasiliev2020natural}.
 	
 	We decided to implement POS tagging on the tweets to see if any insights would help provide any feedback to the user. While it might not give us many insights on its own, it can get used as an additional tool that, when paired with other methods, can help provide some insights. We also felt that when the POS tagging got visualised, this would help create a clear picture of the structure of the tweet.
@@ -141,10 +141,7 @@
 	
 	%Conclusion/Final decision
 	%All taken from: https://www.upgrad.com/blog/python-nlp-libraries-and-applications/
-	Although NLTK, TextBlob was used in some experimenting, we decided to use spaCy as the main NLP library. However, NLTK was used on the side (especially with their stop words). As one of the key things we wanted to do was to extract information from the tweets, spaCy allowed us to do this and prepare the data for deep learning. While we did not need a very deep Recurrent Neural Network (RNN), we did implement one to complete the sentiment analysis on the tweets. We used an RNN with two things in mind, to see how well it could perform on small amounts of text, like a tweet, and with the future thoughts of it being able to handle large amounts of text, like someone's essay in an exam.
-	
-	
-	
+	Although NLTK, TextBlob was used in some experimenting, we decided to use spaCy as the main NLP library. However, NLTK was used on the side (especially with their stop words). As one of the key things we wanted to do was extract information from the tweets, spaCy allowed us to do this and prepare the data for deep learning. While we did not need a very deep Recurrent Neural Network (RNN), we did implement one to complete the sentiment analysis on the tweets. We used an RNN with two things in mind, to see how well it could perform on small amounts of text, like a tweet, and with the future thoughts of it being able to handle large amounts of text, like someone's essay in an exam. The RNN got constructed by using TensorFlow.
 	
 	\subsection{IDE}
 	While many great IDEs are available like Pycharm, Jupyter Lab, Atom and Sublime, we decided to use VS Code. The decision behind this was that it allowed us to explore code within interactive python notebooks (ipynb) and standard python scripts. Additionally, it allowed us to create HTML, CSS, and Javascript files within the same IDE.
