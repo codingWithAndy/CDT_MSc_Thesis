@@ -1,0 +1,14 @@
+\BOOKMARK [2][-]{subsection.0.1}{Data Pipeline}{}% 1
+\BOOKMARK [2][-]{subsection.0.2}{Part of Speach Tagging}{}% 2
+\BOOKMARK [2][-]{subsection.0.3}{Named Entity Recognition}{}% 3
+\BOOKMARK [2][-]{subsection.0.4}{Feature Extraction}{}% 4
+\BOOKMARK [2][-]{subsection.0.5}{Sentiment Analysis}{}% 5
+\BOOKMARK [2][-]{subsection.0.6}{Tweet Similarity Scoring}{}% 6
+\BOOKMARK [3][-]{subsubsection.0.6.1}{Document Similarity}{subsection.0.6}% 7
+\BOOKMARK [3][-]{subsubsection.0.6.2}{Term Similarity}{subsection.0.6}% 8
+\BOOKMARK [2][-]{subsection.0.7}{Utterence Pattern Matching}{}% 9
+\BOOKMARK [2][-]{subsection.0.8}{Finding Word Sequence Patterns}{}% 10
+\BOOKMARK [2][-]{subsection.0.9}{Topic Modelling}{}% 11
+\BOOKMARK [2][-]{subsection.0.10}{Key Phrases}{}% 12
+\BOOKMARK [1][-]{section.1}{Result Analysis}{}% 13
+\BOOKMARK [2][-]{subsection.1.1}{Combination Distribution}{section.1}% 14
