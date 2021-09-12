@@ -155,18 +155,18 @@
 	Due to this reason, the ELO system, with its probability aspect to the scoring, helped determine outcomes on potential unseen tweet combos. While not considering if a tweet gets seen more than any others, this would have a massive impact on the comparative judgement pairwise comparison method.
 	
 	
-	\begin{figure}[t]
+	\begin{figure}[h]
 		\centering
-		 Prob A Wins$ = 1/1+10^{(B-A/400)}$
+		 $\text{Prob A Wins} = 1/1+10^{(B-A/400)}$
 		\caption{To calculate the expected score for a tweet.}
 		\label{fig:elo_maths_1}
 	\end{figure}
 
-\begin{figure}[t]
+\begin{figure}[h]
 	\centering
 
-	new score $= rating + 32 * $  score $ - $ expected score
-	\caption{A visual representation of the web apps navigation.}
+	$\text{new score} = rating + 32 *  \text{score - expected score}$
+	\caption{Formula to calculate the new Elo score for a tweet.}
 	\label{fig:elo_maths_2}
 \end{figure}
 	

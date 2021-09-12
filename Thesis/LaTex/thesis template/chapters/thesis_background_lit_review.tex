@@ -71,28 +71,76 @@
 		Politt, in 2010, also presented a paper at the Association for Educational Assessment – Europe. It was about How to Assess Writing Reliably and Validly. Politt presented evidence of the extraordinarily high reliability achieved with Comparative Judgement in assessing primary school pupils' skill in first-language English writing \cite{pollitt2009abolishing}.
 		
 	\subsection{The Logic Behind Comparative Judgement and What it Aims to Do} % Should these be subsections?
-		How comparative judgement works is to present two options to a marker. The marker then gets asked to pick which one of the two options they think is the better one. The marker will get presented with all possible combinations available, each time picking which one they think is the better one out of the two. An outputted score is then presented based on the method used. The original method, the Law of Comparative Judgement (LCJ), follows the formula:
+		%How comparative judgement works is to present two options to a marker. The marker then gets asked to pick which one of the two options they think is the better one. The marker will get presented with all possible combinations available, each time picking which one they think is the better one out of the two. An outputted score is then presented based on the method used. The original method, the Law of Comparative Judgement (LCJ), follows the formula:
 		
-		\begin{figure}[h]
-			\includegraphics[width=8cm]{graphics/LCJ_formula.png}
-			\caption{}
-			\centering
-		\end{figure}
+		%\begin{figure}[h]
+	%		\includegraphics[width=8cm]{graphics/LCJ_formula.png}
+	%		\caption{}
+	%		\centering
+	%	\end{figure}
 	
-		 $S_{i}$ is the psychological scale value of stimuli $i$
+		% $S_{i}$ is the psychological scale value of stimuli $i$
 		%{\displaystyle x_{ij}} is the sigma corresponding with the proportion of occasions on which the magnitude of stimulus i is judged to exceed the magnitude of stimulus j
 		%{\displaystyle \sigma _{i}} is the discriminal dispersion of a stimulus {\displaystyle R_{i}}
 		%{\displaystyle r_{ij}} is the correlation between the discriminal deviations of stimuli i and j
 		%The discriminal dispersion of a stimulus i is the dispersion of fluctuations of the discriminal process for a uniform repeated stimulus, denoted {\displaystyle R_{i}}, where {\displaystyle S_{i}} represents the mode of such values. Thurstone (1959, p. 20) used the term discriminal process to refer to the "psychological values of psychophysics"; that is, the values on a psychological continuum associated with a given stimulus.
 		
-		However, an alternative version derived from Louis Leon Thurstone, referred to as the "Pairwise Comparison" \cite{thurstone1927law}, will provide an output based on the difference between the quality values is equal to the log of the odds in respect to object-A will be object-B. This formula gets represented as: 
-		$\displaystyle \mathrm {log\;odds} (A\ {\text{beats}}\ B\mid v_{a},v_{b})=v_{a}-v_{b} $.
+		%However, an alternative version derived from Louis Leon Thurstone, referred to as the "Pairwise Comparison" \cite{thurstone1927law}, will provide an output based on the difference between the quality values is equal to the log of the odds in respect to object-A will be object-B. This formula gets represented as: 
+		%$\displaystyle \mathrm {log\;odds} (A\ {\text{beats}}\ B\mid v_{a},v_{b})=v_{a}-v_{b} $.
 		
-		$\Pr\{X_{ji}=1\}={\frac {e^{{\delta _{j}}-{\delta _{i}}}}{1+e^{{\delta _{j}}-{\delta _{i}}}}}=\sigma (\delta _{j}-\delta _{i})$
+		%$\Pr\{X_{ji}=1\}={\frac {e^{{\delta _{j}}-{\delta _{i}}}}{1+e^{{\delta _{j}}-{\delta _{i}}}}}=\sigma (\delta _{j}-\delta _{i})$
 		
-		 .
+		 %.
 		%\displaystyle \mathrm {log\;odds} (A\ {\text{beats}}\ B\mid v_{a},v_{b})=v_{a}-v_{b}}		
 
+	How comparative judgement works is to present two options to a marker. The marker then gets asked to pick which one of the two options they think is better. The marker will get presented with all possible combinations available, each picking which one they think is better out of the two. An outputted score is then presented based on the method used, providing a preference order of observations. 
+	
+	However, an alternative version derived from Louis Leon Thurstone, referred to as the "Pairwise Comparison" \cite{thurstone1927law}, will provide an output based on the difference between the quality values is equal to the log of the odds in respect to object-A will be object-B. This formula gets represented as:
+	
+	\begin{center}
+		 
+	$\displaystyle \mathrm {log\;odds} (A\ {\text{beats}}\ B\mid v_{a},v_{b})=v_{a}-v_{b}$ .
+	
+	\end{center}
+
+	Pairwise comparison generally is any process of comparing entities in pairs to judge which of each entity is preferred or has a greater amount of some quantitative property, or whether or not the two entities are identical. The pairwise comparison method get used in the scientific study of preferences, attitudes, voting systems, social choice, public choice, requirements engineering and multiagent AI systems.
+	
+	Within an educational setting, a different approach of comparative judgement has been proposed. This new adaptation gets referred to as adaptive comparative judgement (ACJ) \cite{pollitt2012method}. It is also the same as the pairwise comparison, just with a different name. ACJ is very similar to the core concept of comparative judgement, as it asks a marker to rate which work is better.  However, in this version, the 'scores', the model parameter for each object, get re-estimated after each 'round' of judgements. Resulting in each piece of work being judged one more time on average. During the next round, each piece of work is compared only to another whose is currently estimated to have a similar score. Therefore, comparing each piece of work with a similar score results in an increased amount of statistical information from each judgment to produce the final ranking. As a result, the estimation procedure is more efficient than random pairing or any other pre-determined pairing system like those used in classical comparative judgement applications \cite{pollitt2012method}.
+	
+	\subsection{What does ACJ aim to achieve and How reliable is it}
+	
+	ACJ achieves extremely high levels of reliability, often considerably higher than practicable operational marking can achieve. It, therefore, offers a radical alternative to the pursuit of reliability through detailed marking schemes \cite{pollitt2012method}. 
+	
+	\textbf{The software estimates a ‘measure’ for each object being compared (henceforth ‘script’), and an associated standard error. First, the ‘true SD’ of the script measures is calculated from: \\
+	$(True SD)^{2} = (Observed SD)^{2} \text{ - } MSE$. \\
+	where MSE is the mean squared standard error across the scripts. }
+	
+	\textbf{The SSR is defined like reliability coefficients in traditional test theory, as the ratio of true variance to observed variance, i.e.: \\
+	$SSR = (True SD)^{2} / (Observed SD)^{2}$ . \\
+	Sometimes another separation index G is calculated as the ratio of the ‘true’ spread of the measures to their average error, i.e.: \\
+	$G = (True SD) / RMSE$ where RMSE is the square root of the MSE. Then the SSR can also be calculated as \\
+	$SSR = G^2 / (1+G^2 )$}
+	
+	
+	When we look at fig: \ref{fig:studies_comparison}, we can see that these studies have produced a high $SSR$ score. However, a lot of the studies have used a high resource count to complete the different studies. For example, Pollitt 2012 studies used 54 judges to mark 1000 pieces of scripts, which resulted in 8161 different comparisons getting seen and 16 rounds occurring. In comparison, Whitehouse \& Pollit (2012) had 564 scripts to compare and 23 judges. This study took 12 - 13 rounds to get a high SSR score. Therefore, we can see that while ACJ can help with teacher workload in removing a cognitive overload, it takes to create additional workload in the sheer amount of rounds required to get a reliable SSR score.
+	
+	Additionally, a number of the studies have used 20 - 100 different judges, which is more than most teachers within a single department. Therefore, making it hard for us to see how within a typical set-up of a school. As in, does the requirement needed to produce an accurate judgment outweigh the reduced cognitive load. 
+	
+	
+	\begin{figure}[h]
+			\includegraphics[width=\textwidth]{graphics/cambridge_results.png}
+			\caption{Design features* and SSR reliability results from some published CJ/ACJ studies \cite{bramley2015investigating}}
+			\label{fig:studies_comparison}
+			\centering
+		\end{figure}
+	
+	Studies have found that ACJ has high reliability, even compared to the final results when work is marked more traditional. However,  frustration has been prevalent when markers have had to review repetitive work \cite{bartholomew2019tool}. Studies have found that ACJ has high reliability, even compared to the final results when work is marked more traditional. However,  frustration has been prevalent when markers have had to review repetitive work \cite{bartholomew2019tool}. Additionally, frustration also gets created by the lack of students being able to challenge the final results \cite{bartholomew2019tool}. 
+	
+	% Negative against ACJ Cambridge Assessment
+	\textbf{The motivation for using adaptivity in CJ studies – namely to avoid wasting time and resources getting judges to make comparisons whose outcome is a foregone conclusion – is entirely understandable. But both theoretical considerations from the IRT and CAT literature and the results of the simulation study in this report show that adaptivity produces spurious scale separation reliability, as indicated by values of the SSR coefficient that are substantially biased upwards from their true value. The higher the proportion of adaptive rounds, the greater the bias. SSR values above 0.70 and even as high as 0.89 can be obtained from random judgments (or equivalently, scripts that all have the same true quality) when adaptivity is ‘switched on’ after the first random pairing} \cite{bramley2015investigating}. 
+	
+	\textbf{The conclusion is therefore that the SSR statistic is at best misleading and at worst worthless as an indicator of scale reliability whenever a CJ study has involved a significant amount of adaptivity. Other indicators of reliability, such as correlations with measures obtained from comparisons among a different group of judges, or correlations with relevant external variables, should be used instead. ACJ studies that have used high values of the SSR coefficient alone to justify claims that ACJ produces a more reliable scale than conventional marking need to be re-evaluated} \cite{bramley2015investigating}.
+	
 
 	\subsection{How effective is Comparative Judgement at Providing Feedback?} % Should these be subsections?
 		
