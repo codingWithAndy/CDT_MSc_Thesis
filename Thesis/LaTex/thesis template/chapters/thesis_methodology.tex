@@ -168,7 +168,7 @@
 \begin{figure}[h]
 	\centering
 
-	$\text{new score} = rating + 32 *  \text{score - expected score}$
+	$\text{new score} = \text{rating} + 32 *  \text{score} - \text{expected score}$
 	\caption{Formula to calculate the new Elo score for a tweet.}
 	\label{fig:elo_maths_2}
 \end{figure}
@@ -180,7 +180,9 @@
 	Twitter's developer API got used to allow for the tweets to get extracted. Additionally, the library [name here] got also used. The tweets were then uploaded to the Firebase database through a Python Notebook for the main web app to access them. Having the tweets in the database also allowed us to be then able to create a notebook to then access the data to then do the NLP investigating within.
 	
 	\subsection{Pre-Processing}
+	Regarding the data pre-processing within the web app, the only processing occurred was removing the \_b characters and replacing them with <br> tags. We did this to allow the tweets to have the same layout as they did within Twitter. We decided that a few tweets, especially the Q+A style ones, lost their impact if they were not displayed correctly. Therefore, doing this allowed us to keep the integrity of the tweet and its comedy delivery.
 	
+	\subsection{T-Rating Score}
 	
 	
 	
@@ -211,16 +213,17 @@
 	
 	When the user presses the "Vote!" button, this saves the results to the database, updating the two result systems and the user's position. The process will save which tweet won and lost and update the ELO ranking and the standard ranking. The standard ranking gets calculated by taking how many times a tweet has won minus the number it has lost. The implementation of the standard ranking system is to try to implement a more traditional comparative judgement ranking system. In contrast, the ELO system is using a more traditional approach (see fig: \ref{fig:elo_maths}) Which gets updated after every comparison. The implementation of the two systems allows us to see if the ELO or more standard version of CJ is the more effective one or if they naturally mirror each other.
 	
-	\begin{figure}[t]
-		\centering
-		$ Prob A Wins = 1/1+10^{(B-A/400)}$
-		\caption{To calculate the expected score for a tweet.}
-		new score $= rating + 32 * $  score $ - $expected score
-		\caption{A visual representation of the web apps navigation.}
-		\label{fig:elo_maths}
+	%\begin{figure}[t]
+	%	\centering
+%		$ Prob A Wins = 1/1+10^{(B-A/400)}$
+%		\caption{To calculate the expected score for a tweet.}
+%		new score $= rating + 32 * $  score $ - $expected score
+%		\caption{A visual representation of the web apps navigation.}
+%		\label{fig:elo_maths}
 		
-	\end{figure}
+%	\end{figure}
 	
+	% What is this for?
 	This process gets repeated until the user has completed all five comparisons.
 	
 	\section{Designs}
