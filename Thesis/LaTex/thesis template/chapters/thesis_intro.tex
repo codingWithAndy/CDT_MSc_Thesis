@@ -24,7 +24,11 @@
 	\section{Existing Liturature}
 	Within education, teaching and learning have provided assessments to rank students' attainment since 1988s. Due to the students getting assessed, this allowed the teachers to give feedback to learners, allowing them to improve, especially with the introduction of Key Stage (KS) 1, 2 and 3 national curriculums and tests. This newfound focus brought about new areas of tools and techniques for teachers to use. These new tools are called Assessment of Learning (AoL) and Assessment for Learning (AfL). However, marking and providing feedback can be quite a time-consuming labours task, adding to workload and teacher stress. Especially when school marking policies are in place, and a certain level of marking gets done within a specific time frame. Additionally, teachers might implement bias towards students results by basing performance results on how they have done all year, rather than in the face value of the actual assessment.
 	
-	However, a newfound focus on an approach called Adaptive Comparative Judgement (ACJ) has started to make some traction. ACJ is an altered approach to Louis Leon Thurstone's the Law of Comparative Judgement (LCJ). 
+	However, a newfound focus on an approach called Adaptive Comparative Judgement (ACJ) has started to make some traction. ACJ is an altered approach to Louis Leon Thurstone's the Law of Comparative Judgement (LCJ). The LCT and ACJ both provide a combination of examples and asks the user to judge which one out of the two is better. However, ACJ is the method proposed more within education based on its ability to be 'adaptive' in comparing the students work. Instead of every combination having to be seen, it can change to make pieces of work that are considered similar get compared more to find out which one is better. ACJ  claims to be highly accurate, reduce teachers' workload, and provide meaningful feedback to the students. However, a study found out that the method used within ACJ (rounds) makes the results biased, especially the more rounds there are. This bias demonstrates that being 'adaptive' has no more effectiveness over just having random pairings at all.
+	
+	Additionally, the feedback it proves is very minimal. Therefore, students do not receive any form of personalised feedback. Instead, they have to rely on their understanding of the task and then extract what they think is important based on their peers' work. As a result, likely to be excluding low anility students from gaining meaningful insights on how to improve.
+	
+	Therefore, additional avenues get explored. These are regarding other ranking systems and Natural Language Processing (NLP) to provide feedback to the users. The alternative rankings systems, Elo and Glicko, are both well-used. Both ranking systems got created to score competitive chess players, with Elo was the first proposed system over the original and then the Glicko. Both systems look into creating a score that updates on an outcome's results, with the score getting based on the likelihood probability that one entity will win over the other. The main difference between them is the stages required to calculate the score. In comparison, the Glicko system presents improvements over the perceived pitfalls of player manipulation in the Elo system like player rating protection, selective pairing and rating inflation and deflation.
 	
 	\section{New Insights}
 	While the comparative judgement technique has many great features, we believe that the concept can still improve. We believe this is especially the case when the comparative judgment system gets expected to get done at a national scale. We believe this because the traditional method would expect all unique pairings to get compared. Additionally, the adaptive comparative judgement that most other systems have adopted still requires time and effort even when the number of individual student work is only around thirty. Therefore, it would be tough to do when needed to get scaled up to a national level. That is why we believe a different ranking system, like an Elo system, could replace the adaptive comparative judgement process and have a more crowed sourced approach. Therefore, reducing cognitive load and the time cost it would take for people to partake. 
@@ -39,18 +43,17 @@
 
 		\begin{description}	
 
-			\item[\(\bullet\) A \LaTeX{} thesis template]\hfill
+			\item[\(\bullet\) A web applicaiton to conduct the comparative judgement]\hfill
 
-			Modify this document by adding additional \TeX{} files for your top level content chapters. 
+			We created a web application and hosted it to crowdsource users views on ten tweets based on Brexit. The app provided at random five unique pair comparisons while updating the CJ score and Elo score. 
 
-			\item[\(\bullet\) A typesetting guide for useful primitive elements]\hfill
+			\item[\(\bullet\) A comparion of two different ranking systems]\hfill
 
-			Use the building blocks within this template to typeset each part of your document.
-			Aim to use simple and reusable elements to keep your \LaTeX{} code neat and to make your document consistently styled throughout.
+			Metrics are being stored and calculated based on the two ranking systems, a CJ style and an Elo ranking system. Therefore, the results provide us with a way to compare the effectiveness of the two ranking systems. As a result, they are allowing us to see which one works better in our required situation.
 
-			\item[\(\bullet\) A review of how to find and cite external resources]\hfill
+			\item[\(\bullet\) An exploration into NLP techniques to provide feedback to the user]\hfill
 
-		We review techniques and resources for finding and properly citing resources from the prior academic literature and from online resources.
+		We created a Jupyter notebook exploring NLP information extraction techniques to provide feedback to the user from information extracted from the ten tweets.
 
 		\end{description}
 	
