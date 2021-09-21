@@ -21,39 +21,60 @@ We will compare the web application's results against the comparative judgment, 
 	
 	Forty different users take part in the comparison judgement within the web app. Through looking at fig: \ref{fig:combinations} we can see that all combinations got displayed to the users taking part in the comparisons. We can see that tweet one and tweet five appeared the most, while the combination appearing the lowest was tweet six and seven, with one comparison getting presented to the users.
 	
-	
-	
-	When we look at winners and losers of the comparisons( see fig: \ref{fig:combination_wins}), we can see that the tweet that won the most between a specific combination was tweet four and two, with tweet four winning six times and tweet two winning only once. Additionally, when we look at the combination that appeared the most, one and five, one came out on top five times, compared to five winning between the two once.
-	\begin{figure}[h]
+	\begin{figure}[t]
 		\centering
-		\includegraphics[width=7cm]{combination_win_heat_map.png}
-		\caption{A heat map of the amount of times a tweet win or lost}
-		\label{fig:combination_wins}
+		\includegraphics[width=\textwidth]{Combination_win_with_perc_heat_map.png}
+		\caption{A heat map of the amount of times a tweet win or lost. Left - by total values. Right - By win percentages.}
+		\label{fig:Combination_win_with_perc_heat_map}
 		
 	\end{figure}
 	
-	When we look at the winner heat map (see fig: \ref{fig:combination_wins}), we can see that two, five, six, seven and ten had moments where they didn't win a head-to-head with another tweet. Two, six, seven and ten didn't win against at least two different tweets, while the others were only against one tweet they failed to win.
+	\begin{figure}[b]
+		\centering
+		\includegraphics[width=7cm]{elo_vs_cj_comparison.png}
+		\caption{A scatter graph plotting each tweet againast their Elo and comparative judgement score.}
+		\label{fig:elo_vs_cj_comparison}
+		
+	\end{figure}
 	
+	When we look at winners and losers of the comparisons( see fig: \ref{fig:Combination_win_with_perc_heat_map}), we can see that the tweet that won the most between a specific combination was tweet four and two, with tweet four winning six times and tweet two winning only once. Additionally, when we look at the combination that appeared the most, one and five, one came out on top five times, compared to five winning between the two once.
+	
+	When we look at the winner heat map (see fig: \ref{fig:Combination_win_with_perc_heat_map}), we can see that two, five, six, seven and ten had moments where they didn't win a head-to-head with another tweet. Two, six, seven and ten didn't win against at least two different tweets, while the others were only against one tweet they failed to win.
+	
+	%\begin{figure}[h]
+	%	\centering
+	%	\includegraphics[width=7cm]{combination_win_heat_map.png}
+	%	\caption{A heat map of the amount of times a tweet win or lost.}
+	%	\label{fig:combination_wins}
+		
+	%\end{figure}
+	
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=10cm]{web_app_results.png}
+	\caption{The web applicaitons generated results compared agaist each other.}
+	\label{fig:web_app_results}
+	
+\end{figure}
+	
+
+	When we look at the two scores plotted against each other, Elo and CJ (see fig: \ref{fig:elo_vs_cj_comparison}), it shows that these values are linearly correlated. Additionally, the results returned as [1, 0.98391595] when a Pearsons correlation test got conducted on these scores. Therefore, the two values are heavily linked, so when a tweet has a good Elo score, it also has a good CJ score. This correlation between the results shows that the Elo score is an excellent alternative to the CJ scoring system. Through using the Elo system, also provides the process with a lot more robustness. It allows the ranking to get done to a high degree of accuracy. Additionally, without every combination getting presented against each other. As a result, this would be a sound scoring system to implement at a national scaled-up scale.
+
+		
 	
 	While looking at fig \ref{fig:web_app_results}, we can see that the Elo and comparative judgement ranking generated very similar results. However, as we can see, the tweets coming in 6th, 7th and 8th a slight variation in the results.
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=10cm]{web_app_results.png}
-		\caption{The web applicaitons generated results compared agaist each other.}
-		\label{fig:web_app_results}
-		
-	\end{figure}
-
-	While we look at the T-rating ranking compared to the Elo ranking (see fig: \ref{fig:twitter_results_comparison}), we can see that the results ranking is very different. The tweet that came first in the T-rankings came fourth in the Elo ranking. At the same time, the tweet that came first in the Elo ranking came eighth in the T-ranking.  Tweets that done worse in the Elo ranking compared to T-ranking had an average difference in the ranked placing of 5 places, while the tweets that had a better Elo ranking compared to the T-ranking ranked an average of 4 places lower. Therefore, 4 of the top 5 tweets in the T-ranking were actually in the bottom five of the Elo ranking. Only tweet ID 4 done one place better with the Elo ranking than it did in the T-ranking. However, two of the top three tweets in the T-ranking were in the bottom three of the Elo ranking and vice versa.
-
-	\begin{figure}[h]
+	\begin{figure}[t]
 		\centering
 		\includegraphics[width=10cm]{twitter_results_comparison.png}
 		\caption{The Twitter tweet score ranking comparison against Elo ranking.}
 		\label{fig:twitter_results_comparison}
 		
 	\end{figure}
+
+	While we look at the T-rating ranking compared to the Elo ranking (see fig: \ref{fig:twitter_results_comparison}), we can see that the results ranking is very different. The tweet that came first in the T-rankings came fourth in the Elo ranking. At the same time, the tweet that came first in the Elo ranking came eighth in the T-ranking.  Tweets that done worse in the Elo ranking compared to T-ranking had an average difference in the ranked placing of 5 places, while the tweets that had a better Elo ranking compared to the T-ranking ranked an average of 4 places lower. Therefore, 4 of the top 5 tweets in the T-ranking were actually in the bottom five of the Elo ranking. Only tweet ID 4 done one place better with the Elo ranking than it did in the T-ranking. However, two of the top three tweets in the T-ranking were in the bottom three of the Elo ranking and vice versa.
+	
+	However, even though these ended up with very different results, due to the multiple variables at play regarding Twitter, in terms of likes, retweets, followers, how many followers retweeters have, a tweet might have, the random chance of someone seeing it. The T-rating system is a very ambiguous metric to use as an accurate ranking system. Therefore, how the tweet did in the real world is not a valid comparison against the Elo rankings results. There is also room to suggest that this also proves that the Elo system is better suited for this action, as it can handle the elements of random chance regarding its pairings.
 
 	Within the forty participants, twenty-two of them left a justification for why they select one tweet over the other. However, the participants' responses were varied in the amount of provided feedback. Some proved a justification for all five combinations. On the other hand, some only left them for a few and not all. The users gave a total of sixty-three explanations to their decisions on which tweet they had chosen.
 	
@@ -64,7 +85,7 @@ We will compare the web application's results against the comparative judgment, 
 
 \section{NLP Feedback and Insights}
 \label{sec:reaults_NLP}
-
+	
 	The Jupyter notebook was able to conduct the NLP tasks that we required successfully. We presented the user the POS tagging insights of how many POS tags were present in each tweet. We were also able to visualise the POS tagging to reflect the user how the tweet got broken down structure-wise (see fig: \ref{fig:POS_example}).
 	
 	\begin{figure}[h]
@@ -127,7 +148,7 @@ We will compare the web application's results against the comparative judgment, 
 		
 	\end{figure}
 
-	\textbf{In contrast, the information extraction techniques of blah blah, did not provide any meaningful information. The blah present blah, and the blah presented blah. These techniques have not provided much use currently but could be helpful when scaling up and using a much bigger dataset, like exam papers.}
+	In contrast, the information extraction techniques of finding word sequence patterns and utterance pattern matching did not provide any meaningful information. The finding word sequence pattern presented only "he'll appear" about Tweet 6, and the utterance pattern matching showed that a pattern was found in Tweet 6 too. These techniques have not provided much use currently but could be helpful when scaling up and using a much bigger dataset, like exam papers.
 
 
 
