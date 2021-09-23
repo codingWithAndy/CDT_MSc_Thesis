@@ -2,36 +2,67 @@
 \chapter{Conclusions and Future Work}
 \label{chap:conclusion}
 
-In this document we have demonstrated the use of a \LaTeX{} thesis template which can produce a professional looking academic document. 
 
+The process of CJ is undeniable in reducing cognitive load, as our brains are much more adapt to comparing one thing to another and saying one is better. The literature around CJ firmly claims that ADJ is a better alternative to more traditional marking methods, for example, using a rubric. CJ does have several flaws. One of the flaws is that the whole process can take longer than traditional marking in the first place. Additionally, the adaptive nature of ACJ can generate bias within its results by getting the markers to mark more often the results that get closely ranked to each other. It gets claimed that a random pairing is better than the adaptive approach. A considerable flaw within the CJ/ACJ process is that it does not provide personalised feedback to the learners. Giving feedback is a vital part of education today, ensuring that students know academically and where they need to improve. Instead, CJ's feedback approach is to allow students to peer-assess each other and then gain their insights from their understanding. However, this relies on the students understanding the marking criteria in the first place and extracting what they need to improve on.
+
+While CJ generates results to create a ranking of the students' work, CJ is not the only ranking method available. There are multiple ranking systems that can get used within competitive chess and e-Sports. Two such methods are the Elo and Glicko ranking. While the Glicko system is a proposed improved system over Elo, the Glicko system introduces features that we did not need, and the flaws within the Elo system would not get abused within our proposed solution. Therefore we decided to use the Elo ranking system.
+
+Therefore, we created a web app that allowed users to compare two tweets and declare what tweet they prefered. The results then got used to calculate a simplified CJ score and an Elo score, allowing us to compare the final results of the two ranking systems. Additionally, a Jupyter notebook got created to carry out information extraction techniques. These techniques include POS tagging, NER, feature extraction, sentiment analysis, text similarity scoring, utterance pattern matching, finding word sequence patterns and finally extracting key phrases.
+
+The results from the web app presented that the final Elo ranking and the CJ score a strongly correlated, with a score of 0.98391595. The web app allowed the users to complete the comparisons very quickly and only have to do one round of judgements. Therefore, reducing cognitive load and reducing the time required for marking. However, the scores only became truly used after many users had completed the comparison. Still, the more users took part, the more sure the final results became, with the results showing that the Elo system is a suitable method for ranking the results.
+
+In contrast, when we compared Elo's scores ranking against the T-score, these did not correlate with each other. But we believe that this is not a very straightforward comparison, but it does bring up questions to think about. For example, do we want a selection of specialised local markers to conduct the CJ in the future or is using a global approach ok? Also, how would the outcome be with a larger sample size getting used, rather than the 40 users who took part?
+
+While the web app generated a strong argument for using the Elo ranking system, the NLP notebook for information extraction did not provide the exact outcome we expected. While the notebook did complete all the NLP tasks we required, it did produce some good insights into the tweets. It did not manage to provide any real insights that an end-user could use to provide personalised feedback. However, it did create great building blocks to build upon.
+
+Overall, we conclude that the over research ended up with many positives, but some areas need development, especially when providing feedback using NLP techniques. However, the study has shown that the Elo system has a solid case for getting used for ranking work. As it massively reduces the time required to complete compared to ACJ methods. Additionally, the process also being based around CJ reduces the cognitive load for anyone taking part in the judging. Therefore, we believe there is a lot of potential within combining these techniques.
 
 \section{Contributions} 
-\label{sec:conclusion_cont}
+	\label{sec:conclusion_cont}
+	
+	The main contributions of this work can be seen as follows:
+	
+		\begin{description}	
+			
+			\item[\(\bullet\) A web applicaiton to conduct the comparative judgement]\hfill
+			
+			We created a web application and hosted it to crowdsource users views on ten tweets based on Brexit. The app provided at random five unique pair comparisons while updating the CJ score and Elo score. 
+			
+			\item[\(\bullet\) A comparion of two different ranking systems]\hfill
+			
+			Metrics are being stored and calculated based on the two ranking systems, a CJ style and an Elo ranking system. Therefore, the results provide us with a way to compare the effectiveness of the two ranking systems. As a result, they are allowing us to see which one works better in our required situation.
+			
+			\item[\(\bullet\) An exploration into NLP techniques to provide feedback to the user]\hfill
+			
+			We created a Jupyter notebook exploring NLP information extraction techniques to provide feedback to the user from information extracted from the ten tweets.
+			
+		\end{description}
 
-The main contributions of this work can be summarised as follows:
-\begin{description}	
+% original
+%\begin{description}	
 
-	\item[\(\bullet\) A \LaTeX{} thesis template]\hfill
+%	\item[\(\bullet\) A \LaTeX{} thesis template]\hfill
 
-Modify this document by adding additional top level content chapters.
-These descriptions should take a more retrospective tone as you include summary of performance or viability. 
+%Modify this document by adding additional top level content chapters.
+%These descriptions should take a more retrospective tone as you include summary of performance or viability. 
 
-	\item[\(\bullet\) A typesetting guide for useful primitive elements]\hfill
+%	\item[\(\bullet\) A typesetting guide for useful primitive elements]\hfill
 
-Use the building blocks within this template to typeset each part of your document.
-Aim to use simple and reusable elements to keep your document neat and consistently styled throughout.
+%Use the building blocks within this template to typeset each part of your document.
+%Aim to use simple and reusable elements to keep your document neat and consistently styled throughout.
 
-	\item[\(\bullet\) A review of how to find and cite external resources]\hfill
+%	\item[\(\bullet\) A review of how to find and cite external resources]\hfill
 
-We review techniques and resources for finding and properly citing resources from the prior academic literature and from online resources. 
+%We review techniques and resources for finding and properly citing resources from the prior academic literature and from online resources. 
 
-\end{description}
+%\end{description}
 
 
 \section{Future Work}
 \label{sec:conclusion_future_wk}
 
-Future editions of this template may include additional references to Futurama.
+While the research found some good insights, we believe much future work can get done. We believe that a bigger pool of samples needs to occur for the Elo system to be assured as an alternative to the ACJ method. Additionally, introducing the markers and seeing how long it takes for the sample pool to be marked and how well it ranks against a more traditional rubric marking method.
 
-% Add todo notes with \td{note 1} or \tdi{note 2}
-\td{Add this yourself and submit a pull request?}
+More work can be done with the Elo score and converting the results into grades from A* to F. We believe that a process can convert the results created by the Elo score into standardised GCSE grades. For example, an Elo score greater than 1800 is equivalent to an A*, or a score greater than 1700 resulting in an A grade.
+
+However, where we feel a lot more research can get done is within the NLP capabilities. We believe that the ability to extract the information from a student's work and then provide personised feedback would be a fantastic addition to the CJ process. Therefore, allowing teachers to reduce their cognitive load and workload, as giving feedback would taking a time consuming and draining task away from them. Having the NLP processes automated, but allowing the teacher to have overall control, would be a massive addition to any teacher's toolbox. Ultimately reducing their workload and allowing the teacher to do what they are best at, creating engaging lessons for their students.
