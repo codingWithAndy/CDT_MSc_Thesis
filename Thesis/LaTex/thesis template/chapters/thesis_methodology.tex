@@ -72,19 +72,35 @@
 	
 	
 	\subsubsection{Utterence Pattern Matching}
+	Utterances are usually anything a user has said, which could be in the form of speech or text. For example, "Can I have pizza" or "how big is the Eifel tower?". Therefore the main aim of utterance pattern matching is for the NLP model to extract the actions that the users want to execute \cite{vajjala2020practical}.
+	
+	In most cases, intents can be identified by looking for verbs in the dialogues of the users. However, sometimes the complete sentence is used to determine the intent of it \cite{bird2009natural}. In the given sentence, the user wants to place an order for a pizza. Now that we know the intent, we can trigger a secondary action, in this example, ordering food. Nevertheless, our goal is to see if it spots any patterns that might be noteworthy for presenting as feedback or get used to triggering a secondary action for feedback generation.
 	
 	\subsubsection{Finding Word Sequence Patterns}
+	Word sequence patterns is an assuring trade-off between more traditional approaches of NLP and ML for information extraction \cite{bechet2012discovering}. Word sequence patterns aim to learn linguistic assets such as lexicons or patterns automatically \cite{nedellec2004machine}. One of the earliest works around this topic presents a means to get linguistic patterns from plain texts \cite{riloff1996automatically}.
+	
+	Therefore, this technique aims to present the tweets to the algorithm and see if it can spot any patterns. If it can, we want to be able to present this to the user. Hence, allowing the user to receive some insightful feedback about the tweets. 
 	
 	\subsubsection{Key Phrases}
-	The Key phrases method aims to take a document object and find the word or phrase with the most information to it. This technique is effective, especially when creating a chatbot. Key phrases allow the computer to determine what the user, who is interacting with the chatbot, is talking about. A single word in the question can sometimes be enough, but we might need to look at phrases. Key phrases work well with dependency parsing \cite{vasiliev2020natural}.
+	The Key phrases method aims to take a document object and find the word or phrase with the most information. This technique is effective, especially when creating a chatbot. Key phrases allow the computer to determine what the user, who is interacting with the chatbot, is talking about. A single word in the question can sometimes be enough, but we might need to look at phrases. Key phrases work well with dependency parsing \cite{vasiliev2020natural}.
 	
 	We decided to experiment with this feature to see if we could extract the key phrases from the tweets and see if they could provide us with any insights and present them to the user as feedback.
 	
 	\section{Tools}
 	To create the web application and insights from the tweets, we required to use several tools. It is a requirement that we develop a full-stack web application with a user UI, an area to input the user's judgements on the tweet, store the results using a database, and extract information from the tweets using NLP techniques. Several factors within the final application needed to be satisfied for the tools to be appropriate for use.
 	
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{trello_example.png}
+		\caption{An example of a Trello Kanban board \cite{trello_blog}.}
+		\label{fig:trello}
+		
+	\end{figure} 
+	
+	
 	%needs adapting - taken from CSCM10 Spec %%%%%%
-	We will be using Trello for the kanban tools. "Kanban" is the Japanese word for "visual signal" \cite{kanbanmeaning}. Using Kanban boards allows us to keep our work visible, this is to allow others to see what it is we are doing, and what is needed to get done. These will allow everyone to see the full picture and keep everyone on the same page.
+	We will be using Trello for the kanban tools (see fig: \ref{fig:trello}). "Kanban" is the Japanese word for "visual signal" \cite{kanbanmeaning}. Using Kanban boards allows us to keep our work visible. Using Kanban boards allows others to see what is going on and what is needed to get done. Ultimately it allows everyone to see the complete picture.
 	
 	David Anderson discovered that kanban boards get split into five components: Visual signals, columns, work-in-progress limits, a commitment point, and a delivery point \cite{anderson2010kanban}.
 	
@@ -182,16 +198,18 @@
 \end{figure}
 	
 	\section{Data Set}
-	There were two datasets used within this study. The primary dataset was the ten tweets gathered from Twitter, with a theme of being a joke based on Brexit. The other dataset was the IMDB sentiment analysis dataset. This dataset got used to train and test our RNN model before using our tweets on it. 
+		There were two datasets used within this study. The primary dataset was the ten tweets gathered from Twitter, with a theme of being a joke based on Brexit. The other dataset was the IMDB sentiment analysis dataset. This dataset got used to train and test our RNN model before using our tweets on it. 
 	
 	\subsection{Data Capture Method}
-	Twitter's developer API got used to allow for the tweets to get extracted. Additionally, the library [name here] got also used. The tweets were then uploaded to the Firebase database through a Python Notebook for the main web app to access them. Having the tweets in the database also allowed us to be then able to create a notebook to then access the data to then do the NLP investigating within.
+		Twitter's developer API got used to allow for the tweets to get extracted. Additionally, the library Tweepy \cite{roesslein2020tweepy} got also used. The tweets were then uploaded to the Firebase database through a Python Notebook for the main web app to access them. Having the tweets in the database also allowed us to be then able to create a notebook to then access the data to then do the NLP investigating within.
 	
 	\subsection{Pre-Processing}
-	Regarding the data pre-processing within the web app, the only processing occurred was removing the \_b characters and replacing them with <br> tags. We did this to allow the tweets to have the same layout as they did within Twitter. We decided that a few tweets, especially the Q+A style ones, lost their impact if they were not displayed correctly. Therefore, doing this allowed us to keep the integrity of the tweet and its comedy delivery.
+		Regarding the data pre-processing within the web app, the only processing occurred was removing the \_b characters and replacing them with <br> tags. We did this to allow the tweets to have the same layout as they did within Twitter. We decided that a few tweets, especially the Q+A style ones, lost their impact if they were not displayed correctly. Therefore, doing this allowed us to keep the integrity of the tweet and its comedy delivery.
 	
 	\subsection{T-Rating Score}
-	The T-Rating (Twitter Rating) score is a metric that we created to use as a baseline comparison for the ranking methods we use within our application. The T-rating gets decided by adding up a tweets likes and retweets, then divided by the total number of followers the author of the tweet has. We decided to normalise the data by using the number of followers a tweeter has. An assumption got made that an author with more followers is likely to have more retweets and likes due to more people being likely to see the tweet in the first place. 
+		The T-Rating (Twitter Rating) score is a metric that we created to use as a baseline comparison for the ranking methods we use within our application. The T-rating gets decided by adding up a tweets likes and retweets, then divided by the total number of followers the author of the tweet has. 
+		
+		We decided to normalise the data by using the number of followers a tweeter has. An assumption got made that an author with more followers is likely to have more retweets and likes due to more people being likely to see the tweet in the first place. Therefore this is, in essence, a weighted sum model for comparison \cite{churchman1954approximate}. While there are approaches that look to create a Tweet-ranking system using sentiment scores and popularity measures \cite{aleidi2019tweet}. However, we are aware that this approach would create a better ranking of Twitter tweets, but we opted against implementing this due to time restraints. However, this should get further explored at a later date.
 	
 	
 	\section{Implementation}
