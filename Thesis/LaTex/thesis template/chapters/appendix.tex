@@ -4,14 +4,14 @@
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{Home_page.png}
+	\includegraphics[width=\textwidth]{Home_page.png}
 	\caption{}
 	
 		
 	\end{figure} 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{Compare.png}
+	\includegraphics[width=\textwidth]{Compare.png}
 	\caption{}
 	
 		
@@ -19,7 +19,7 @@
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{Results.png}
+	\includegraphics[width=\textwidth]{Results.png}
 	\caption{}
 	
 		
@@ -34,7 +34,7 @@
 %	\end{figure} 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{feedback.png}
+	\includegraphics[width=\textwidth]{feedback.png}
 	\caption{}
 		
 	\end{figure} 
@@ -74,18 +74,16 @@ In total, there are five different pages within the web app. The web app has a h
 
 
 \begin{center}
-	\includegraphics[width=13cm]{risk_table.png}
+	\includegraphics[width=11.5cm]{risk_table.png}
 	%\caption{A visual representation of the processes pipline.}...
 \end{center}
 
 
 
-\chapter{Schedule}
+
 \begin{landscape}
-	
-	\begin{center}
-		\item\includegraphics[width=21cm]{ganttchart.png}
-	\end{center}
+	\chapter{Schedule}
+		\includegraphics[width=21cm]{ganttchart.png}
 \end{landscape}
 
 \chapter{Software Development Life Cycle Methodology}
@@ -129,7 +127,8 @@ We conducted multiple in-house testing using an internal server's localhost to e
 
 \chapter{NLP Jupyter Notebook}
 \label{app:jupyter_nb}
-\input{./chapters/tweet_feedback}
+%\input{./chapters/tweet_feedback}
+\lstinputlisting[language=python, caption={The implemented code for the NLP Information Extraction.}]{./listings/NLP_information_exploration.py}
 
 %\chapter{Results Jupyter Notebook}
 %\label{app:jupyter_results}
