@@ -1,30 +1,23 @@
 #import sqlite3 as sql
-from logging import root
-from os import path, remove
+from os        import path, remove
 from itertools import combinations as combs
+
 from sklearn.utils import shuffle
-#import spacy
-#from spacy import displacy
+from flask         import sessions, Markup
 
-from flask import sessions, Markup
-
+import operator
+import random
 import pytz
 from datetime import datetime, date
 
 import pandas as pd
-import numpy as np
-import operator
-import random
+import numpy  as np
 
 from models import *
 import pyrebase
 
-ROOT = path.dirname(path.relpath((__file__)))
 
-# Adding Tweets to Database from CSV idea
-# https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/
-
-def create_feedback(name,feedback, user_rating, session, contact): #user_name,email,feedback, user_rating, session
+def create_feedback(name,feedback, user_rating, session, contact):
     db = init_db()
 
     info = {
@@ -46,19 +39,20 @@ def store_feedback_cloud(textfile_name, session):
 
     storage.child(cloud_filename).put(filename)
 
+
 def store_user_docs(textfile_name, session):
     storage        = init_storage()
 
-    # TODO: Put user tweet txt and user tweet count txt into storage
     filename       = textfile_name
     cloud_filename = "feedback/user_"+str(session["user"])
 
     storage.child(cloud_filename).put(filename)
 
+
 def get_user_storage_docs():
     storage        = init_storage()
 
-    stored_doc = storage.child("doc name.txt").download("","server name.txt") ## is the variable needed?
+    stored_doc = storage.child("doc name.txt").download("","server name.txt")
 
     return stored_doc
 
@@ -77,7 +71,7 @@ def login_user(id, password):
 
     try:
         user  = auth.sign_in_with_email_and_password(id,password)
-        token = user['localId'] #['idToken']
+        token = user['localId']
         
         return token
     except:
@@ -91,9 +85,7 @@ def signup_user(id,password):
     try:
         user = auth.create_user_with_email_and_password(id,password)
         init_cj_round_number(user['localId'])
-        #print("Log in Successful")
-
-        #send email verification
+        
         auth.send_email_verification(user['idToken'])  
 
         tweet_id = [i for i in range(1,11)]
@@ -140,12 +132,13 @@ def init_cj_round_number(user_id):
     db.child("cj_position").child(user_id).update({'comparison_no': 1})
 
 
-########## Firebase Exploration ########
+########## Firebase Content Handling ########
 def update_round_number(user_id):
     db = init_db()
     current_round = get_round_num(user_id)
 
     db.child("cj_position").child(user_id).update({'comparison_no': current_round + 1})
+
 
 def get_round_num(user_id):
     db = init_db()
@@ -156,9 +149,11 @@ def get_round_num(user_id):
     
     return current_num
 
+
 def record_justification(round_number,user_id,justification):
     db = init_db()
     db.child("combinations").child(user_id).child(round_number).update({'justification': justification})
+
 
 def get_time_stamp():
     today = date.today()
@@ -170,6 +165,7 @@ def get_time_stamp():
     time_stamp = f"{time} {d1}"
     
     return time_stamp
+
 
 def update_result(round_number,winner_id,user_id):
     db = init_db()
@@ -201,11 +197,12 @@ def update_result(round_number,winner_id,user_id):
     db.child("results").child(loser_id).update({"lose": other_tweet_dict['lose'], "elo_score": loser_new_score})
     db.child("combinations").child(user_id).child(round_number).update({"winner": winner_id, "loser": loser_id, 'time_stamp': str(time_stamp)})
 
+
 def predict_elo_result(A, B):
     p_a_wins = 1 / (1 + (10**((B-A)/400)))
-    #print(p_a_wins)
 
     return p_a_wins
+
 
 def elo_rating(A, B, score):
     # Find Probability 1st
@@ -220,6 +217,7 @@ def elo_rating(A, B, score):
 
     return new_score
 
+
 def get_combinations(round_number,user_id):
     db = init_db()
     combination = db.child("combinations").child(user_id).child(round_number).get()
@@ -229,6 +227,7 @@ def get_combinations(round_number,user_id):
 
     return combo_dict
 
+
 def get_tweet_content(id):
     db = init_db()
     tweets = db.child("results").child(id).get()
@@ -237,6 +236,7 @@ def get_tweet_content(id):
         dict[tweet.key()] = tweet.val()
 
     return dict['content']
+
 
 def get_total_combinations(user_id):
     db = init_db()
@@ -259,6 +259,7 @@ def calculate_score(id):
     result = dict['win'] - dict['lose']
 
     return result
+
 
 def display_ranking():
     db = init_db()
@@ -289,6 +290,7 @@ def display_ranking():
         final_order_content[key] = text
     
     return final_order, final_order_content
+
 
 def display_elo_ranking():
     db = init_db()
@@ -321,7 +323,6 @@ def display_elo_ranking():
     return final_order, final_order_content
 
 
-
 def update_cj_score():
     db = init_db()
     # TODO: Don't hard code this check.
@@ -329,16 +330,4 @@ def update_cj_score():
         score = calculate_score(i)
         db.child("results").child(i).update({'score': score})
 
-#def get_ner():
-#    tweet = get_tweet_content(1)
-#    text = tweet #"When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously."
-
-#    nlp = spacy.load("en_core_web_sm")
-#    doc = nlp(text)
-
-#    html = displacy.render(doc, style="ent")
-#    dependency = displacy.render(doc, style="dep")
-#   result = html
-#
-#    return result, dependency
     

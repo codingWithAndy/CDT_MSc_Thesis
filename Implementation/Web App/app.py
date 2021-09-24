@@ -22,7 +22,6 @@ app.secret_key = "lets_judge"
 def index():
     return render_template('index.html')
 
-####################################################
 
 # CJ compare form load
 @app.route('/compare/', methods=['GET','POST'])
@@ -76,8 +75,6 @@ def compare():
                             tweet_count = round_number) 
 
 
-####################################################
-
 # CJ Explination form load.
 @app.route('/explination/')
 def explination():
@@ -95,14 +92,13 @@ def results():
 
         
     if request.method == 'POST':
-        # Expand in time
         pass
     
     return render_template('results.html', rank=rank, content=content, 
                             elo_rank=elo_rank, elo_content=elo_content)
                            
 
-
+# Feedback form load
 @app.route('/feedback/', methods=['GET','POST'])
 def feedback():
     if request.method == 'GET':
@@ -123,6 +119,7 @@ def feedback():
         return redirect(url_for('index'))
 
 
+# Loging form load
 @app.route('/login/', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -156,6 +153,7 @@ def login():
             return redirect(url_for('signup'))
 
 
+# Signup form load
 @app.route('/signup/', methods=['GET','POST'])
 def signup():
     if request.method == 'GET':
@@ -189,6 +187,7 @@ def signup():
             return redirect(url_for('signup'))
 
 
+# Password reset form load
 @app.route('/reset_password/', methods=['GET','POST'])
 def reset_password():
     if request.method == 'GET':
@@ -204,6 +203,7 @@ def reset_password():
         return redirect(url_for('login'))
 
 
+# Log out form load
 @app.route('/logout/')
 def logout():
     if "user" in session:
@@ -217,7 +217,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True) #,host='0.0.0.0',port=int(os.environ.get('PORT',8080))
-
-
-#auth.send_password_reset_email("email") 
+    app.run(debug=True)

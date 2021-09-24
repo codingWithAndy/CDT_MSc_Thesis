@@ -1,22 +1,7 @@
-#import sqlite3 as sql
-from os import path
 import pyrebase
 
-ROOT = path.dirname(path.relpath((__file__)))
 
-def tweets_judged(comparison_id):
-    """Collects the required tweet IDs from the table by the ordered comparison ID.
-
-    Args:
-        comparison_id (Int): The required ID for the tweets being compared.
-
-    Returns:
-        results (??): The records content for the supplied comparison ID.
-    """
-    pass
-
-
-###### Firebase Connections
+###### Firebase Connections ############
 
 def connect_to_firebase():
     firebase_config = {
@@ -34,17 +19,20 @@ def connect_to_firebase():
 
     return firebase
 
+
 def init_db():
     firebase = connect_to_firebase()
     firebase_db = firebase.database()
 
     return firebase_db
 
+
 def init_auth():
     firebase = connect_to_firebase()
     firebase_auth = firebase.auth()
 
     return firebase_auth
+
 
 def init_storage():
     firebase = connect_to_firebase()

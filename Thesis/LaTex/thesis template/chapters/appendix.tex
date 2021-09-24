@@ -1,18 +1,4 @@
 % !TEX root = ../thesis.tex
-\chapter{Implementation of a Relevant Algorithm}
-\label{app:implementation_algorithm}
-
-% Code listings should live in a code file, not embedded directly into your LaTeX code!
-\lstinputlisting[language=c, caption={An implementation of an important algorithm from our work.}]{./listings/hello_world.c}
-
-
-\chapter{Supplementary Data}
-\label{app:supplementary_data}
-
-The results of large ablative studies can often take up a lot of space, even with neat visualisation and formatting.
-Consider putting full results in an appendix chapter and showing excerpts of interesting results in your chapters with detailed analysis.
-You can use labels and references to refer the reader here for the full data.
-
 \chapter{Web App Pages}
 \label{app:web_designs}
 
@@ -132,4 +118,20 @@ The project's requirements have features that lend themselves well to the waterf
 The web application was the part of the implementation that required rigorous testing. The testing was because the web app was the bit that users would be interacting with the study. Therefore, we needed to ensure the app was to a high standard not to detract away from the users' experience and solely focus on the application purpose, which is to select which tweet they think is funnier. 
 
 We conducted multiple in-house testing using an internal server's localhost to ensure that the app was suitable. Additionally, we allowed a small number of users to test out the application. Once we were happy with the feedback, the application's data got reset and published to potential users.
+
+\chapter{Implementation of a Web App}
+\label{app:implementation_algorithm}
+
+% Code listings should live in a code file, not embedded directly into your LaTeX code!
+\lstinputlisting[language=python, caption={The implemented code for handling the main control of the web app.}]{./listings/app.py}
+\lstinputlisting[language=python, caption={The implemented code for handling the main web app logic.}]{./listings/logic.py}
+\lstinputlisting[language=python, caption={The implemented code for handling Firebase Connections.}]{./listings/models.py}
+
+\chapter{NLP Jupyter Notebook}
+\label{app:jupyter_nb}
+\input{./chapters/tweet_feedback}
+
+%\chapter{Results Jupyter Notebook}
+%\label{app:jupyter_results}
+%\input{./chapters/results}
 
