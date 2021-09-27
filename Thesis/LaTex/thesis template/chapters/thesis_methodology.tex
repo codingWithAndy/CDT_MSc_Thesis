@@ -30,6 +30,7 @@
 	The second section is an exploratory Python notebook looking into NLP tasks on the tweets. We carry out sentiment analysis and information extraction on the tweets to see if any patterns within the tweets match their ranking's place. For example, positive sentiment tweets getting a higher ranking with a particular theme, other than Brexit possibly showing. The ultimate aim is to create feedback based on the results and the information. %Additionally, we will then aim to see if we can use the gained knowledge from the information extraction to see if we can train ML models to predict the tweets position within the marking grid accurately.
 	
 	\subsection{NLP Information Extraction}
+	\label{meth:nlp_IE}
 	Information extraction is the process of extracting relevant information from text. Some of this information could be calendar events and names of people, to list a few \cite{vajjala2020practical}. We, as humans, do this all the time. We extracted the information from multiple sources, like reading documents or conversations. However, for computers, this is not such a straightforward task. Due to the ambiguous nature of natural language, information can mean multiple things depending on the context in which it is getting used.
 	
 	Due to its complex nature, information extraction relies on several separate takes, which, when used together, generates information. These steps include keyphrase extraction, named entity recognition, named entity disambiguation, and linking and relationship extraction \cite{vajjala2020practical}.
@@ -123,9 +124,9 @@
 	
 	While Flask is a small framework by most standards, which is referred to as a “micro-framework,” and small enough that once you become familiar with it, you will likely be able to read and understand all of its source code \cite{grinberg2018flask}. 
 	
-	Flask has three main dependencies. The routing, debugging, and Web Server Gateway Interface (WSGI) subsystems come from Werkzeug; the template support is provided by Jinja2; and the command-line integration comes from Click. These dependencies are all authored by Armin Ronacher, the author of Flask \cite{grinberg2018flask}. 
+	%Flask has three main dependencies. The routing, debugging, and Web Server Gateway Interface (WSGI) subsystems come from Werkzeug; the template support is provided by Jinja2; and the command-line integration comes from Click. These dependencies are all authored by Armin Ronacher, the author of Flask \cite{grinberg2018flask}. 
 	
-	Flask has no native support for accessing databases, validating web forms, authenti‐ cating users, or other high-level tasks. These and many other key services most web applications need are available through extensions that integrate with the core pack‐ ages. As a developer, you have the power to cherry-pick the extensions that work best for your project, or even write your own if you feel inclined to. This is in contrast with a larger framework, where most choices have been made for you and are hard or sometimes impossible to change \cite{grinberg2018flask}.
+	%Flask has no native support for accessing databases, validating web forms, authenti‐ cating users, or other high-level tasks. These and many other key services most web applications need are available through extensions that integrate with the core pack‐ ages. As a developer, you have the power to cherry-pick the extensions that work best for your project, or even write your own if you feel inclined to. This is in contrast with a larger framework, where most choices have been made for you and are hard or sometimes impossible to change \cite{grinberg2018flask}.
 	
 	%decision and justification
 	After experimenting with the two frameworks, we decided upon Flask. Flask got decided upon because of the short time frame to put the project together. Additionally, the lightweight nature of the framework also played a fact. As this will be just an initial prototype, Django's other requirements would be unessential additionals to the project. Therefore, taking focus away from what we believe is the main focus. 
@@ -134,30 +135,29 @@
 	There are several NLP library packages already available within Python, all having pros and cons. The most popular and influential libraries are Natural Language Toolkit (NLTK) \cite{bird2009natural}, Gensim \cite{gensim}, CoreNLP \cite{core_NLP}, spaCy \cite{spacy2}, TextBlob \cite{loria2018textblob}.% Pattern and PyNLPi.
 	
 	% NLTK
-	NLTK is one of the leading platforms for building Python programs that can work with human language data. It presents a practical introduction to programming for language processing. NLTK comes with a host of text processing libraries for sentence detection, tokenisation, lemmatisation, stemming, parsing, chunking, and POS tagging. NLTK is one of the leading platforms for building Python programs that can work with human language data. It presents a practical introduction to programming for language processing. NLTK comes with a host of text processing libraries for sentence detection, tokenisation, lemmatisation, stemming, parsing, chunking, and POS tagging \cite{bird2009natural}.
+	%NLTK is one of the leading platforms for building Python programs that can work with human language data. It presents a practical introduction to programming for language processing. NLTK comes with a host of text processing libraries for sentence detection, tokenisation, lemmatisation, stemming, parsing, chunking, and POS tagging. NLTK is one of the leading platforms for building Python programs that can work with human language data. It presents a practical introduction to programming for language processing. NLTK comes with a host of text processing libraries for sentence detection, tokenisation, lemmatisation, stemming, parsing, chunking, and POS tagging \cite{bird2009natural}.
 	
-	NLTK provides easy-to-use interfaces to over 50 corpora and lexical resources. The tool has the essential functionalities required for almost all kinds of natural language processing tasks with Python \cite{bird2009natural}.
+	%NLTK provides easy-to-use interfaces to over 50 corpora and lexical resources. The tool has the essential functionalities required for almost all kinds of natural language processing tasks with Python \cite{bird2009natural}.
 	
 	%Gensim
-	Gensim is a Python library designed specifically for “topic modeling, document indexing, and similarity retrieval with large corpora.” All algorithms in Gensim are memory-independent, w.r.t., the corpus size, and hence, it can process input larger than RAM. With intuitive interfaces, Gensim allows for efficient multicore implementations of popular algorithms, including online Latent Semantic Analysis (LSA/LSI/SVD), Latent Dirichlet Allocation (LDA), Random Projections (RP), Hierarchical Dirichlet Process (HDP) or word2vec deep learning \cite{gensim}. 
+	%Gensim is a Python library designed specifically for “topic modeling, document indexing, and similarity retrieval with large corpora.” All algorithms in Gensim are memory-independent, w.r.t., the corpus size, and hence, it can process input larger than RAM. With intuitive interfaces, Gensim allows for efficient multicore implementations of popular algorithms, including online Latent Semantic Analysis (LSA/LSI/SVD), Latent Dirichlet Allocation (LDA), Random Projections (RP), Hierarchical Dirichlet Process (HDP) or word2vec deep learning \cite{gensim}. 
 	
-	Gensim features extensive documentation and Jupyter Notebook tutorials. It largely depends on NumPy and SciPy for scientific computing. Thus, you must install these two Python packages before installing 
-	Gensim \cite{gensim}.
+	%Gensim features extensive documentation and Jupyter Notebook tutorials. It largely depends on NumPy and SciPy for scientific computing. Thus, you must install these two Python packages before installing Gensim \cite{gensim}.
 	
 	% CoreNLP
-	Stanford CoreNLP comprises of an assortment of human language technology tools. It aims to make the application of linguistic analysis tools to a piece of text easy and efficient. With CoreNLP, you can extract all kinds of text properties (like named-entity recognition, part-of-speech tagging, etc.) in only a few lines of code \cite{core_NLP}. 
+	%Stanford CoreNLP comprises of an assortment of human language technology tools. It aims to make the application of linguistic analysis tools to a piece of text easy and efficient. With CoreNLP, you can extract all kinds of text properties (like named-entity recognition, part-of-speech tagging, etc.) in only a few lines of code \cite{core_NLP}. 
 	
-	Since CoreNLP is written in Java, it demands that Java be installed on your device. However, it does offer programming interfaces for many popular programming languages, including Python. The tool incorporates numerous Stanford’s NLP tools like the parser, sentiment analysis, bootstrapped pattern learning, part-of-speech (POS) tagger, named entity recogniser (NER), and coreference resolution system, to name a few. Furthermore, CoreNLP supports four languages apart from English – Arabic, Chinese, German, French, and Spanish \cite{core_NLP}.
+	%Since CoreNLP is written in Java, it demands that Java be installed on your device. However, it does offer programming interfaces for many popular programming languages, including Python. The tool incorporates numerous Stanford’s NLP tools like the parser, sentiment analysis, bootstrapped pattern learning, part-of-speech (POS) tagger, named entity recogniser (NER), and coreference resolution system, to name a few. Furthermore, CoreNLP supports four languages apart from English – Arabic, Chinese, German, French, and Spanish \cite{core_NLP}.
 	
 	%spaCy
-	spaCy is an open-source NLP library in Python. It is designed explicitly for production usage – it lets you develop applications that process and understand huge volumes of text \cite{spacy2}. 
+	%spaCy is an open-source NLP library in Python. It is designed explicitly for production usage – it lets you develop applications that process and understand huge volumes of text \cite{spacy2}. 
 	
-	spaCy can preprocess text for Deep Learning. It can be be used to build natural language understanding systems or information extraction systems. spaCy is equipped with pre-trained statistical models and word vectors. It can support tokenisation for over 49 languages. spaCy boasts of state-of-the-art speed, parsing, named entity recognition, convolutional neural network models for tagging, and deep learning integration \cite{spacy2}.
+	%spaCy can preprocess text for Deep Learning. It can be be used to build natural language understanding systems or information extraction systems. spaCy is equipped with pre-trained statistical models and word vectors. It can support tokenisation for over 49 languages. spaCy boasts of state-of-the-art speed, parsing, named entity recognition, convolutional neural network models for tagging, and deep learning integration \cite{spacy2}.
 	
 	% TextBlob
-	TextBlob is a Python (2 \& 3) library designed for processing textual data. It focuses on providing access to common text-processing operations through familiar interfaces. TextBlob objects can be treated as Python strings that are trained in Natural Language Processing \cite{loria2018textblob}.
+	%TextBlob is a Python (2 \& 3) library designed for processing textual data. It focuses on providing access to common text-processing operations through familiar interfaces. TextBlob objects can be treated as Python strings that are trained in Natural Language Processing \cite{loria2018textblob}.
 	
-	TextBlob offers a neat API for performing common NLP tasks like part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, language translation, word inflection, parsing, n-grams, and WordNet integration \cite{loria2018textblob}.
+	%TextBlob offers a neat API for performing common NLP tasks like part-of-speech tagging, noun phrase extraction, sentiment analysis, classification, language translation, word inflection, parsing, n-grams, and WordNet integration \cite{loria2018textblob}.
 	
 	%Pattern
 	%Pattern is a text processing, web mining, natural language processing, machine learning, and network analysis tool for Python. It comes with a host of tools for data mining (Google, Twitter, Wikipedia API, a web crawler, and an HTML DOM parser), NLP (part-of-speech taggers, n-gram search, sentiment analysis, WordNet), ML (vector space model, clustering, SVM), and network analysis by graph centrality and visualisation. 
@@ -223,7 +223,7 @@
 	\begin{figure}[t]
 		\centering
 		\includegraphics[width=8cm]{web_app_nav.png}
-		\caption{A visual representation of the web apps navigation.}
+		\caption{A visual representation of the web apps navigation. To see all web page designs, see appendix: \ref{app:web_designs}}
 		\label{fig:web_app_nav}
 		
 	\end{figure}
@@ -239,7 +239,11 @@
 	
 	The app will query the database and look for the user's current position when presenting the tweets. Based on their position, the tweet combinations then get checked for that according to the round. The tweet IDs are then queried against the tweets' content and then presented to the web page. The user gets expected to select a tweet that they find funnier and then provide an opportunity to justify their choice, which is optional.   
 	
-	When the user presses the "Vote!" button, this saves the results to the database, updating the two result systems and the user's position. The process will save which tweet won and lost and update the Elo ranking and the standard CJ ranking. The standard ranking gets calculated by taking how many times a tweet has won minus the number it has lost. The implementation of the standard ranking system is to try to implement a more traditional comparative judgement ranking system. In contrast, the Elo system is using a more traditional approach (see figs: \ref{fig:elo_maths_1}, \ref{fig:elo_maths_2}) Which gets updated after every comparison. The implementation of the two systems allows us to see if the Elo or more standard version of CJ is the more effective one or if they naturally mirror each other.
+	When the user presses the "Vote!" button, this saves the results to the database, updating the two result systems and the user's position. The process will save which tweet won and lost and update the Elo ranking and the standard CJ ranking. The standard ranking gets calculated by taking how many times a tweet has won minus the number it has lost. The implementation of the standard ranking system is to try to implement a more traditional comparative judgement ranking system. In contrast, the Elo system is using a more traditional approach (see figs: \ref{fig:elo_maths_1}, \ref{fig:elo_maths_2}) Which gets updated after every comparison. The implementation of the two systems allows us to see if the Elo or more standard version of CJ is the more effective one or if they naturally mirror each other. This process gets repeated until the user has completed all five comparisons.
+	
+	To see the main Python scripts for the web app, please look at the appendix: \ref{app:implementation_algorithm}.
+	
+	The NLP notebook is a more self-contained environment. The notebook has pre-written code and relies on all of the code getting executed to produce the required outputs and feedback. The notebook contains all of the information extraction techniques we explained in section: \ref{meth:nlp_IE}. To see the code, please look at the appendix: \ref{app:jupyter_nb}.
 	
 	%\begin{figure}[t]
 	%	\centering
@@ -252,7 +256,7 @@
 %	\end{figure}
 	
 	% What is this for?
-	This process gets repeated until the user has completed all five comparisons.
+	%This process gets repeated until the user has completed all five comparisons.
 	
 	
 	
