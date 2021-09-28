@@ -2,6 +2,7 @@
 
 \chapter{Methodology}
 	\label{chap:typesetting}
+	
 	In order to apply any ML and NLP to the tweet dataset, to see if we could do any information extraction and statistical analysis, we first needed to be able to generate a ranking of the ten tweets we had obtained. We sourced the tweets themed around Brexit on Twitter, and then a pipeline (see fig: \ref{fig:pipeline}) for sourcing peoples preferences of the tweets was created. The pipeline created was handled by the web app. The web app allowed the user to create an account and then compare the tweets. The resulting decision updated the Elo rating for each tweet and the more simplified traditional CJ method. Each user gets only presented five different combinations, ensuring that a single tweet was only seen by the user once.
 	
 	\begin{figure}[h]
@@ -20,7 +21,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=10cm]{Compare.png}
-		\caption{The web page users were presented to capture their judgememnts. To see all the web pages see appendix: \ref{app:web_designs}}
+		\caption{An example of the web page users used to capture their judgements. To see all the web pages, see appendix: \ref{app:web_designs}}
 		\label{fig:web_app_example}
 		
 	\end{figure} 
@@ -33,7 +34,7 @@
 	\label{meth:nlp_IE}
 	Information extraction is the process of extracting relevant information from text. Some of this information could be calendar events and names of people, to list a few \cite{vajjala2020practical}. We, as humans, do this all the time. We extracted the information from multiple sources, like reading documents or conversations. However, for computers, this is not such a straightforward task. Due to the ambiguous nature of natural language, information can mean multiple things depending on the context in which it is getting used.
 	
-	Due to its complex nature, information extraction relies on several separate takes, which, when used together, generates information. These steps include keyphrase extraction, named entity recognition, named entity disambiguation, and linking and relationship extraction \cite{vajjala2020practical}.
+	Due to its complex nature, information extraction relies on several separate takes, which, when used together, generates information. These steps include keyphrase extraction, named entity recognition, named entity disambiguation and linking and relationship extraction \cite{vajjala2020practical}.
 	
 	Next, we will look into the different building blocks that can extract information from our text to provide feedback to the user. We will look into part of speech tagging, named entity recognition, feature extraction, sentiment analysis, text similarity, utterance pattern matching, text similarity scoring and word sequence pattern recognition.
 	
@@ -44,7 +45,7 @@
 	
 	
 	\subsubsection{Named Entity Recognition}
-	Named Entity Recognition (NER) is the task of identifying entities in a document for information extraction \cite{vajjala2020practical}. Entities usually are made up of names of persons, locations, organisations, money expressions and dates, to list a few \cite{hapke2019natural}. NER is an important step within the pipeline of information extraction \cite{vajjala2020practical}.
+	Named Entity Recognition (NER) is the task of identifying entities in a document for information extraction \cite{vajjala2020practical}. Entities usually are made up of names of persons, locations, organisations, money expressions and dates, to list a few \cite{hapke2019natural}. NER is an essential step within the pipeline of information extraction \cite{vajjala2020practical}.
 	
 	As this is a crucial stage in information extraction, we decided to implement it and use it in its pre-trained form from the libraries offerings. We decided to use this method due to the time restrictions of the project and to see how well it performs and if it can help generate feedback to the user.
 	
@@ -120,16 +121,16 @@
 	\subsubsection{Web Application}
 	For creating the web application, there were two main libraries available. These were Django and Flask.
 	
-	Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source \cite{django}.
+	Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, allowing the developer to write their app without needing to reinvent the wheel. It is free, and open-source \cite{django}.
 	
-	While Flask is a small framework by most standards, which is referred to as a “micro-framework,” and small enough that once you become familiar with it, you will likely be able to read and understand all of its source code \cite{grinberg2018flask}. 
+	While Flask is a small framework by most standards, known as a "micro-framework" \cite{flask_wp}, it is small enough that once the developer becomes familiar with it, they will likely be able to read and understand all of its source code \cite{grinberg2018flask}. 
 	
 	%Flask has three main dependencies. The routing, debugging, and Web Server Gateway Interface (WSGI) subsystems come from Werkzeug; the template support is provided by Jinja2; and the command-line integration comes from Click. These dependencies are all authored by Armin Ronacher, the author of Flask \cite{grinberg2018flask}. 
 	
 	%Flask has no native support for accessing databases, validating web forms, authenti‐ cating users, or other high-level tasks. These and many other key services most web applications need are available through extensions that integrate with the core pack‐ ages. As a developer, you have the power to cherry-pick the extensions that work best for your project, or even write your own if you feel inclined to. This is in contrast with a larger framework, where most choices have been made for you and are hard or sometimes impossible to change \cite{grinberg2018flask}.
 	
 	%decision and justification
-	After experimenting with the two frameworks, we decided upon Flask. Flask got decided upon because of the short time frame to put the project together. Additionally, the lightweight nature of the framework also played a fact. As this will be just an initial prototype, Django's other requirements would be unessential additionals to the project. Therefore, taking focus away from what we believe is the main focus. 
+	After experimenting with the two frameworks, we decided upon Flask. Flask got decided upon because of the short time frame to put the project together. Additionally, the framework's lightweight nature also played a role as this research project will be just an initial prototype. Django's other requirements would be unessential additionals to the project. Therefore, taking focus away from what we believe is the main focus.   
 	
 	\subsubsection{NLP Tasks}
 	There are several NLP library packages already available within Python, all having pros and cons. The most popular and influential libraries are Natural Language Toolkit (NLTK) \cite{bird2009natural}, Gensim \cite{gensim}, CoreNLP \cite{core_NLP}, spaCy \cite{spacy2}, TextBlob \cite{loria2018textblob}.% Pattern and PyNLPi.
@@ -171,7 +172,7 @@
 	
 	%Conclusion/Final decision
 	%All taken from: https://www.upgrad.com/blog/python-nlp-libraries-and-applications/
-	Although NLTK, TextBlob was used in some experimenting, we decided to use spaCy as the main NLP library. However, NLTK was used on the side (especially with their stop words). As one of the key things we wanted to do was extract information from the tweets, spaCy allowed us to do this and prepare the data for deep learning. While we did not need a very deep Recurrent Neural Network (RNN), we did implement one to complete the sentiment analysis on the tweets. We used an RNN with two things in mind, to see how well it could perform on small amounts of text, like a tweet, and with the future thoughts of it being able to handle large amounts of text, like someone's essay in an exam. The RNN got constructed by using TensorFlow.
+	Although NLTK, TextBlob was used in some experimenting, we decided to use spaCy as the main NLP library. However, NLTK was used on the side (especially with their stop words). One of the key things we wanted to extract information from the tweets and spaCy allowed us to do this and prepare the data for deep learning. While we did not need a very deep Recurrent Neural Network (RNN), we did implement one to complete the sentiment analysis on the tweets. We used an RNN with two things in mind, to see how well it could perform on small amounts of text, like a tweet, and with the future thoughts of it being able to handle large amounts of text, like someone's essay in an exam. The RNN got constructed by using TensorFlow.
 	
 	\subsection{IDE}
 	While many great IDEs are available like Pycharm, Jupyter Lab, Atom and Sublime, we decided to use VS Code. The decision behind this was that it allowed us to explore code within interactive python notebooks (ipynb) and standard python scripts. Additionally, it allowed us to create HTML, CSS, and Javascript files within the same IDE.
@@ -187,7 +188,7 @@
 	\begin{figure}[h]
 		\centering
 		 $\text{Prob A Wins} = 1/1+10^{(B-A/400)}$
-		\caption{To calculate the expected score for a tweet.}
+		\caption{The formula calculates the expected score for a tweet. It will calculate the likelihood that tweet A will beat tweet B. This value is then used as part of the formula to calculate the new score (see fig: \ref{fig:elo_maths_2}). This value is known as the expected score.}
 		\label{fig:elo_maths_1}
 	\end{figure}
 
@@ -195,7 +196,7 @@
 	\centering
 
 	$\text{new score} = \text{rating} + 32 *  \text{score} - \text{expected score}$
-	\caption{Formula to calculate the new Elo score for a tweet.}
+	\caption{The formula calculates the player's (tweet) new Elo score. This formula requires the expected score (see fig: \ref{fig:elo_maths_1}) and the outcome of the comparison. The score will be a 1 if the tweet wins or a 0 if it loses.}
 	\label{fig:elo_maths_2}
 \end{figure}
 	
@@ -206,19 +207,20 @@
 		Twitter's developer API got used to allow for the tweets to get extracted. Additionally, the library Tweepy \cite{roesslein2020tweepy} got also used. The tweets were then uploaded to the Firebase database \cite{moroney2017firebase} through a Python Notebook for the main web app to access them. Having the tweets in the database also allowed us to be then able to create a notebook to then access the data to then do the NLP investigating within.
 	
 	\subsection{Pre-Processing}
-		Regarding the data pre-processing within the web app, the only processing occurred was removing the \_b characters and replacing them with <br> tags. We did this to allow the tweets to have the same layout as they did within Twitter. We decided that a few tweets, especially the Q+A style ones, lost their impact if they were not displayed correctly. Therefore, doing this allowed us to keep the integrity of the tweet and its comedy delivery.
+		Regarding the data pre-processing within the web app, the only processing that occurred was removing the \_b characters and replacing them with <br> tags. We did this to allow the tweets to have the same layout as they did within Twitter. We decided that a few tweets, especially the Q+A style ones, lost their impact if they were not displayed correctly. Therefore, doing this allowed us to keep the integrity of the tweet and its comedy delivery.
 	
 	\subsection{T-Rating Score}
 		The T-Rating (Twitter Rating) score is a metric that we created to use as a baseline comparison for the ranking methods we use within our application. The T-rating gets decided by adding up a tweets likes and retweets, then divided by the total number of followers the author of the tweet has. 
 		
-		We decided to normalise the data by using the number of followers a tweeter has. An assumption got made that an author with more followers is likely to have more retweets and likes due to more people being likely to see the tweet in the first place. Therefore this is, in essence, a weighted sum model for comparison \cite{churchman1954approximate}. While there are approaches that look to create a Tweet-ranking system using sentiment scores and popularity measures \cite{aleidi2019tweet}. While we are aware that this approach would create a better ranking of Twitter tweets, we opted against implementing this due to time restraints. However, this should get further explored at a later date.
-	
+		We decided to normalise the data by using the number of followers a tweeter has. An assumption got made that an author with more followers is likely to have more retweets and likes due to more people being likely to see the tweet in the first place. Therefore this is, in essence, a weighted sum model for comparison \cite{churchman1954approximate}.Some approaches look to create a Tweet-ranking system using sentiment scores and popularity measures \cite{aleidi2019tweet}. While we are aware that this approach would create a better ranking of Twitter tweets, we opted against implementing this due to time restraints. However, this should get further explored at a later date.
 	
 	\section{Implementation}
 	%[gather tweets]
 	
 	%[Web App]
-	The web application got implemented using the Python web library Flask. The web application used several industry-standard tools, for example, HTML, CSS, JavaScript, Bootstrap and dynamic content. The HTML, CSS, Bootstrap and JavaScipt was used to handle the application's front end. The web application had a mesh style navigation system (see fig: \ref{fig:web_app_nav}). However, when the user was on the compare page, this would push to itself and update the users content based on what they had next in their comparison list.
+	The web application got implemented using the Python web library Flask. The web application used several industry-standard tools, for example, HTML, CSS, JavaScript, Bootstrap and dynamic content. The HTML, CSS, Bootstrap and JavaScipt was used to handle the application's front end. 
+	
+	The web application had a mesh style navigation system (see fig: \ref{fig:web_app_nav}). However, when the user was on the compare page, this would push to itself and update the users content based on what they had next in their comparison list.
 	
 	\begin{figure}[t]
 		\centering
@@ -239,11 +241,11 @@
 	
 	The app will query the database and look for the user's current position when presenting the tweets. Based on their position, the tweet combinations then get checked for that according to the round. The tweet IDs are then queried against the tweets' content and then presented to the web page. The user gets expected to select a tweet that they find funnier and then provide an opportunity to justify their choice, which is optional.   
 	
-	When the user presses the "Vote!" button, this saves the results to the database, updating the two result systems and the user's position. The process will save which tweet won and lost and update the Elo ranking and the standard CJ ranking. The standard ranking gets calculated by taking how many times a tweet has won minus the number it has lost. The implementation of the standard ranking system is to try to implement a more traditional comparative judgement ranking system. In contrast, the Elo system is using a more traditional approach (see figs: \ref{fig:elo_maths_1}, \ref{fig:elo_maths_2}) Which gets updated after every comparison. The implementation of the two systems allows us to see if the Elo or more standard version of CJ is the more effective one or if they naturally mirror each other. This process gets repeated until the user has completed all five comparisons.
+	When the user presses the "Vote!" button, this saves the results to the database, updating the two result systems and the user's position. The process will save which tweet won and lost and update the Elo ranking and the standard CJ ranking. The standard ranking gets calculated by taking how many times a tweet has won minus the number it has lost. The implementation of the standard ranking system is to try to implement a more traditional comparative judgement ranking system. In contrast, the Elo system is using a more traditional approach (see figs: \ref{fig:elo_maths_1}, \ref{fig:elo_maths_2}), which gets updated after every comparison. Implementing the two systems allows us to see if the Elo or more standard version of CJ is the more effective one or if they naturally mirror each other. This process gets repeated until the user has completed all five comparisons.
 	
 	To see the main Python scripts for the web app, please look at the appendix: \ref{app:implementation_algorithm}.
 	
-	The NLP notebook is a more self-contained environment. The notebook has pre-written code and relies on all of the code getting executed to produce the required outputs and feedback. The notebook contains all of the information extraction techniques we explained in section: \ref{meth:nlp_IE}. To see the code, please look at the appendix: \ref{app:jupyter_nb}.
+	The NLP notebook is a more self-contained environment. The notebook has pre-written code and relies on all code getting executed to produce the required outputs and feedback. The notebook contains all of the information extraction techniques we explained in section: \ref{meth:nlp_IE}. To see the code, please look at the appendix: \ref{app:jupyter_nb}.
 	
 	%\begin{figure}[t]
 	%	\centering
